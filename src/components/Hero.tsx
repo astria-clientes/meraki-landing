@@ -3,18 +3,18 @@ import BotonWhatsApp from "./BotonWhatsApp";
 import { IconoFlecha } from "./Iconos";
 
 const cuentas = [
-  { href: "#peluqueria", n: "01", titulo: "El oficio", texto: "Peluquería & barbería", color: "#1B1411" },
-  { href: "#terapias", n: "02", titulo: "La pausa", texto: "Reiki & armonización sonora", color: "#B3A5D6" },
-  { href: "#piedras", n: "03", titulo: "La piedra", texto: "Bijou & piedras semipreciosas", color: "#E0A77C" },
+  { href: "#peluqueria", n: "01", titulo: "El oficio", texto: "Peluquería & barbería", color: "#221912" },
+  { href: "#terapias", n: "02", titulo: "La pausa", texto: "Reiki & armonización sonora", color: "#C9A227" },
+  { href: "#piedras", n: "03", titulo: "La piedra", texto: "Bijou & piedras semipreciosas", color: "#B8823D" },
 ];
 
 export default function Hero() {
   return (
-    <section id="inicio" className="grano relative overflow-hidden bg-hueso">
+    <section id="inicio" className="grano relative overflow-hidden bg-crema">
       {/* Tres luces, una por capítulo, mezcladas en el mismo fondo */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-cobre/25 blur-3xl md:h-96 md:w-96" />
-        <div className="absolute -right-20 top-40 h-72 w-72 animate-respirar rounded-full bg-lavanda/40 blur-3xl md:h-[28rem] md:w-[28rem]" />
+        <div className="absolute -right-20 top-40 h-72 w-72 animate-respirar rounded-full bg-dorado/30 blur-3xl md:h-[28rem] md:w-[28rem]" />
         <div className="absolute bottom-0 left-1/3 h-56 w-56 rounded-full bg-salvia-clara/50 blur-3xl" />
       </div>
 
@@ -55,7 +55,7 @@ export default function Hero() {
                   className="group relative flex items-center gap-5 rounded-2xl py-3 pr-4 transition-colors hover:bg-white/50"
                 >
                   <span
-                    className="relative z-10 h-8 w-8 shrink-0 rounded-full ring-1 ring-cobre ring-offset-[5px] ring-offset-hueso transition-transform duration-300 group-hover:scale-110"
+                    className="relative z-10 h-8 w-8 shrink-0 rounded-full ring-1 ring-cobre ring-offset-[5px] ring-offset-crema transition-transform duration-300 group-hover:scale-110"
                     style={{ background: c.color }}
                   />
                   <span className="flex-1">

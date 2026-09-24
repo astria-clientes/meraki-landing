@@ -9,7 +9,7 @@ const enlaces = [
 
 export default function Encabezado() {
   return (
-    <header className="sticky top-0 z-40 border-b border-tinta/10 bg-hueso/85 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-tinta/10 bg-crema/85 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 md:h-16 md:px-6">
         <a href="#inicio" className="font-display text-2xl tracking-tight text-tinta" aria-label="Meraki, ir al inicio">
           Meraki<span className="text-cobre">.</span>

@@ -31,13 +31,13 @@ export default function Inicio() {
       <Encabezado />
       <main>
         <Hero />
-        <Enhebrado desde="#F5EFE6" hacia="#1B1411" cuenta="#1B1411" />
+        <Enhebrado desde="#F7F3EC" hacia="#221912" cuenta="#221912" />
         <Peluqueria />
-        <Enhebrado desde="#1B1411" hacia="#2A2134" cuenta="#B3A5D6" />
+        <Enhebrado desde="#221912" hacia="#2E2117" cuenta="#C9A227" />
         <Terapias />
-        <Enhebrado desde="#2A2134" hacia="#E9DDCB" cuenta="#E0A77C" />
+        <Enhebrado desde="#2E2117" hacia="#EFE3CB" cuenta="#B8823D" />
         <Piedras />
-        <Enhebrado desde="#E9DDCB" hacia="#1B1411" cuenta="#B8693F" />
+        <Enhebrado desde="#EFE3CB" hacia="#221912" cuenta="#B8823D" />
         <Visitanos />
       </main>
       <WhatsAppFlotante />

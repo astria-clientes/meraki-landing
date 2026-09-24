@@ -2,13 +2,13 @@ import { contacto } from "@/config/contacto";
 import { waLink } from "@/lib/whatsapp";
 import { IconoWhatsApp } from "./Iconos";
 
-type Variante = "cobre" | "claro" | "oscuro" | "lavanda";
+type Variante = "cobre" | "claro" | "oscuro" | "dorado";
 
 const estilos: Record<Variante, string> = {
-  cobre: "bg-cobre text-hueso hover:bg-cobre-oscuro shadow-[0_10px_30px_-12px_rgba(184,105,63,.8)]",
-  claro: "bg-hueso text-tinta hover:bg-white",
-  oscuro: "bg-tinta text-hueso hover:bg-tinta-suave",
-  lavanda: "bg-lavanda text-ciruela-profunda hover:bg-lavanda-niebla shadow-[0_10px_30px_-12px_rgba(179,165,214,.7)]",
+  cobre: "bg-cobre text-crema hover:bg-cobre-oscuro shadow-[0_10px_30px_-12px_rgba(184,105,63,.8)]",
+  claro: "bg-crema text-tinta hover:bg-white",
+  oscuro: "bg-tinta text-crema hover:bg-tinta-suave",
+  dorado: "bg-dorado text-tinta hover:bg-dorado-claro shadow-[0_10px_30px_-12px_rgba(201,162,39,.6)]",
 };
 
 type Props = {

@@ -12,19 +12,19 @@ function Ondas() {
       {[0, 1.5, 3].map((d) => (
         <span
           key={d}
-          className="absolute inset-0 animate-ondas rounded-full border border-lavanda/50"
+          className="absolute inset-0 animate-ondas rounded-full border border-dorado/50"
           style={{ animationDelay: `${d}s` }}
         />
       ))}
-      <span className="absolute inset-[30%] animate-respirar rounded-full bg-gradient-to-br from-lavanda to-cobre-claro/70 blur-[2px]" />
+      <span className="absolute inset-[30%] animate-respirar rounded-full bg-gradient-to-br from-dorado to-cobre-claro/70 blur-[2px]" />
     </div>
   );
 }
 
 export default function Terapias() {
   return (
-    <section id="terapias" className="grano relative scroll-mt-14 overflow-hidden bg-ciruela text-lavanda-niebla md:scroll-mt-16">
-      <div aria-hidden className="pointer-events-none absolute -right-32 top-24 h-96 w-96 rounded-full bg-lavanda/15 blur-3xl" />
+    <section id="terapias" className="grano relative scroll-mt-14 overflow-hidden bg-tinta-suave text-crema/90 md:scroll-mt-16">
+      <div aria-hidden className="pointer-events-none absolute -right-32 top-24 h-96 w-96 rounded-full bg-dorado/10 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute -left-40 bottom-40 h-96 w-96 rounded-full bg-cobre/10 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-6 md:px-6 md:pb-28">
@@ -32,19 +32,20 @@ export default function Terapias() {
           <EncabezadoCapitulo
             numero="02"
             capitulo="La pausa"
-            cuenta="#B3A5D6"
+            cuenta="#C9A227"
             tonoTitulo="italic font-light"
             titulo={
               <>
                 Bajar un cambio,
                 <br />
-                <span className="text-lavanda">en el mismo lugar.</span>
+                <span className="text-dorado-claro">en el mismo lugar.</span>
               </>
             }
             bajada={
               <>
-                Las terapias se hacen dentro del espacio de Meraki, en un rincón pensado para el silencio.
-                Llegás por un corte y te quedás por la calma —o al revés.
+                Las terapias las da Diego Campos —el mismo de la barbería— dentro del espacio de
+                Meraki, en un rincón pensado para el silencio. Llegás por un corte y te quedás por
+                la calma, o al revés.
               </>
             }
           >
@@ -53,7 +54,7 @@ export default function Terapias() {
                 src={marca.logoPiedras}
                 alt={marca.nombreMarcaPiedras ?? "Logo de piedras y terapias"}
                 pendiente="Logo terapias & piedras · próximamente"
-                className="h-16 w-44 shrink-0 text-lavanda/70"
+                className="h-16 w-44 shrink-0 text-dorado/60"
               />
               {marca.nombreMarcaPiedras && (
                 <p className="font-display text-xl italic">{marca.nombreMarcaPiedras}</p>
@@ -68,23 +69,23 @@ export default function Terapias() {
             <Aparecer
               key={t.id}
               as="article"
-              className="rounded-[32px] border border-ciruela-borde bg-ciruela-profunda/60 p-6 backdrop-blur-sm md:p-10"
+              className="rounded-[32px] border border-tinta-borde bg-tinta/60 p-6 backdrop-blur-sm md:p-10"
             >
               <div className="grid gap-10 md:grid-cols-2 md:gap-14">
                 <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-cobre-claro">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-dorado">
                     {String(i + 1).padStart(2, "0")} · {t.bajada}
                   </p>
                   <h3 className="mt-3 font-display text-4xl italic md:text-5xl">{t.nombre}</h3>
-                  <p className="mt-5 text-[17px] leading-relaxed text-lavanda-niebla/85">{t.queEs}</p>
+                  <p className="mt-5 text-[17px] leading-relaxed text-crema/80">{t.queEs}</p>
 
-                  <h4 className="mt-8 text-[11px] font-semibold uppercase tracking-[0.26em] text-lavanda">
+                  <h4 className="mt-8 text-[11px] font-semibold uppercase tracking-[0.26em] text-dorado-claro">
                     Beneficios que se suelen describir
                   </h4>
                   <ul className="mt-4 space-y-2.5">
                     {t.beneficios.map((b) => (
                       <li key={b} className="flex gap-3 leading-snug">
-                        <span aria-hidden className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-cobre-claro" />
+                        <span aria-hidden className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-dorado" />
                         {b}
                       </li>
                     ))}
@@ -92,17 +93,17 @@ export default function Terapias() {
                 </div>
 
                 <div>
-                  <h4 className="text-[11px] font-semibold uppercase tracking-[0.26em] text-lavanda">
+                  <h4 className="text-[11px] font-semibold uppercase tracking-[0.26em] text-dorado-claro">
                     {t.id === "reiki" ? "Cómo es una sesión" : "Cómo funciona"}
                   </h4>
-                  <ol className="relative mt-5 space-y-6 border-l border-lavanda/25 pl-7">
+                  <ol className="relative mt-5 space-y-6 border-l border-dorado/25 pl-7">
                     {t.comoFunciona.map((paso, j) => (
                       <li key={paso.titulo} className="relative">
-                        <span className="absolute -left-[42px] top-0 flex h-7 w-7 items-center justify-center rounded-full border border-lavanda/40 bg-ciruela font-display text-sm italic text-lavanda">
+                        <span className="absolute -left-[42px] top-0 flex h-7 w-7 items-center justify-center rounded-full border border-dorado/40 bg-tinta-suave font-display text-sm italic text-dorado-claro">
                           {j + 1}
                         </span>
                         <p className="font-display text-xl">{paso.titulo}</p>
-                        <p className="mt-1 leading-relaxed text-lavanda-niebla/75">{paso.texto}</p>
+                        <p className="mt-1 leading-relaxed text-crema/70">{paso.texto}</p>
                       </li>
                     ))}
                   </ol>
@@ -112,7 +113,7 @@ export default function Terapias() {
           ))}
         </div>
 
-        {/* Fotos de sesiones y ambiente — con forma de arco */}
+        {/* Fotos reales de sesiones y ambiente — con forma de arco */}
         <div className="mt-16 grid grid-cols-2 gap-3 md:mt-24 md:grid-cols-4 md:gap-5">
           {fotosTerapias.map((f, i) => (
             <Aparecer key={f.alt} demora={i * 90}>
@@ -120,7 +121,7 @@ export default function Terapias() {
                 src={f.src}
                 alt={f.alt}
                 ayuda="/public/fotos/terapias"
-                className={`aspect-[3/4] rounded-t-full rounded-b-3xl border border-ciruela-borde bg-ciruela-profunda text-lavanda/70 ${
+                className={`aspect-[3/4] rounded-t-full rounded-b-3xl border border-tinta-borde bg-tinta text-dorado/60 ${
                   i % 2 === 1 ? "md:translate-y-8" : ""
                 }`}
               />
@@ -132,12 +133,12 @@ export default function Terapias() {
           <p className="max-w-lg font-display text-2xl italic leading-snug md:text-3xl">
             ¿Querés saber cuál te conviene? Contanos cómo estás y te orientamos.
           </p>
-          <BotonWhatsApp mensaje={contacto.mensajesWhatsApp.terapias} variante="lavanda" tamano="lg" className="w-full md:w-auto">
+          <BotonWhatsApp mensaje={contacto.mensajesWhatsApp.terapias} variante="dorado" tamano="lg" className="w-full md:w-auto">
             Consultar por una sesión
           </BotonWhatsApp>
         </div>
 
-        <p className="mt-10 max-w-3xl text-xs leading-relaxed text-lavanda-niebla/50">
+        <p className="mt-10 max-w-3xl text-xs leading-relaxed text-crema/45">
           Las terapias alternativas son un acompañamiento complementario para el bienestar. No reemplazan
           diagnósticos ni tratamientos médicos o psicológicos.
         </p>

@@ -18,15 +18,29 @@ Las tres partes del negocio son **tres cuentas de un mismo collar**. Un hilo de 
 
 | Capítulo | Sección | Fondo | Tono tipográfico |
 |---|---|---|---|
-| — | Inicio | Hueso `#F5EFE6` | Fraunces grande + Manrope |
-| 01 · El oficio | Peluquería & barbería | Tinta `#1B1411` | Etiquetas en mayúsculas, títulos firmes |
-| 02 · La pausa | Terapias | Ciruela `#2A2134` | Fraunces en *itálica* y liviana, formas de arco |
-| 03 · La piedra | Bijou & piedras | Arena `#E9DDCB` | Serif cálida, gemas ilustradas |
+| — | Inicio | Crema `#F7F3EC` | Fraunces grande + Public Sans |
+| 01 · El oficio | Peluquería & barbería | Tinta `#221912` | Etiquetas en mayúsculas, títulos firmes |
+| 02 · La pausa | Terapias | Tinta suave `#2E2117` + dorado | Fraunces en *itálica* y liviana, formas de arco |
+| 03 · La piedra | Bijou & piedras | Arena `#EFE3CB` | Serif cálida, gemas ilustradas |
 | Cierre | Visitanos | Tinta | Las tres cuentas juntas: el collar se cierra |
 
-El **cobre** `#B8693F` aparece en los cinco bloques y es el que los une. Entre capítulos, `<Enhebrado>` hace un fundido de color con el hilo y una cuenta.
+El **cobre** `#B8823D` (el mismo color de la madera miel de los muebles del salón) aparece en los cinco bloques y es el que los une. Entre capítulos, `<Enhebrado>` hace un fundido de color con el hilo y una cuenta.
+
+### Por qué esta paleta y esta tipografía
+
+La paleta ("Taller de barrio") **no se inventó**: se tomó directo de las fotos reales del local — paredes blanco cálido, muebles de madera miel, plantas por todos lados y el dorado de los adornos de geometría sagrada (flor de la vida, sri yantra) que ya tiene el salón. Por eso el rincón de terapias no usa violeta/lavanda "new age" de manual: usa el mismo negro cálido y dorado que aparecen en los flyers reales de Reiki y Armonización sonora que mandó el cliente.
+
+Tipografía: **Fraunces** (títulos, con eje variable "soft") + **Public Sans** (texto). Se evitó a propósito Inter/Poppins/Montserrat — las itálicas de Fraunces se sienten escritas a mano, no impresas, y encajan con la madera y lo artesanal del espacio.
 
 WhatsApp aparece en cada capítulo con un **mensaje precargado distinto** (barbería, peluquería, terapias, piedras, cada producto y cada piedra), y además hay un botón flotante que acompaña todo el scroll.
+
+## El material real que se usó
+
+- **Fotos**: `fachada.jpg`, `salon-general.jpg`, `vitrina-productos.jpg` (`public/fotos/local/`), las estaciones de Diego y Ayelen (`public/fotos/equipo/`), y las fotos de armonización sonora y Reiki, recortadas de los flyers originales del cliente para sacar el marco dorado y el texto (`public/fotos/terapias/`).
+- **Las 71 piedras de la Guía** salen del archivo HTML que mandó el cliente (su "enciclopedia" armada previamente): tipo de mineral, chakras, propiedades y cómo se usa cada una en una sesión de armonización sonora. Es la colección real de Diego, no texto inventado.
+- **El póster "colección completa"** (72 especímenes) se linkea entero desde la Guía de piedras (`public/piedras/coleccion-completa.jpg`), como complemento visual.
+- Los archivos originales sin recortar (los flyers completos, tal como los mandó el cliente) quedan guardados en `material-cliente/originales/` por si hacen falta después — no se sirven en el sitio.
+- **Dato real que apareció en los flyers**: Diego Campos no es solo el barbero — también es el terapeuta holístico que da Reiki y Armonización sonora. Esto ya está reflejado en las secciones 01 y 02 (se lo menciona en ambos capítulos, para reforzar que es un mismo espacio y una misma persona).
 
 ---
 
@@ -39,20 +53,19 @@ WhatsApp aparece en cada capítulo con un **mensaje precargado distinto** (barbe
 | Profesionales y videos de peluquería | `src/data/peluqueria.ts` + `public/videos/`, `public/fotos/equipo/` |
 | Textos de Reiki y armonización sonora, fotos de terapias | `src/data/terapias.ts` + `public/fotos/terapias/` |
 | Catálogo de bijou | `src/data/productos.ts` + `public/productos/` |
-| Guía de piedras (en stock y solo informativas) | `src/data/piedras.ts` |
+| Guía de piedras (las 71 piedras de la colección) | `src/data/piedras.ts` |
 
 Cada archivo tiene instrucciones en comentarios. Todo lo que está en `null` muestra un **recuadro rayado "pendiente"** con la carpeta donde va el archivo. Al cargar la ruta real, se reemplaza solo.
 
-### Contenido de ejemplo que hay que reemplazar
+### Contenido de ejemplo que todavía hay que confirmar o reemplazar
 
-- `contacto.ts`: el número de WhatsApp (`5492990000000`), la dirección y los horarios son de ejemplo.
-- `productos.ts`: las 8 piezas son de ejemplo.
-- `piedras.ts`: están marcadas como "en el local" amatista, cuarzo rosa, cuarzo cristal, ojo de tigre y turmalina negra. Ajustar `enCatalogo` según el stock real.
+- `contacto.ts`: el WhatsApp (`5492994125317`) sale de los flyers de terapias — **confirmar con el cliente** que sirve para todo el espacio y no solo para terapias. La dirección exacta y los horarios son de ejemplo.
+- `productos.ts`: las 8 piezas de bijou (dijes, collares) son de ejemplo — no llegaron fotos de estas piezas todavía. Las fotos del local y de la colección de piedras sí son reales.
 - `peluqueria.ts`: la lista de servicios de Diego y Ayelen se armó a partir de la descripción general; confirmar con ellos.
 
 ### Videos
 
-Subir los `.mp4` a `public/videos/` (idealmente comprimidos, menos de 10 MB cada uno; H.264). Formato vertical 9:16 por defecto (reels). Opcional: una imagen `poster` para que se vea algo antes de darle play.
+El cliente los va a nombrar `video-peluqueria-01.mp4`, `video-peluqueria-02.mp4`, etc. Cuando lleguen: subirlos a `public/videos/` con ese mismo nombre y completar el campo `src` en `src/data/peluqueria.ts` (el `poster` ya está puesto con fotos reales del local, así que hasta que llegue el video se ve ese adelanto con un botón de play). Formato vertical 9:16 por defecto (reels), click para reproducir — nunca autoplay.
 
 ---
 
@@ -81,6 +94,6 @@ Si preferís que no entre a GitHub, le pasás el archivo `contacto.ts`, lo compl
 Conviene un CMS liviano (ej. **Decap CMS** o **TinaCMS**, que editan estos mismos archivos desde un panel `/admin` sin base de datos) si:
 
 - el dueño quiere **cargar productos al catálogo él mismo**, con fotos, seguido;
-- o actualizar el stock de piedras cada semana.
+- o sumar piedras nuevas a la colección seguido.
 
 La estructura ya está preparada para ese paso: contacto, productos y piedras son arrays de datos separados del diseño, así que se pueden pasar a JSON editable por un CMS sin tocar los componentes.

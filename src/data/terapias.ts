@@ -1,15 +1,16 @@
 /* ==========================================================================
  *  CAPÍTULO 02 · TERAPIAS ALTERNATIVAS
- *  Fotos: subir a /public/fotos/terapias/ y completar "src".
+ *  Las da Diego Campos (el mismo de la barbería), como terapeuta holístico.
+ *  Fotos: subir nuevas a /public/fotos/terapias/ y completar "src".
  * ========================================================================== */
 
 export type Foto = { src: string | null; alt: string };
 
 export const fotosTerapias: Foto[] = [
-  { src: null, alt: "La sala de sesiones" },
-  { src: null, alt: "Sesión de Reiki" },
-  { src: null, alt: "Cuencos de armonización" },
-  { src: null, alt: "Detalle del ambiente" },
+  { src: "/fotos/terapias/armonizacion-cuencos.jpg", alt: "Cuencos, gong y diapasones para armonización sonora" },
+  { src: "/fotos/terapias/reiki.jpg", alt: "Sesión de Reiki" },
+  { src: "/fotos/local/salon-general.jpg", alt: "El rincón de terapias, dentro del mismo espacio" },
+  { src: null, alt: "Detalle de una sesión" },
 ];
 
 export type Terapia = {
@@ -28,9 +29,9 @@ export const terapias: Terapia[] = [
     bajada: "Energía a través de las manos",
     queEs:
       "Reiki es una práctica de origen japonés, creada por Mikao Usui a comienzos del siglo XX. " +
-      "La palabra une rei (universal) y ki (energía vital). Quien da la sesión apoya suavemente " +
-      "las manos —o las deja apenas por encima del cuerpo— en distintas zonas, para acompañarte " +
-      "a entrar en un estado de relajación profunda.",
+      "La palabra une rei (universal) y ki (energía vital). Diego apoya suavemente las manos " +
+      "—o las deja apenas por encima del cuerpo— en distintas zonas, para acompañarte a entrar " +
+      "en un estado de relajación profunda.",
     comoFunciona: [
       {
         titulo: "Una charla breve",

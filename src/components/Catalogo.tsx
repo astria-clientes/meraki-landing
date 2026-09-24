@@ -14,7 +14,7 @@ function Chip({ activo, onClick, children }: { activo: boolean; onClick: () => v
       onClick={onClick}
       aria-pressed={activo}
       className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-        activo ? "bg-tinta text-hueso" : "bg-white/60 text-tinta/70 hover:bg-white"
+        activo ? "bg-tinta text-crema" : "bg-white/60 text-tinta/70 hover:bg-white"
       }`}
     >
       {children}
@@ -59,7 +59,7 @@ export default function Catalogo() {
                 href={waLink(conNombre(contacto.mensajesWhatsApp.producto, p.nombre))}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-1.5 self-start rounded-full bg-cobre/10 px-3 py-1.5 text-[13px] font-semibold text-cobre-oscuro transition-colors hover:bg-cobre hover:text-hueso"
+                className="mt-3 inline-flex items-center gap-1.5 self-start rounded-full bg-cobre/10 px-3 py-1.5 text-[13px] font-semibold text-cobre-oscuro transition-colors hover:bg-cobre hover:text-crema"
               >
                 <IconoWhatsApp className="h-4 w-4" /> Consultar
               </a>

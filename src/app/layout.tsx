@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Manrope } from "next/font/google";
+import { Fraunces, Public_Sans } from "next/font/google";
 import "./globals.css";
 
+// Fraunces: serif cálida con eje "soft" — encaja con la madera del local.
+// Sus itálicas se sienten escritas a mano, no impresas.
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
@@ -9,9 +11,11 @@ const fraunces = Fraunces({
   axes: ["SOFT", "opsz"],
 });
 
-const manrope = Manrope({
+// Public Sans: humana y simple para el texto de cuerpo, sin el aire
+// "corporativo" de Inter/Poppins.
+const publicSans = Public_Sans({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  variable: "--font-public-sans",
   weight: ["400", "500", "600", "700"],
 });
 
@@ -26,12 +30,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F5EFE6",
+  themeColor: "#F7F3EC",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-AR" className={`${fraunces.variable} ${manrope.variable}`}>
+    <html lang="es-AR" className={`${fraunces.variable} ${publicSans.variable}`}>
       <body>{children}</body>
     </html>
   );

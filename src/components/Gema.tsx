@@ -1,16 +1,26 @@
-/** Gema facetada dibujada con los colores de cada piedra (sirve de ilustración sin foto). */
+function ajustar(hex: string, cantidad: number) {
+  const n = parseInt(hex.replace("#", ""), 16);
+  const canal = (valor: number) => Math.max(0, Math.min(255, valor + cantidad));
+  const r = canal((n >> 16) & 255);
+  const g = canal((n >> 8) & 255);
+  const b = canal(n & 255);
+  return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+}
+
+/** Gema facetada dibujada a partir de un único color (se aclara y oscurece solo). */
 export default function Gema({
-  colores,
+  color,
   id,
   className = "h-16 w-16",
   apagada = false,
 }: {
-  colores: [string, string];
+  color: string;
   id: string;
   className?: string;
   apagada?: boolean;
 }) {
-  const [claro, oscuro] = colores;
+  const claro = ajustar(color, 55);
+  const oscuro = ajustar(color, -60);
   const g = `gema-${id}`;
   return (
     <svg viewBox="0 0 64 64" className={className} aria-hidden style={apagada ? { filter: "saturate(.7)" } : undefined}>

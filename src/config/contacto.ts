@@ -23,8 +23,12 @@ export const contacto = {
    * textoVisible: cómo se muestra el número escrito en la página.
    * ------------------------------------------------------------------------ */
   whatsapp: {
-    numero: "5492990000000", // ← REEMPLAZAR por el número real
-    textoVisible: "299 000-0000",
+    // Número tomado de los flyers de Reiki / Armonización sonora que
+    // mandó el cliente (2994125317, de Diego). Se usa como el WhatsApp
+    // general del espacio. Confirmar con el cliente que es el correcto
+    // para TODO (peluquería, terapias y piedras) y no solo para terapias.
+    numero: "5492994125317",
+    textoVisible: "299 412-5317",
   },
 
   /* ------------------------------------------------------------------------

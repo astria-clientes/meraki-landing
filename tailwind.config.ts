@@ -1,29 +1,31 @@
 import type { Config } from "tailwindcss";
 
 /**
- * Paleta Meraki — un mismo "hilo de cobre" atraviesa los tres capítulos:
- *  - tinta   → el oficio (peluquería / barbería): oscuro, cálido, firme
- *  - ciruela → la pausa (terapias): violeta profundo, luz suave
- *  - hueso / arena → la piedra (bijou): tierra clara, artesanal
- *  - cobre   → el hilo conductor: aparece en los tres
+ * Paleta "Taller de barrio" — tomada directo de las fotos del local:
+ * paredes blanco cálido, muebles de madera miel, plantas, y el dorado
+ * de los adornos de geometría sagrada (flor de la vida, sri yantra).
+ *  - crema   → paredes del salón
+ *  - cobre   → madera miel de los muebles / el hilo que conecta todo
+ *  - tinta   → cartel de barbería, fondo de noche del local
+ *  - salvia  → las plantas, en todos lados
+ *  - dorado  → los adornos de geometría sagrada, el rincón de terapias
  */
 const config: Config = {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        hueso: "#F5EFE6",
-        arena: { DEFAULT: "#E9DDCB", oscura: "#D6C4AA" },
-        tinta: { DEFAULT: "#1B1411", suave: "#2A201B", borde: "#3B2E27" },
-        cobre: { DEFAULT: "#B8693F", claro: "#E0A77C", oscuro: "#8A4A2A" },
-        ciruela: { DEFAULT: "#2A2134", profunda: "#1F1827", borde: "#43375A" },
-        lavanda: { DEFAULT: "#B3A5D6", niebla: "#ECE6F5" },
-        salvia: { DEFAULT: "#6F7F62", clara: "#C9D2BD" },
+        crema: "#F7F3EC",
+        arena: { DEFAULT: "#EFE3CB", oscura: "#DCC48F" },
+        tinta: { DEFAULT: "#221912", suave: "#2E2117", borde: "#3E2C1C" },
+        cobre: { DEFAULT: "#B8823D", claro: "#D9A855", oscuro: "#8A5F26" },
+        dorado: { DEFAULT: "#C9A227", claro: "#E6C55C", oscuro: "#8F6F16" },
+        salvia: { DEFAULT: "#7C9070", clara: "#C7D3BC" },
         whatsapp: "#25D366",
       },
       fontFamily: {
         display: ["var(--font-fraunces)", "Georgia", "serif"],
-        sans: ["var(--font-manrope)", "system-ui", "sans-serif"],
+        sans: ["var(--font-public-sans)", "system-ui", "sans-serif"],
       },
       keyframes: {
         respirar: {

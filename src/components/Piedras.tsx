@@ -9,7 +9,7 @@ import { Logo } from "./Medios";
 export default function Piedras() {
   return (
     <section id="piedras" className="grano relative scroll-mt-14 overflow-hidden bg-arena text-tinta md:scroll-mt-16">
-      <div aria-hidden className="pointer-events-none absolute -left-24 top-10 h-80 w-80 rounded-full bg-lavanda/30 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute -left-24 top-10 h-80 w-80 rounded-full bg-dorado/25 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-6 md:px-6 md:pb-28">
         <div className="flex flex-col-reverse gap-8 md:flex-row md:items-end md:justify-between">
@@ -43,26 +43,35 @@ export default function Piedras() {
           <Catalogo />
         </div>
 
-        {/* Guía educativa */}
+        {/* Guía educativa: la colección real de Diego, piedra por piedra */}
         <div className="mt-20 md:mt-28">
           <div className="max-w-2xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-cobre-oscuro">Para aprender</p>
-            <h3 className="mt-3 font-display text-3xl md:text-5xl">Guía de piedras</h3>
+            <h3 className="mt-3 font-display text-3xl md:text-5xl">La colección de Diego</h3>
             <p className="mt-4 text-[17px] leading-relaxed text-tinta/75">
-              Qué se dice de cada piedra, de qué está hecha y con qué se la asocia. Incluimos las que
-              tenemos en el local y otras que no, para que puedas conocerlas igual.
+              Más de 70 piedras y minerales que Diego usa en las sesiones de armonización sonora, todas
+              a la vista en el local. Filtrá por chakra o buscá una en particular para conocer su
+              historia, sus propiedades y cómo se usa en una sesión.
             </p>
+            <a
+              href="/piedras/coleccion-completa.jpg"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-cobre-oscuro hover:underline"
+            >
+              Ver el póster de la colección completa →
+            </a>
           </div>
           <div className="mt-10">
             <GuiaPiedras />
           </div>
           <p className="mt-8 max-w-3xl text-xs leading-relaxed text-tinta/50">
-            Las propiedades energéticas provienen de tradiciones y creencias populares; no son afirmaciones
-            científicas ni reemplazan ningún tratamiento. La dureza corresponde a la escala de Mohs (1 a 10).
+            Las propiedades energéticas y espirituales provienen de tradiciones y creencias populares; no
+            son afirmaciones científicas ni reemplazan ningún tratamiento médico.
           </p>
         </div>
 
-        <div className="mt-16 flex flex-col items-start gap-6 rounded-[32px] bg-tinta p-7 text-hueso md:mt-20 md:flex-row md:items-center md:justify-between md:p-10">
+        <div className="mt-16 flex flex-col items-start gap-6 rounded-[32px] bg-tinta p-7 text-crema md:mt-20 md:flex-row md:items-center md:justify-between md:p-10">
           <p className="max-w-lg font-display text-2xl leading-snug md:text-3xl">
             ¿Buscás una piedra en particular o querés reservar una pieza?
           </p>
