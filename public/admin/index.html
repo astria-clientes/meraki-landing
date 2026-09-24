@@ -4,6 +4,11 @@
   <meta charset="utf-8" />
   <meta name="robots" content="noindex" />
   <title>Meraki — Panel de edición</title>
+  <!-- Ruta absoluta al config: si alguien entra a /admin sin la barra final,
+       Decap resolvería "config.yml" como /config.yml (en la raíz del sitio)
+       en vez de /admin/config.yml. Este link lo fuerza a la ruta correcta
+       sin importar cómo se haya escrito la URL. -->
+  <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
   <style>
     body { margin: 0; font-family: system-ui, sans-serif; }
   </style>

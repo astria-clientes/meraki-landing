@@ -5,9 +5,7 @@
 #  Al guardar, Decap hace un commit directo al repo de GitHub — no hay base de
 #  datos ni servidor propio.
 #
-#  Para poder entrar hace falta terminar de configurar el login (ver README,
-#  sección "Panel de edición"): crear una GitHub App y completar "app_id" acá
-#  abajo con su Client ID.
+#  Login: GitHub App "meraki-cms", instalada en astria-clientes.
 # ==============================================================================
 
 backend:
@@ -15,7 +13,7 @@ backend:
   repo: astria-clientes/meraki-landing
   branch: main
   auth_type: pkce
-  app_id: PENDIENTE_COMPLETAR_CLIENT_ID_DE_LA_GITHUB_APP
+  app_id: Iv23liUBpWFbtX4TqQOj
 
 # Permite probar el panel en localhost sin tener el login de GitHub
 # configurado todavía: correr `npx decap-server` en otra terminal y abrir
@@ -35,18 +33,22 @@ collections:
         label: "Datos de contacto"
         file: "content/contacto.json"
         fields:
-          - { label: "WhatsApp", name: "whatsapp", widget: "object", fields:
+          - label: "WhatsApp"
+            name: "whatsapp"
+            widget: "object"
+            fields:
               - { label: "Número (formato 549XXXXXXXXXX, sin +)", name: "numero", widget: "string" }
               - { label: "Cómo se muestra escrito", name: "textoVisible", widget: "string" }
-            }
           - { label: "Email (vacío para ocultarlo)", name: "email", widget: "string", required: false }
           - { label: "Instagram, sin @ (vacío para ocultarlo)", name: "instagram", widget: "string", required: false }
-          - { label: "Dirección", name: "direccion", widget: "object", fields:
+          - label: "Dirección"
+            name: "direccion"
+            widget: "object"
+            fields:
               - { label: "Calle y número", name: "calle", widget: "string" }
               - { label: "Ciudad", name: "ciudad", widget: "string" }
               - { label: "Referencia (opcional)", name: "referencia", widget: "string", required: false }
               - { label: "Link de Google Maps (opcional)", name: "linkMapa", widget: "string", required: false }
-            }
           - label: "Horarios"
             name: "horarios"
             widget: "list"
@@ -56,7 +58,7 @@ collections:
           - label: "Mensajes precargados de WhatsApp"
             name: "mensajesWhatsApp"
             widget: "object"
-            hint: "En \"producto\" y \"piedra\" dejá {nombre} tal cual: se reemplaza solo por lo que se consulta."
+            hint: 'En "producto" y "piedra" dejá {nombre} tal cual: se reemplaza solo por lo que se consulta.'
             fields:
               - { label: "General", name: "general", widget: "text" }
               - { label: "Barbería (Diego)", name: "barberia", widget: "text" }
