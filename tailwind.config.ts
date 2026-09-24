@@ -36,10 +36,17 @@ const config: Config = {
           "0%": { transform: "scale(0.6)", opacity: "0.7" },
           "100%": { transform: "scale(1.6)", opacity: "0" },
         },
+        // Zoom lentísimo y continuo para que las fotos "respiren" en vez de
+        // quedar pegadas y estáticas contra el fondo.
+        kenburns: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.06)" },
+        },
       },
       animation: {
         respirar: "respirar 7s ease-in-out infinite",
         ondas: "ondas 4.5s ease-out infinite",
+        kenburns: "kenburns 24s ease-in-out infinite",
       },
     },
   },

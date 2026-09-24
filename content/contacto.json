@@ -1,0 +1,38 @@
+{
+  "whatsapp": {
+    "numero": "5492994125317",
+    "textoVisible": "299 412-5317"
+  },
+  "email": "",
+  "instagram": "",
+  "direccion": {
+    "calle": "Dirección a confirmar",
+    "ciudad": "Plottier, Neuquén",
+    "referencia": "",
+    "linkMapa": ""
+  },
+  "horarios": [
+    {
+      "dias": "Lunes a viernes",
+      "horas": "9 a 13 · 16 a 20 h"
+    },
+    {
+      "dias": "Sábados",
+      "horas": "9 a 13 h"
+    }
+  ],
+  "mensajesWhatsApp": {
+    "general": "¡Hola Meraki! Vi la página y quería hacer una consulta.",
+    "barberia": "¡Hola! Quería coordinar un corte / barba con Diego.",
+    "peluqueria": "¡Hola! Quería consultar por peluquería o un tratamiento con Ayelen.",
+    "terapias": "¡Hola! Quería consultar por una sesión de terapia (Reiki / armonización sonora).",
+    "piedras": "¡Hola! Quería consultar por las piedras y accesorios que tienen.",
+    "producto": "¡Hola! Me interesa \"{nombre}\" que vi en la página. ¿Está disponible?",
+    "piedra": "¡Hola! ¿Tienen {nombre}? Vi la guía de piedras en la página."
+  },
+  "textos": {
+    "tituloContacto": "Conocé todo esto en persona.",
+    "bajadaContacto": "Vení a conocer el espacio: tocá las piedras, mirá los collares, sentí el ambiente. Y si querés coordinar un corte, una sesión o reservar alguna pieza, escribinos por WhatsApp.",
+    "botonWhatsApp": "Escribinos por WhatsApp"
+  }
+}

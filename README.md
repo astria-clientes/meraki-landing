@@ -10,9 +10,67 @@ npm run dev     # http://localhost:3000
 
 **Deploy en Vercel:** importá este repo tal cual. No hacen falta variables de entorno.
 
+**Ya está deployado:** [meraki-landing-six.vercel.app](https://meraki-landing-six.vercel.app/)
+
 ---
 
-## Concepto de diseño: "el hilo"
+## Panel de edición (Decap CMS) — `/admin`
+
+Todo el contenido de texto vive ahora en `/content/*.json` (contacto, logos, peluquería, terapias, catálogo de bijou). Esos mismos archivos se pueden editar:
+
+1. **A mano**, abriendo el `.json` en GitHub y tocando el lápiz ✏️ (igual que antes).
+2. **Desde un panel visual**, entrando a `tusitio.vercel.app/admin` — formularios, sin tocar código.
+
+Cada guardado desde el panel hace un commit directo al repo; Vercel lo publica solo en 1-2 minutos, igual que cualquier otro cambio.
+
+### Falta un paso único para activar el login del panel
+
+El panel usa GitHub para el login (sin base de datos ni servidor propio). Para activarlo:
+
+1. Andá a **[github.com/settings/apps/new](https://github.com/settings/apps/new)** (create desde tu cuenta personal, o desde `astria-clientes` si preferís que quede ahí).
+2. **GitHub App name**: algo como `meraki-cms`.
+3. **Homepage URL**: `https://meraki-landing-six.vercel.app`
+4. **Callback URL**: `https://meraki-landing-six.vercel.app/admin/`
+5. Tildá **"Request user authorization (OAuth) during installation"**.
+6. **Webhook**: destildá "Active" (no hace falta).
+7. **Permissions → Repository permissions → Contents**: `Read and write`.
+8. Creá la app. Instalala sobre el repo `astria-clientes/meraki-landing`.
+9. Copiá el **Client ID** que te muestra la página de la app.
+10. Pegalo en `public/admin/config.yml`, en la línea `app_id:` (reemplazando `PENDIENTE_COMPLETAR_CLIENT_ID_DE_LA_GITHUB_APP`), commiteá y esperá el redeploy.
+11. Entrá a `/admin`, iniciá sesión con GitHub, listo.
+
+> Nota: esto lo armé con lo que sé de Decap CMS, pero no pude confirmarlo contra la documentación en vivo (este entorno no tiene salida a internet general). Si al entrar a `/admin` tira un error de login, mandame el mensaje exacto y lo ajusto.
+
+**Para probarlo antes de configurar el login:** corré `npx decap-server` en una terminal aparte y `npm run dev` en otra, abrí `localhost:3000/admin` — el panel funciona local sin necesidad de GitHub (guarda directo en tus archivos locales).
+
+### Qué queda afuera del panel (por ahora)
+
+- **Guía de piedras** (`src/data/piedras.ts`, las 71 piedras): es contenido rico y estructurado que conviene seguir editando como código — pasarlo a formularios sería más trabajo que beneficio para lo seguido que se toca.
+- **Subida de fotos** vía panel: los campos de foto (`foto`, `imagen`, `poster`, logos) son campos de texto (la ruta del archivo), no un selector con drag & drop todavía. Subir la foto en sí se sigue haciendo por GitHub (arrastrar el archivo a la carpeta correspondiente en `/public`) y después pegar esa ruta en el campo. Convertirlos a un selector de imágenes con upload es un paso chico si lo terminan usando seguido — avisame y lo sumo.
+
+---
+
+## Fotos: tratamiento e integración visual
+
+Las fotos reales pasan por dos cosas antes de llegar a la página:
+
+1. **Tratamiento de color** (código, ya aplicado): más calidez, contraste, viñeta suave hacia el tono "tinta" del sitio y grano fino — para que no se vean "foto de catálogo" pegada sobre el diseño.
+2. **Vida en pantalla** (`src/components/Medios.tsx`, componente `<Foto>`): zoom lentísimo y continuo (tipo Ken Burns) + un zoom extra al pasar el mouse, y un degradé sutil hacia abajo para dar profundidad. Se puede apagar por imagen con `viva={false}` / `degradado={false}` si en algún lugar molesta.
+
+### Lo que el código no puede arreglar (para pedirle a Gemini u otra IA de imagen)
+
+Esto sí necesita generación/edición con IA de imagen — no lo tengo disponible en este entorno, pero podés correrlo vos y devolverme el resultado para integrarlo:
+
+**Prompt genérico (probar primero, sirve para casi todas):**
+> "Mejorá la calidad de esta foto de interior manteniendo el encuadre y el contenido exactos: subí la nitidez y el detalle como si hubiera sido tomada con una cámara mejor, corregí el balance de blancos si hace falta, sin agregar ni quitar objetos de la escena. No cambies la composición ni el punto de vista."
+
+**Fachada del local** (`fachada.jpg`): sacar el cable que cuelga del techo/cartel, enderezar la perspectiva si se puede sin deformar el cartel.
+
+**Salón general** (`salon-general.jpg`): mejorar nitidez general (se ve algo blanda), sobre todo en el piso y los muebles del fondo.
+
+**Estaciones de Diego y Ayelen**: estas están tomadas de cerca con poca profundidad de campo — pedirle "simulá una leve profundidad de campo (fondo un poco desenfocado, primer plano nítido), como con una lente de retrato" puede darles más aire de foto profesional.
+
+Cuando tengas los resultados, mandámelos y los integro (recorte, posición, mismo tratamiento de color que el resto) para que no se note el salto de una foto a otra.
 
 Las tres partes del negocio son **tres cuentas de un mismo collar**. Un hilo de cobre atraviesa toda la página y enhebra cada capítulo:
 

@@ -1,0 +1,163 @@
+# ==============================================================================
+#  PANEL DE EDICIÓN (Decap CMS) — /admin
+#  ------------------------------------------------------------------------------
+#  Cada "colección" de acá abajo edita uno de los archivos en /content/*.json.
+#  Al guardar, Decap hace un commit directo al repo de GitHub — no hay base de
+#  datos ni servidor propio.
+#
+#  Para poder entrar hace falta terminar de configurar el login (ver README,
+#  sección "Panel de edición"): crear una GitHub App y completar "app_id" acá
+#  abajo con su Client ID.
+# ==============================================================================
+
+backend:
+  name: github
+  repo: astria-clientes/meraki-landing
+  branch: main
+  auth_type: pkce
+  app_id: PENDIENTE_COMPLETAR_CLIENT_ID_DE_LA_GITHUB_APP
+
+# Permite probar el panel en localhost sin tener el login de GitHub
+# configurado todavía: correr `npx decap-server` en otra terminal y abrir
+# /admin en localhost. En producción (Vercel) esto se ignora solo.
+local_backend: true
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+locale: "es"
+
+collections:
+  - name: "contacto"
+    label: "Contacto"
+    files:
+      - name: "contacto"
+        label: "Datos de contacto"
+        file: "content/contacto.json"
+        fields:
+          - { label: "WhatsApp", name: "whatsapp", widget: "object", fields:
+              - { label: "Número (formato 549XXXXXXXXXX, sin +)", name: "numero", widget: "string" }
+              - { label: "Cómo se muestra escrito", name: "textoVisible", widget: "string" }
+            }
+          - { label: "Email (vacío para ocultarlo)", name: "email", widget: "string", required: false }
+          - { label: "Instagram, sin @ (vacío para ocultarlo)", name: "instagram", widget: "string", required: false }
+          - { label: "Dirección", name: "direccion", widget: "object", fields:
+              - { label: "Calle y número", name: "calle", widget: "string" }
+              - { label: "Ciudad", name: "ciudad", widget: "string" }
+              - { label: "Referencia (opcional)", name: "referencia", widget: "string", required: false }
+              - { label: "Link de Google Maps (opcional)", name: "linkMapa", widget: "string", required: false }
+            }
+          - label: "Horarios"
+            name: "horarios"
+            widget: "list"
+            fields:
+              - { label: "Días", name: "dias", widget: "string" }
+              - { label: "Horario", name: "horas", widget: "string" }
+          - label: "Mensajes precargados de WhatsApp"
+            name: "mensajesWhatsApp"
+            widget: "object"
+            hint: "En \"producto\" y \"piedra\" dejá {nombre} tal cual: se reemplaza solo por lo que se consulta."
+            fields:
+              - { label: "General", name: "general", widget: "text" }
+              - { label: "Barbería (Diego)", name: "barberia", widget: "text" }
+              - { label: "Peluquería (Ayelen)", name: "peluqueria", widget: "text" }
+              - { label: "Terapias", name: "terapias", widget: "text" }
+              - { label: "Piedras (general)", name: "piedras", widget: "text" }
+              - { label: "Un producto puntual", name: "producto", widget: "text" }
+              - { label: "Una piedra puntual", name: "piedra", widget: "text" }
+          - label: "Textos de la sección final de contacto"
+            name: "textos"
+            widget: "object"
+            fields:
+              - { label: "Título", name: "tituloContacto", widget: "string" }
+              - { label: "Bajada", name: "bajadaContacto", widget: "text" }
+              - { label: "Texto del botón de WhatsApp", name: "botonWhatsApp", widget: "string" }
+
+  - name: "marca"
+    label: "Logos"
+    files:
+      - name: "marca"
+        label: "Logos"
+        file: "content/marca.json"
+        fields:
+          - { label: "Ruta del logo de Meraki (ej. /logos/meraki.png)", name: "logoMeraki", widget: "string", required: false }
+          - { label: "Ruta del logo de piedras/terapias", name: "logoPiedras", widget: "string", required: false }
+          - { label: "Nombre de la marca de piedras/terapias", name: "nombreMarcaPiedras", widget: "string", required: false }
+
+  - name: "peluqueria"
+    label: "Peluquería & barbería"
+    files:
+      - name: "peluqueria"
+        label: "Peluquería & barbería"
+        file: "content/peluqueria.json"
+        fields:
+          - label: "Profesionales"
+            name: "profesionales"
+            widget: "list"
+            fields:
+              - { label: "Nombre", name: "nombre", widget: "string" }
+              - { label: "Especialidad", name: "especialidad", widget: "string" }
+              - { label: "Descripción", name: "descripcion", widget: "text" }
+              - { label: "Servicios", name: "servicios", widget: "list" }
+              - { label: "Ruta de la foto (en /public)", name: "foto", widget: "string", required: false }
+              - { label: "Qué mensaje de WhatsApp usa", name: "mensaje", widget: "select", options: ["barberia", "peluqueria"] }
+          - label: "Videos"
+            name: "videos"
+            widget: "list"
+            fields:
+              - { label: "Ruta del video (en /public/videos, vacío si todavía no hay)", name: "src", widget: "string", required: false }
+              - { label: "Ruta de la foto de adelanto", name: "poster", widget: "string", required: false }
+              - { label: "Título", name: "titulo", widget: "string" }
+              - { label: "Formato", name: "formato", widget: "select", options: ["vertical", "horizontal"] }
+
+  - name: "terapias"
+    label: "Terapias alternativas"
+    files:
+      - name: "terapias"
+        label: "Terapias alternativas"
+        file: "content/terapias.json"
+        fields:
+          - label: "Fotos"
+            name: "fotosTerapias"
+            widget: "list"
+            fields:
+              - { label: "Ruta de la foto (vacío si todavía no hay)", name: "src", widget: "string", required: false }
+              - { label: "Descripción de la foto", name: "alt", widget: "string" }
+          - label: "Terapias"
+            name: "terapias"
+            widget: "list"
+            fields:
+              - { label: "Id (sin espacios, ej. reiki)", name: "id", widget: "string" }
+              - { label: "Nombre", name: "nombre", widget: "string" }
+              - { label: "Bajada corta", name: "bajada", widget: "string" }
+              - { label: "Qué es", name: "queEs", widget: "text" }
+              - label: "Cómo funciona / cómo es una sesión"
+                name: "comoFunciona"
+                widget: "list"
+                fields:
+                  - { label: "Título del paso", name: "titulo", widget: "string" }
+                  - { label: "Texto del paso", name: "texto", widget: "text" }
+              - { label: "Beneficios", name: "beneficios", widget: "list" }
+
+  - name: "productos"
+    label: "Bijou & piedras (catálogo)"
+    files:
+      - name: "productos"
+        label: "Catálogo de bijou"
+        file: "content/productos.json"
+        fields:
+          - label: "Categorías"
+            name: "categorias"
+            widget: "list"
+            fields:
+              - { label: "Id", name: "id", widget: "select", options: ["dijes", "collares", "accesorios"] }
+              - { label: "Nombre visible", name: "nombre", widget: "string" }
+          - label: "Piezas del catálogo"
+            name: "productos"
+            widget: "list"
+            fields:
+              - { label: "Id (sin espacios, ej. dije-amatista-2)", name: "id", widget: "string" }
+              - { label: "Nombre", name: "nombre", widget: "string" }
+              - { label: "Categoría", name: "categoria", widget: "select", options: ["dijes", "collares", "accesorios"] }
+              - { label: "Piedra principal (opcional)", name: "piedra", widget: "string", required: false }
+              - { label: "Ruta de la foto (vacío si todavía no hay)", name: "imagen", widget: "string", required: false }

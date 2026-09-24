@@ -41,6 +41,8 @@ export function Foto({
   sizes = "(min-width: 768px) 33vw, 50vw",
   ayuda,
   posicion,
+  viva = true,
+  degradado = true,
 }: {
   src: string | null | undefined;
   alt: string;
@@ -49,18 +51,40 @@ export function Foto({
   ayuda?: string;
   /** object-position CSS, ej. "center 30%", para reencuadrar sin recortar lo importante. */
   posicion?: string;
+  /** Zoom lentísimo y continuo + un poco más de zoom al pasar el mouse. Apagalo en fotos muy chicas. */
+  viva?: boolean;
+  /** Sombra suave hacia abajo, para que la foto tenga profundidad y no quede "pegada" y plana. */
+  degradado?: boolean;
 }) {
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div className={`group relative overflow-hidden ${className}`}>
       {src ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes={sizes}
-          className="object-cover"
-          style={posicion ? { objectPosition: posicion } : undefined}
-        />
+        <>
+          {/* El zoom lento (Ken Burns) vive en la foto; el zoom extra al pasar
+              el mouse vive en este wrapper — en elementos distintos para que
+              las dos animaciones no compitan por la misma propiedad CSS. */}
+          <div
+            className={`h-full w-full transition-transform duration-700 ease-out ${
+              viva ? "group-hover:scale-[1.12]" : ""
+            }`}
+          >
+            <Image
+              src={src}
+              alt={alt}
+              fill
+              sizes={sizes}
+              className={`object-cover ${viva ? "animate-kenburns group-hover:[animation-play-state:paused]" : ""}`}
+              style={posicion ? { objectPosition: posicion } : undefined}
+            />
+          </div>
+          {degradado && (
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 bg-gradient-to-t from-tinta/25 via-transparent to-transparent"
+            />
+          )}
+          <div aria-hidden className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(0,0,0,.08)]" />
+        </>
       ) : (
         <Pendiente etiqueta={alt} ayuda={ayuda ?? "Foto pendiente"} icono={<IconoFoto />} />
       )}
