@@ -5,15 +5,16 @@
 #  Al guardar, Decap hace un commit directo al repo de GitHub — no hay base de
 #  datos ni servidor propio.
 #
-#  Login: GitHub App "meraki-cms", instalada en astria-clientes.
+#  Login: GitHub App "meraki-cms" (astria-clientes), vía un mini-proxy propio
+#  en /auth y /callback (src/app/auth, src/app/callback) — no dependemos de
+#  ningún servicio de terceros.
 # ==============================================================================
 
 backend:
   name: github
   repo: astria-clientes/meraki-landing
   branch: main
-  auth_type: pkce
-  app_id: Iv23liUBpWFbtX4TqQOj
+  base_url: https://meraki-landing-six.vercel.app
 
 # Permite probar el panel en localhost sin tener el login de GitHub
 # configurado todavía: correr `npx decap-server` en otra terminal y abrir
