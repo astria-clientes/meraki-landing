@@ -23,25 +23,25 @@ Todo el contenido de texto vive ahora en `/content/*.json` (contacto, logos, pel
 
 Cada guardado desde el panel hace un commit directo al repo; Vercel lo publica solo en 1-2 minutos, igual que cualquier otro cambio.
 
-### Falta un paso único para activar el login del panel
+### Login del panel: cómo funciona y qué falta activar
 
-El panel usa GitHub para el login (sin base de datos ni servidor propio). Para activarlo:
+El panel usa GitHub para el login. Como el sitio vive en Vercel (no en Netlify, que es para quien Decap trae soporte "de fábrica"), el login pasa por un mini-proxy propio de dos páginas — `src/app/auth` y `src/app/callback` — que corren como funciones serverless del mismo Next.js, sin servicios de terceros ni base de datos.
 
-1. Andá a **[github.com/settings/apps/new](https://github.com/settings/apps/new)** (create desde tu cuenta personal, o desde `astria-clientes` si preferís que quede ahí).
-2. **GitHub App name**: algo como `meraki-cms`.
-3. **Homepage URL**: `https://meraki-landing-six.vercel.app`
-4. **Callback URL**: `https://meraki-landing-six.vercel.app/admin/`
-5. Tildá **"Request user authorization (OAuth) during installation"**.
-6. **Webhook**: destildá "Active" (no hace falta).
-7. **Permissions → Repository permissions → Contents**: `Read and write`.
-8. Creá la app. Instalala sobre el repo `astria-clientes/meraki-landing`.
-9. Copiá el **Client ID** que te muestra la página de la app.
-10. Pegalo en `public/admin/config.yml`, en la línea `app_id:` (reemplazando `PENDIENTE_COMPLETAR_CLIENT_ID_DE_LA_GITHUB_APP`), commiteá y esperá el redeploy.
-11. Entrá a `/admin`, iniciá sesión con GitHub, listo.
+Ya está la GitHub App creada (`meraki-cms`, en `astria-clientes`, Client ID `Iv23liUBpWFbtX4TqQOj`) y el código de los dos endpoints. Faltan 3 cosas, todas de una vez:
 
-> Nota: esto lo armé con lo que sé de Decap CMS, pero no pude confirmarlo contra la documentación en vivo (este entorno no tiene salida a internet general). Si al entrar a `/admin` tira un error de login, mandame el mensaje exacto y lo ajusto.
+1. **Generar el Client Secret de la App:** entrá a la página de la App (`github.com/organizations/astria-clientes/settings/apps/meraki-cms`) → sección **"Client secrets"** → **"Generate a new client secret"** → copialo (no se vuelve a mostrar, si lo perdés generás otro).
+2. **Actualizar el Callback URL de la App** a `https://meraki-landing-six.vercel.app/callback` (antes apuntaba a `/admin/`, con el proxy propio cambia).
+3. **Cargar 2 variables de entorno en Vercel:** Project → Settings → **Environment Variables**:
+   - `GITHUB_OAUTH_CLIENT_ID` = `Iv23liUBpWFbtX4TqQOj`
+   - `GITHUB_OAUTH_CLIENT_SECRET` = el que generaste en el paso 1
+   
+   Aplicalas a "Production" (y "Preview" si querés probar en deploys de prueba). Después dale **Redeploy** al último deploy para que las tome.
 
-**Para probarlo antes de configurar el login:** corré `npx decap-server` en una terminal aparte y `npm run dev` en otra, abrí `localhost:3000/admin` — el panel funciona local sin necesidad de GitHub (guarda directo en tus archivos locales).
+Con eso, entrar a `/admin` → "Iniciar sesión con GitHub" → autorizar → vuelve solo al panel, ya logueado.
+
+> Nota: el primer intento (un método más nuevo de Decap que evita este proxy) no funcionó — lo armé con lo que sabía del tema pero no pude confirmarlo contra la documentación en vivo (este entorno no tiene salida a internet general) y resultó no estar soportado en la build que carga el panel. Este mini-proxy es el método clásico y bien documentado, así que hay bastante más confianza en que funcione. Si aun así da algún error, mandame el mensaje exacto (o una captura) y lo reviso.
+
+**Para probarlo sin GitHub, en tu compu:** corré `npx decap-server` en una terminal aparte y `npm run dev` en otra, abrí `localhost:3000/admin` — el panel funciona local guardando directo en tus archivos.
 
 ### Qué queda afuera del panel (por ahora)
 
