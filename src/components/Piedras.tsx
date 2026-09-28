@@ -9,31 +9,50 @@ import { Logo } from "./Medios";
 export default function Piedras() {
   return (
     <section id="piedras" className="grano relative scroll-mt-14 overflow-hidden bg-arena text-tinta md:scroll-mt-16">
+      {/* Banner de video: la misma colección de piedras y musgo que Diego usa,
+          de fondo, como entrada cinematográfica al capítulo. */}
+      <div className="relative overflow-hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/videos/piedras-musgo-poster.jpg"
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/videos/piedras-musgo.mp4" type="video/mp4" />
+        </video>
+        <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-tinta via-tinta/55 to-tinta/25" />
+
+        <div className="relative mx-auto max-w-6xl px-4 py-14 text-crema md:px-6 md:py-24">
+          <div className="flex flex-col-reverse gap-8 md:flex-row md:items-end md:justify-between">
+            <EncabezadoCapitulo
+              numero="03"
+              capitulo="La piedra"
+              cuenta="#E0A77C"
+              titulo={
+                <>
+                  Piezas hechas a mano,
+                  <br />
+                  <em className="text-dorado-claro">piedras con historia.</em>
+                </>
+              }
+              bajada="Dijes, collares y accesorios con piedras semipreciosas. Cada pieza es única: vení a verlas, tocarlas y elegir la tuya."
+            />
+            <Logo
+              src={marca.logoPiedras}
+              alt={marca.nombreMarcaPiedras ?? "Logo de piedras y terapias"}
+              pendiente="Logo piedras · próximamente"
+              className="h-20 w-32 shrink-0 text-crema/60 md:h-28 md:w-40"
+            />
+          </div>
+        </div>
+      </div>
+
       <div aria-hidden className="pointer-events-none absolute -left-24 top-10 h-80 w-80 rounded-full bg-dorado/25 blur-3xl" />
 
-      <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-6 md:px-6 md:pb-28">
-        <div className="flex flex-col-reverse gap-8 md:flex-row md:items-end md:justify-between">
-          <EncabezadoCapitulo
-            numero="03"
-            capitulo="La piedra"
-            cuenta="#E0A77C"
-            titulo={
-              <>
-                Piezas hechas a mano,
-                <br />
-                <em className="text-cobre-oscuro">piedras con historia.</em>
-              </>
-            }
-            bajada="Dijes, collares y accesorios con piedras semipreciosas. Cada pieza es única: vení a verlas, tocarlas y elegir la tuya."
-          />
-          <Logo
-            src={marca.logoPiedras}
-            alt={marca.nombreMarcaPiedras ?? "Logo de piedras y terapias"}
-            pendiente="Logo piedras · próximamente"
-            className="h-20 w-32 shrink-0 text-tinta/50 md:h-28 md:w-40"
-          />
-        </div>
-
+      <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-4 md:px-6 md:pb-28">
         {/* Catálogo */}
         <div className="mt-14 md:mt-20">
           <div className="mb-6 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
