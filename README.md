@@ -8,45 +8,45 @@ npm install
 npm run dev     # http://localhost:3000
 ```
 
-**Deploy en Vercel:** importá este repo tal cual. No hacen falta variables de entorno.
+**Deploy en Vercel:** importá este repo tal cual. Necesita 2 variables de entorno para el panel de edición — ver más abajo.
 
 **Ya está deployado:** [meraki-landing-six.vercel.app](https://meraki-landing-six.vercel.app/)
 
 ---
 
-## Panel de edición (Decap CMS) — `/admin`
+## Panel de edición propio — `/admin`
 
-Todo el contenido de texto vive ahora en `/content/*.json` (contacto, logos, peluquería, terapias, catálogo de bijou). Esos mismos archivos se pueden editar:
+Después de probar Decap CMS (un panel de terceros) y no convencer, el panel de `/admin` es **código nuestro**, hecho a medida para las 5 secciones editables de Meraki: Contacto, Logos, Peluquería & barbería, Terapias alternativas, Bijou & piedras.
 
-1. **A mano**, abriendo el `.json` en GitHub y tocando el lápiz ✏️ (igual que antes).
-2. **Desde un panel visual**, entrando a `tusitio.vercel.app/admin` — formularios, sin tocar código.
+No hay base de datos: el repo de GitHub ES la base de datos. El panel corre entero en el navegador — al entrar, lee `content/*.json` directo de la API de GitHub, y al guardar hace un **commit real** al repo. Vercel lo publica solo, en 1-2 minutos, igual que cualquier otro cambio.
 
-Cada guardado desde el panel hace un commit directo al repo; Vercel lo publica solo en 1-2 minutos, igual que cualquier otro cambio.
+**Subida de fotos, resuelta:** cada campo de foto (`foto`, `imagen`, `poster`, logos) tiene un botón real de **"Subir foto"** — elegís el archivo de tu compu, el panel lo sube a `/public/uploads/` (con un commit propio) y completa la ruta solo. Nada de escribir rutas a mano.
 
-### Login del panel: cómo funciona y qué falta activar
+### Piezas del panel (por si hay que tocarlo)
 
-El panel usa GitHub para el login. Como el sitio vive en Vercel (no en Netlify, que es para quien Decap trae soporte "de fábrica"), el login pasa por un mini-proxy propio de dos páginas — `src/app/auth` y `src/app/callback` — que corren como funciones serverless del mismo Next.js, sin servicios de terceros ni base de datos.
+| Qué | Dónde |
+|---|---|
+| Login (arma la URL de GitHub) | `src/app/auth/route.ts` |
+| Login (cambia el código por un token y lo guarda en una cookie) | `src/app/callback/route.ts` |
+| Cliente de GitHub (leer/guardar JSON, subir fotos) | `src/lib/github.ts` |
+| Pantalla principal (login + navegación entre secciones) | `src/app/admin/page.tsx` |
+| Los 5 formularios | `src/components/admin/*Form.tsx` |
+| Piezas reutilizables (campos, listas editables, subida de imagen) | `src/components/admin/Campos.tsx` |
 
-Ya está la GitHub App creada (`meraki-cms`, en `astria-clientes`, Client ID `Iv23liUBpWFbtX4TqQOj`) y el código de los dos endpoints. Faltan 3 cosas, todas de una vez:
+### Login: qué hace falta tener activado
 
-1. **Generar el Client Secret de la App:** entrá a la página de la App (`github.com/organizations/astria-clientes/settings/apps/meraki-cms`) → sección **"Client secrets"** → **"Generate a new client secret"** → copialo (no se vuelve a mostrar, si lo perdés generás otro).
-2. **Actualizar el Callback URL de la App** a `https://meraki-landing-six.vercel.app/callback` (antes apuntaba a `/admin/`, con el proxy propio cambia).
-3. **Cargar 2 variables de entorno en Vercel:** Project → Settings → **Environment Variables**:
-   - `GITHUB_OAUTH_CLIENT_ID` = `Iv23liUBpWFbtX4TqQOj`
-   - `GITHUB_OAUTH_CLIENT_SECRET` = el que generaste en el paso 1
-   
-   Aplicalas a "Production" (y "Preview" si querés probar en deploys de prueba). Después dale **Redeploy** al último deploy para que las tome.
+Usa GitHub para el login, vía una GitHub App propia (`meraki-cms`, en `astria-clientes`) y dos rutas del mismo Next.js (nada de servicios de terceros). Para que funcione, tienen que estar cargadas estas 2 variables de entorno en Vercel (Project → Settings → Environment Variables, marcadas para **Production**):
 
-Con eso, entrar a `/admin` → "Iniciar sesión con GitHub" → autorizar → vuelve solo al panel, ya logueado.
+- `GITHUB_OAUTH_CLIENT_ID` = `Iv23liUBpWFbtX4TqQOj`
+- `GITHUB_OAUTH_CLIENT_SECRET` = el que se generó en la página de la GitHub App (`github.com/organizations/astria-clientes/settings/apps/meraki-cms` → "Client secrets")
 
-> Nota: el primer intento (un método más nuevo de Decap que evita este proxy) no funcionó — lo armé con lo que sabía del tema pero no pude confirmarlo contra la documentación en vivo (este entorno no tiene salida a internet general) y resultó no estar soportado en la build que carga el panel. Este mini-proxy es el método clásico y bien documentado, así que hay bastante más confianza en que funcione. Si aun así da algún error, mandame el mensaje exacto (o una captura) y lo reviso.
+Y el **Callback URL** de esa misma App tiene que ser `https://meraki-landing-six.vercel.app/callback`.
 
-**Para probarlo sin GitHub, en tu compu:** corré `npx decap-server` en una terminal aparte y `npm run dev` en otra, abrí `localhost:3000/admin` — el panel funciona local guardando directo en tus archivos.
+(Si esto ya lo hicieron para probar Decap, no hay que tocar nada más — el panel nuevo reutiliza el mismo login.)
 
 ### Qué queda afuera del panel (por ahora)
 
-- **Guía de piedras** (`src/data/piedras.ts`, las 71 piedras): es contenido rico y estructurado que conviene seguir editando como código — pasarlo a formularios sería más trabajo que beneficio para lo seguido que se toca.
-- **Subida de fotos** vía panel: los campos de foto (`foto`, `imagen`, `poster`, logos) son campos de texto (la ruta del archivo), no un selector con drag & drop todavía. Subir la foto en sí se sigue haciendo por GitHub (arrastrar el archivo a la carpeta correspondiente en `/public`) y después pegar esa ruta en el campo. Convertirlos a un selector de imágenes con upload es un paso chico si lo terminan usando seguido — avisame y lo sumo.
+**Guía de piedras** (`src/data/piedras.ts`, las 71 piedras): es contenido rico y estructurado que conviene seguir editando como código — pasarlo a formularios sería más trabajo que beneficio para lo seguido que se toca.
 
 ---
 

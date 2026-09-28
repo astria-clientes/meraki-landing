@@ -61,6 +61,9 @@ export default function Peluqueria() {
                 </p>
                 <h3 className="mt-3 font-display text-3xl md:text-4xl">{p.nombre}</h3>
                 <p className="mt-3 leading-relaxed text-crema/75">{p.descripcion}</p>
+                {p.frase && (
+                  <p className="mt-3 font-display text-lg italic text-cobre-claro">&ldquo;{p.frase}&rdquo;</p>
+                )}
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {p.servicios.map((s) => (
                     <li key={s} className="rounded-full border border-crema/15 px-3 py-1.5 text-sm text-crema/85">

@@ -16,6 +16,8 @@ export type Profesional = {
   nombre: string;
   especialidad: string;
   descripcion: string;
+  /** Frase corta, en su propia voz — para darle identidad propia a cada perfil. */
+  frase?: string;
   servicios: string[];
   foto: string | null;
   /** Qué mensaje de /config/contacto.ts usa su botón de WhatsApp. */

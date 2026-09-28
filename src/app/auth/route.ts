@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /* ==========================================================================
- *  Paso 1 del login del panel /admin (Decap CMS).
- *  Decap abre esta ruta en una ventana nueva; acá la mandamos a GitHub para
- *  que la persona autorice, y GitHub la manda de vuelta a /callback.
- *  No guarda nada, no tiene base de datos: solo arma la URL de GitHub.
+ *  Paso 1 del login del panel /admin.
+ *  Manda a la persona a GitHub para que autorice; GitHub la devuelve a
+ *  /callback. No guarda nada acá.
  * ========================================================================== */
 
 export const dynamic = "force-dynamic";
@@ -12,10 +11,9 @@ export const dynamic = "force-dynamic";
 export async function GET(req: NextRequest) {
   const clientId = process.env.GITHUB_OAUTH_CLIENT_ID;
   if (!clientId) {
-    return new NextResponse(
-      "Falta la variable de entorno GITHUB_OAUTH_CLIENT_ID en Vercel.",
-      { status: 500 }
-    );
+    return new NextResponse("Falta la variable de entorno GITHUB_OAUTH_CLIENT_ID en Vercel.", {
+      status: 500,
+    });
   }
 
   const redirectUri = `${req.nextUrl.origin}/callback`;
