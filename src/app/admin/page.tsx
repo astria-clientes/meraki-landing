@@ -10,17 +10,17 @@ import TextosForm from "@/components/admin/TextosForm";
 import { cerrarSesion, getToken } from "@/lib/github";
 
 const SECCIONES = [
-  { id: "textos", label: "Títulos & bajadas", Componente: TextosForm },
+  { id: "productos", label: "Catálogo", Componente: ProductosForm },
+  { id: "textos", label: "Textos", Componente: TextosForm },
+  { id: "peluqueria", label: "Peluquería", Componente: PeluqueriaForm },
+  { id: "terapias", label: "Terapias", Componente: TerapiasForm },
   { id: "contacto", label: "Contacto", Componente: ContactoForm },
   { id: "logos", label: "Logos", Componente: MarcaForm },
-  { id: "peluqueria", label: "Peluquería & barbería", Componente: PeluqueriaForm },
-  { id: "terapias", label: "Terapias alternativas", Componente: TerapiasForm },
-  { id: "productos", label: "Bijou & piedras", Componente: ProductosForm },
 ] as const;
 
 export default function Admin() {
   const [logueado, setLogueado] = useState<boolean | null>(null);
-  const [seccion, setSeccion] = useState<(typeof SECCIONES)[number]["id"]>("contacto");
+  const [seccion, setSeccion] = useState<(typeof SECCIONES)[number]["id"]>("productos");
 
   useEffect(() => {
     setLogueado(!!getToken());
@@ -50,40 +50,38 @@ export default function Admin() {
   return (
     <div className="min-h-screen bg-crema">
       <header className="border-b border-tinta/10 bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          <span className="font-display text-xl text-tinta">Panel de Meraki</span>
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-4 md:px-6">
+          <span className="font-display text-xl text-tinta">Meraki · Admin</span>
+          <nav className="order-3 flex w-full flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium md:order-none md:w-auto">
+            {SECCIONES.map((s) => (
+              <button
+                key={s.id}
+                type="button"
+                onClick={() => setSeccion(s.id)}
+                className={`shrink-0 transition-colors ${
+                  seccion === s.id ? "font-semibold text-tinta" : "text-tinta/50 hover:text-tinta"
+                }`}
+              >
+                {s.label}
+              </button>
+            ))}
+          </nav>
           <button
             type="button"
             onClick={() => {
               cerrarSesion();
               setLogueado(false);
             }}
-            className="text-sm font-semibold text-tinta/50 hover:text-tinta"
+            className="shrink-0 text-sm font-semibold text-tinta/40 hover:text-tinta"
           >
             Cerrar sesión
           </button>
         </div>
       </header>
 
-      <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-8 md:flex-row">
-        <nav className="flex shrink-0 flex-row gap-1 overflow-x-auto md:w-56 md:flex-col md:overflow-visible">
-          {SECCIONES.map((s) => (
-            <button
-              key={s.id}
-              type="button"
-              onClick={() => setSeccion(s.id)}
-              className={`shrink-0 rounded-lg px-3 py-2 text-left text-sm font-semibold transition-colors ${
-                seccion === s.id ? "bg-tinta text-crema" : "text-tinta/70 hover:bg-tinta/10"
-              }`}
-            >
-              {s.label}
-            </button>
-          ))}
-        </nav>
-        <main className="flex-1">
-          <Componente />
-        </main>
-      </div>
+      <main className="mx-auto max-w-6xl px-4 py-8 md:px-6">
+        <Componente />
+      </main>
     </div>
   );
 }
