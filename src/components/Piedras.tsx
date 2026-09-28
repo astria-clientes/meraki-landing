@@ -9,6 +9,17 @@ import { Logo } from "./Medios";
 export default function Piedras() {
   return (
     <section id="piedras" className="grano relative scroll-mt-14 overflow-hidden bg-arena text-tinta md:scroll-mt-16">
+      {/* Textura ambiental: recorte real del video (musgo, flores, cristales),
+          desenfocado y repetido, detrás de todo el capítulo — catálogo y guía
+          incluidos — para que se sienta ese mismo mundo en toda la sección,
+          no solo en el banner de arriba. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        style={{ backgroundImage: "url(/fotos/local/piedras-textura-fondo.jpg)", backgroundRepeat: "repeat", backgroundSize: "560px 74px" }}
+      />
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-arena/75" />
+
       {/* Banner de video: la misma colección de piedras y musgo que Diego usa,
           de fondo, como entrada cinematográfica al capítulo. */}
       <div className="relative overflow-hidden">
@@ -55,7 +66,18 @@ export default function Piedras() {
         </div>
       </div>
 
-      <div aria-hidden className="pointer-events-none absolute -left-24 top-10 h-80 w-80 rounded-full bg-dorado/25 blur-3xl" />
+      {/* Dos "manchas" reales del video (cristal y musgo), como decoración ambiental —
+          ubicadas detrás de las grillas, no de los títulos, para no competir con el texto. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-20 top-[46rem] h-72 w-72 rounded-full bg-cover opacity-40 md:top-[50rem] md:h-96 md:w-96"
+        style={{ backgroundImage: "url(/fotos/local/piedras-blob-cristal.jpg)" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-20 bottom-24 h-64 w-64 rounded-full bg-cover opacity-35 md:h-80 md:w-80"
+        style={{ backgroundImage: "url(/fotos/local/piedras-blob-musgo.jpg)" }}
+      />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-4 md:px-6 md:pb-28">
         {/* Catálogo */}
