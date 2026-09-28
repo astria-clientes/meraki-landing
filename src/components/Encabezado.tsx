@@ -17,9 +17,8 @@ export default function Encabezado() {
           className="flex items-center gap-2.5 font-display text-2xl tracking-tight text-tinta"
           aria-label="Meraki, ir al inicio"
         >
-          {/* Placa oscura de respaldo: el logo es dorado sobre negro y se lava sobre el header claro. */}
-          <span className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-tinta md:h-9 md:w-9">
-            <Image src="/logos/estrella.png" alt="" fill sizes="36px" className="object-contain p-1.5" />
+          <span className="relative h-8 w-8 shrink-0 md:h-9 md:w-9">
+            <Image src="/logos/estrella.png" alt="" fill sizes="36px" className="object-contain" />
           </span>
           Meraki<span className="text-cobre">.</span>
         </a>

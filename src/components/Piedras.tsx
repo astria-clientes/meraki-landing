@@ -26,16 +26,12 @@ export default function Piedras() {
             }
             bajada="Dijes, collares y accesorios con piedras semipreciosas. Cada pieza es única: vení a verlas, tocarlas y elegir la tuya."
           />
-          {/* Placa oscura de respaldo: el logo es dorado sobre negro y perdería
-              contraste directo sobre el fondo claro de este capítulo. */}
-          <div className="shrink-0 rounded-2xl bg-tinta p-4 shadow-[0_16px_40px_-20px_rgba(34,25,18,.55)]">
-            <Logo
-              src={marca.logoPiedras}
-              alt={marca.nombreMarcaPiedras ?? "Logo de piedras y terapias"}
-              pendiente="Logo piedras · próximamente"
-              className="h-16 w-24 text-crema/50 md:h-20 md:w-32"
-            />
-          </div>
+          <Logo
+            src={marca.logoPiedras}
+            alt={marca.nombreMarcaPiedras ?? "Logo de piedras y terapias"}
+            pendiente="Logo piedras · próximamente"
+            className="h-20 w-32 shrink-0 text-tinta/50 md:h-28 md:w-40"
+          />
         </div>
 
         {/* Catálogo */}
