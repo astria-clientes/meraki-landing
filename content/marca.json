@@ -1,5 +1,5 @@
 {
-  "logoMeraki": null,
-  "logoPiedras": null,
+  "logoMeraki": "/logos/meraki.png",
+  "logoPiedras": "/logos/meraki.png",
   "nombreMarcaPiedras": null
 }
