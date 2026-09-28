@@ -58,28 +58,30 @@ export default function Piedras() {
 
       <div aria-hidden className="pointer-events-none absolute -left-24 top-10 h-80 w-80 rounded-full bg-dorado/25 blur-3xl" />
 
-      <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-4 md:px-6 md:pb-28">
-        {/* Un solo bloque oscuro fundido: catálogo, colección de Diego y el cierre
-            de WhatsApp viven adentro de la misma tarjeta continua. El video de
-            musgo/cuarzo solo ocupa la franja de arriba y se disuelve en tinta;
-            todo lo que sigue ya es ese mismo tinta plano, sin cortes. */}
-        <div className="relative mt-14 overflow-hidden rounded-[32px] bg-tinta md:mt-20">
-          <div className="relative h-[340px] w-full overflow-hidden md:h-[440px]">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster="/videos/catalogo-musgo-flor-poster.jpg"
-              className="absolute inset-0 h-full w-full object-cover"
-            >
-              <source src="/videos/catalogo-musgo-flor.mp4" type="video/mp4" />
-            </video>
-            <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent via-tinta/40 to-tinta" />
-          </div>
+      {/* Catálogo + colección de Diego + cierre: un segundo video (la esfera de
+          musgo) a todo el ancho, sin tarjeta ni bordes redondeados — se disuelve
+          directo en el arena de arriba y en el tinta de abajo, igual que el
+          banner de entrada del capítulo, y todo lo que sigue queda en ese
+          mismo tinta plano, sin cortes. */}
+      <div className="relative mt-14 md:mt-20">
+        <div className="relative h-[340px] w-full overflow-hidden md:h-[440px]">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/videos/coleccion-esfera-poster.jpg"
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src="/videos/coleccion-esfera.mp4" type="video/mp4" />
+          </video>
+          <div aria-hidden className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-arena to-transparent md:h-28" />
+          <div aria-hidden className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-tinta md:h-40" />
+        </div>
 
-          <div className="relative px-4 pb-14 pt-2 md:px-8 md:pb-20 md:pt-4">
+        <div className="bg-tinta pb-20 pt-10 md:pb-28 md:pt-14">
+          <div className="relative mx-auto max-w-6xl px-4 md:px-6">
             {/* Catálogo */}
             <div className="mb-6 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
               <h3 className="font-display text-3xl text-crema md:text-4xl">Catálogo</h3>
