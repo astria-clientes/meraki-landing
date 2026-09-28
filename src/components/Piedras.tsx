@@ -58,37 +58,33 @@ export default function Piedras() {
       <div aria-hidden className="pointer-events-none absolute -left-24 top-10 h-80 w-80 rounded-full bg-dorado/25 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-4 md:px-6 md:pb-28">
-        {/* Catálogo */}
+        {/* Catálogo: el musgo, cuarzo y flor de Diego como fondo continuo de
+            toda la sección, no una tarjeta aparte — el catálogo "flota"
+            sobre ese fondo con tarjetas de vidrio en vez de blancas. */}
         <div className="mt-14 md:mt-20">
-          <div className="mb-6 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
-            <h3 className="font-display text-3xl md:text-4xl">Catálogo</h3>
-            <p className="text-sm text-tinta/60">Sin precios online: consultá cada pieza por WhatsApp.</p>
-          </div>
+          <div className="relative overflow-hidden rounded-[32px] bg-tinta">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster="/videos/catalogo-musgo-flor-poster.jpg"
+              className="absolute inset-0 h-full w-full object-cover"
+            >
+              <source src="/videos/catalogo-musgo-flor.mp4" type="video/mp4" />
+            </video>
+            <div aria-hidden className="absolute inset-0 bg-tinta/55" />
+            <div aria-hidden className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-tinta/70 to-transparent" />
 
-          {/* Cápsula: musgo, cuarzo y flor floreciendo sobre la misma piedra —
-              el origen natural detrás de cada pieza de bijou. Contenida en su
-              propia tarjeta, no de fondo: el fondo del video ya es negro,
-              así que se funde solo con el marco oscuro. */}
-          <div className="mb-8 overflow-hidden rounded-[28px] bg-tinta md:mb-10">
-            <div className="relative mx-auto aspect-[4/3] max-h-[420px] w-full max-w-xl">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                poster="/videos/catalogo-musgo-flor-poster.jpg"
-                className="absolute inset-0 h-full w-full object-contain"
-              >
-                <source src="/videos/catalogo-musgo-flor.mp4" type="video/mp4" />
-              </video>
+            <div className="relative px-4 py-10 md:px-8 md:py-14">
+              <div className="mb-6 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
+                <h3 className="font-display text-3xl text-crema md:text-4xl">Catálogo</h3>
+                <p className="text-sm text-crema/65">Sin precios online: consultá cada pieza por WhatsApp.</p>
+              </div>
+              <Catalogo />
             </div>
-            <p className="border-t border-crema/10 px-5 py-4 text-center font-display text-lg italic text-crema/85 md:text-xl">
-              Antes de ser un dije, fue esto: musgo, cuarzo y flor abriéndose sobre la misma piedra.
-            </p>
           </div>
-
-          <Catalogo />
         </div>
 
         {/* Guía educativa: la colección real de Diego, piedra por piedra */}

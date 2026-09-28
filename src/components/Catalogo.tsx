@@ -13,8 +13,8 @@ function Chip({ activo, onClick, children }: { activo: boolean; onClick: () => v
       type="button"
       onClick={onClick}
       aria-pressed={activo}
-      className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-        activo ? "bg-tinta text-crema" : "bg-white/60 text-tinta/70 hover:bg-white"
+      className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold backdrop-blur-sm transition-colors ${
+        activo ? "bg-crema text-tinta" : "bg-crema/10 text-crema/75 ring-1 ring-crema/15 hover:bg-crema/20"
       }`}
     >
       {children}
@@ -41,25 +41,28 @@ export default function Catalogo() {
 
       <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-5 lg:grid-cols-4">
         {lista.map((p) => (
-          <li key={p.id} className="group flex flex-col overflow-hidden rounded-3xl bg-white/70 ring-1 ring-tinta/5">
+          <li
+            key={p.id}
+            className="group flex flex-col overflow-hidden rounded-3xl bg-crema/10 ring-1 ring-crema/15 backdrop-blur-md"
+          >
             <Foto
               src={p.imagen}
               alt={p.nombre}
               ayuda="/public/productos"
-              className="aspect-square bg-arena/60 text-tinta/60"
+              className="aspect-square bg-tinta/40 text-crema/40"
               sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
             />
             <div className="flex flex-1 flex-col p-3.5 md:p-4">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-cobre-oscuro">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-dorado-claro">
                 {categorias.find((c) => c.id === p.categoria)?.nombre}
-                {p.piedra && <span className="text-tinta/45"> · {p.piedra}</span>}
+                {p.piedra && <span className="text-crema/45"> · {p.piedra}</span>}
               </p>
-              <h4 className="mt-1.5 flex-1 font-display text-[17px] leading-snug text-tinta md:text-lg">{p.nombre}</h4>
+              <h4 className="mt-1.5 flex-1 font-display text-[17px] leading-snug text-crema md:text-lg">{p.nombre}</h4>
               <a
                 href={waLink(conNombre(contacto.mensajesWhatsApp.producto, p.nombre))}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-1.5 self-start rounded-full bg-cobre/10 px-3 py-1.5 text-[13px] font-semibold text-cobre-oscuro transition-colors hover:bg-cobre hover:text-crema"
+                className="mt-3 inline-flex items-center gap-1.5 self-start rounded-full bg-crema/10 px-3 py-1.5 text-[13px] font-semibold text-dorado-claro ring-1 ring-crema/15 transition-colors hover:bg-cobre hover:text-crema hover:ring-cobre"
               >
                 <IconoWhatsApp className="h-4 w-4" /> Consultar
               </a>
