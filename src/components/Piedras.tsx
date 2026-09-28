@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { contacto } from "@/config/contacto";
 import { marca } from "@/data/marca";
 import BotonWhatsApp from "./BotonWhatsApp";
@@ -7,27 +6,6 @@ import { EncabezadoCapitulo } from "./Capitulo";
 import GuiaPiedras from "./GuiaPiedras";
 import { Logo } from "./Medios";
 import { textos } from "@/data/textos";
-
-/** Puente entre los dos videos: el ojo de Meraki, abriéndose sobre el hilo de cobre. */
-function OjoTransicion() {
-  return (
-    <div aria-hidden className="relative h-36 overflow-hidden bg-arena md:h-44">
-      <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-cobre/0 via-cobre to-cobre/0" />
-      <div className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 md:h-28 md:w-28">
-        {[0, 1.4].map((d) => (
-          <span
-            key={d}
-            className="absolute inset-0 animate-ondas rounded-full border border-cobre/50"
-            style={{ animationDelay: `${d}s` }}
-          />
-        ))}
-        <span className="absolute inset-[20%] flex items-center justify-center overflow-hidden rounded-full bg-tinta-suave shadow-[0_0_30px_-4px_rgba(184,130,61,.7)]">
-          <Image src="/logos/ojo.png" alt="" fill sizes="80px" className="object-contain p-2.5" />
-        </span>
-      </div>
-    </div>
-  );
-}
 
 export default function Piedras() {
   return (
@@ -78,10 +56,24 @@ export default function Piedras() {
         </div>
       </div>
 
-      {/* Puente místico: el ojo de Meraki sobre el hilo de cobre, con ondas
-          expandiéndose — conecta el video de entrada con el del catálogo en
-          vez de dejar un salto vacío en arena. */}
-      <OjoTransicion />
+      {/* Puente místico: nube de polvo y partículas doradas, en vez de un
+          salto vacío en arena — conecta el video de entrada con el del
+          catálogo con su propia atmósfera, no con un hilo o un ícono. */}
+      <div className="relative h-[220px] w-full overflow-hidden md:h-[300px]">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/videos/transicion-polvo-poster.jpg"
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/videos/transicion-polvo.mp4" type="video/mp4" />
+        </video>
+        <div aria-hidden className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-arena to-transparent md:h-20" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-tinta md:h-20" />
+      </div>
 
       {/* Catálogo, envuelto entre dos videos — el musgo/flor al empezar, la
           esfera de mariposas al terminar la grilla — así el capítulo no "corta
@@ -100,7 +92,7 @@ export default function Piedras() {
           >
             <source src="/videos/catalogo-musgo-flor.mp4" type="video/mp4" />
           </video>
-          <div aria-hidden className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-arena to-transparent md:h-28" />
+          <div aria-hidden className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-tinta to-transparent md:h-28" />
           <div aria-hidden className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-tinta md:h-32" />
         </div>
 
