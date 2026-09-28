@@ -27,6 +27,7 @@ export const metadata: Metadata = {
   title: titulo,
   description: descripcion,
   openGraph: { title: titulo, description: descripcion, locale: "es_AR", type: "website" },
+  icons: { icon: "/logos/favicon.png" },
 };
 
 export const viewport: Viewport = {

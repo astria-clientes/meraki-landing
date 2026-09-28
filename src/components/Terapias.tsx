@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { contacto } from "@/config/contacto";
 import { marca } from "@/data/marca";
 import { fotosTerapias, terapias } from "@/data/terapias";
@@ -6,6 +7,7 @@ import BotonWhatsApp from "./BotonWhatsApp";
 import { EncabezadoCapitulo } from "./Capitulo";
 import { Foto, Logo } from "./Medios";
 
+/** El ojo del logo, con las ondas de la armonización sonora expandiéndose a su alrededor. */
 function Ondas() {
   return (
     <div aria-hidden className="relative mx-auto h-40 w-40 md:h-52 md:w-52">
@@ -16,7 +18,9 @@ function Ondas() {
           style={{ animationDelay: `${d}s` }}
         />
       ))}
-      <span className="absolute inset-[30%] animate-respirar rounded-full bg-gradient-to-br from-dorado to-cobre-claro/70 blur-[2px]" />
+      <span className="absolute inset-[26%] animate-respirar rounded-full bg-tinta-suave shadow-[0_0_30px_-4px_rgba(201,162,39,.6)]">
+        <Image src="/logos/ojo.png" alt="" fill sizes="140px" className="object-contain p-3" />
+      </span>
     </div>
   );
 }
