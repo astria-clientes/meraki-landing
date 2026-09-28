@@ -24,7 +24,10 @@ export default function Piedras() {
           <source src="/videos/piedras-musgo.mp4" type="video/mp4" />
         </video>
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-tinta via-tinta/55 to-tinta/25" />
-        {/* Fusión con el resto de la sección: el video no corta de golpe, se disuelve en el color de fondo. */}
+        {/* Fusión con el resto de la página: el video no corta de golpe ni arriba ni abajo,
+            se disuelve en el color que viene antes (tinta, el hilo entre capítulos) y en el
+            que sigue (arena, el resto de esta sección). */}
+        <div aria-hidden className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-tinta to-transparent md:h-28" />
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-arena md:h-40" />
 
         <div className="relative mx-auto max-w-6xl px-4 py-14 text-crema md:px-6 md:py-24">

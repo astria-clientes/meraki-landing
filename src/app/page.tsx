@@ -35,7 +35,7 @@ export default function Inicio() {
         <Peluqueria />
         <Enhebrado desde="#221912" hacia="#2E2117" cuenta="#C9A227" />
         <Terapias />
-        <Enhebrado desde="#2E2117" hacia="#EFE3CB" cuenta="#B8823D" />
+        <Enhebrado desde="#2E2117" hacia="#221912" cuenta="#B8823D" />
         <Piedras />
         <Enhebrado desde="#EFE3CB" hacia="#221912" cuenta="#B8823D" />
         <Visitanos />
