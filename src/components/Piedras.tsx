@@ -56,29 +56,13 @@ export default function Piedras() {
         </div>
       </div>
 
-      {/* Puente místico: nube de polvo y partículas doradas, en vez de un
-          salto vacío en arena — conecta el video de entrada con el del
-          catálogo con su propia atmósfera, no con un hilo o un ícono. */}
-      <div className="relative h-[220px] w-full overflow-hidden md:h-[300px]">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster="/videos/transicion-polvo-poster.jpg"
-          className="absolute inset-0 h-full w-full object-cover"
-        >
-          <source src="/videos/transicion-polvo.mp4" type="video/mp4" />
-        </video>
-        <div aria-hidden className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-arena to-transparent md:h-20" />
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-tinta md:h-20" />
-      </div>
-
       {/* Catálogo, envuelto entre dos videos — el musgo/flor al empezar, la
           esfera de mariposas al terminar la grilla — así el capítulo no "corta
           de la nada": entra y sale de la misma atmósfera. Todo a todo el ancho,
-          sin tarjeta ni bordes redondeados, fundido en tinta de punta a punta. */}
+          sin tarjeta ni bordes redondeados, fundido en tinta de punta a punta.
+          Los dos videos de entrada (banner + catálogo) quedan pegados, sin
+          nada en el medio: el fundido de uno termina justo donde empieza
+          el del otro, así se leen como una sola secuencia continua. */}
       <div className="relative bg-tinta">
         <div className="relative h-[300px] w-full overflow-hidden md:h-[400px]">
           <video
@@ -92,7 +76,7 @@ export default function Piedras() {
           >
             <source src="/videos/catalogo-musgo-flor.mp4" type="video/mp4" />
           </video>
-          <div aria-hidden className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-tinta to-transparent md:h-28" />
+          <div aria-hidden className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-arena to-transparent md:h-28" />
           <div aria-hidden className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-tinta md:h-32" />
         </div>
 
