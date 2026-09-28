@@ -1,73 +1,62 @@
 /* ==========================================================================
- *  Cliente de GitHub para el panel /admin.
- *  Todo corre en el navegador: el token vive en una cookie (la puso
- *  /callback después del login) y cada guardado es un commit real al repo,
- *  vía la API de contenidos de GitHub. No hay base de datos ni servidor
- *  propio — el repo ES la base de datos.
+ *  Cliente del panel /admin, del lado del navegador.
+ *  Ya no habla directo con GitHub (eso quedó en el servidor, en
+ *  src/lib/adminServer.ts): acá solo se llama a nuestras propias rutas
+ *  /api/admin/..., que son las que guardan de verdad (commit real al repo).
+ *  La sesión es un email + contraseña simples; el navegador nunca ve ningún
+ *  token de GitHub.
  * ========================================================================== */
 
-const REPO = "astria-clientes/meraki-landing";
-const RAMA = "main";
-const COOKIE = "gh_token";
-
-export function getToken(): string | null {
-  if (typeof document === "undefined") return null;
-  const match = document.cookie.match(new RegExp(`(?:^|; )${COOKIE}=([^;]*)`));
-  return match ? decodeURIComponent(match[1]) : null;
-}
-
-export function cerrarSesion() {
-  document.cookie = `${COOKIE}=; Max-Age=0; Path=/`;
-}
-
-function utf8ABase64(texto: string): string {
-  const bytes = new TextEncoder().encode(texto);
-  let binario = "";
-  bytes.forEach((b) => (binario += String.fromCharCode(b)));
-  return btoa(binario);
-}
-
-function base64AUtf8(b64: string): string {
-  const binario = atob(b64.replace(/\n/g, ""));
-  const bytes = new Uint8Array(binario.length);
-  for (let i = 0; i < binario.length; i++) bytes[i] = binario.charCodeAt(i);
-  return new TextDecoder().decode(bytes);
-}
-
-async function llamarGitHub(path: string, init?: RequestInit) {
-  const token = getToken();
-  if (!token) throw new Error("No hay sesión iniciada.");
-  const res = await fetch(`https://api.github.com/repos/${REPO}${path}`, {
-    ...init,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/vnd.github+json",
-      ...(init?.headers ?? {}),
-    },
-  });
-  if (!res.ok) {
-    const detalle = await res.text().catch(() => "");
-    throw new Error(`GitHub respondió ${res.status}: ${detalle.slice(0, 300)}`);
+async function mensajeError(res: Response): Promise<string> {
+  try {
+    const data = await res.json();
+    return typeof data?.error === "string" ? data.error : `Error ${res.status}`;
+  } catch {
+    return `Error ${res.status}`;
   }
-  return res.json();
+}
+
+export async function haySesion(): Promise<boolean> {
+  try {
+    const res = await fetch("/api/admin/session");
+    if (!res.ok) return false;
+    const data = await res.json();
+    return !!data.logueado;
+  } catch {
+    return false;
+  }
+}
+
+export async function iniciarSesion(email: string, password: string): Promise<void> {
+  const res = await fetch("/api/admin/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  if (!res.ok) throw new Error(await mensajeError(res));
+}
+
+export async function cerrarSesion(): Promise<void> {
+  await fetch("/api/admin/logout", { method: "POST" });
 }
 
 /** Trae un archivo de contenido (content/*.json) ya parseado, con su "sha" (hace falta para poder guardar después). */
 export async function leerJson<T>(rutaRepo: string): Promise<{ datos: T; sha: string }> {
-  const data = await llamarGitHub(`/contents/${rutaRepo}?ref=${RAMA}`);
-  const texto = base64AUtf8(data.content as string);
-  return { datos: JSON.parse(texto) as T, sha: data.sha as string };
+  const res = await fetch(`/api/admin/contenido?ruta=${encodeURIComponent(rutaRepo)}`);
+  if (!res.ok) throw new Error(await mensajeError(res));
+  return res.json();
 }
 
 /** Guarda un archivo de contenido (hace un commit real). */
 export async function guardarJson(rutaRepo: string, datos: unknown, sha: string, mensaje: string): Promise<string> {
-  const contenido = utf8ABase64(JSON.stringify(datos, null, 2) + "\n");
-  const res = await llamarGitHub(`/contents/${rutaRepo}`, {
+  const res = await fetch("/api/admin/contenido", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: mensaje, content: contenido, sha, branch: RAMA }),
+    body: JSON.stringify({ ruta: rutaRepo, datos, sha, mensaje }),
   });
-  return res.content.sha as string;
+  if (!res.ok) throw new Error(await mensajeError(res));
+  const data = await res.json();
+  return data.sha as string;
 }
 
 /** Sube una imagen nueva a /public/uploads y devuelve la ruta pública (ej. "/uploads/169..-foto.jpg"). */
@@ -78,16 +67,14 @@ export async function subirImagen(archivo: File, mensaje: string): Promise<strin
     lector.onerror = reject;
     lector.readAsDataURL(archivo);
   });
-  const base64 = dataUrl.split(",")[1] ?? "";
-  const nombreSeguro = archivo.name.toLowerCase().replace(/[^a-z0-9.]+/g, "-");
-  const nombreArchivo = `${Date.now()}-${nombreSeguro}`;
-  const rutaRepo = `public/uploads/${nombreArchivo}`;
+  const contenido = dataUrl.split(",")[1] ?? "";
 
-  await llamarGitHub(`/contents/${rutaRepo}`, {
-    method: "PUT",
+  const res = await fetch("/api/admin/imagen", {
+    method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: mensaje, content: base64, branch: RAMA }),
+    body: JSON.stringify({ nombre: archivo.name, contenido, mensaje }),
   });
-
-  return `/uploads/${nombreArchivo}`;
+  if (!res.ok) throw new Error(await mensajeError(res));
+  const data = await res.json();
+  return data.ruta as string;
 }
