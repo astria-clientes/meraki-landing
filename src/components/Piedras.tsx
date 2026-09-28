@@ -2,7 +2,7 @@ import { contacto } from "@/config/contacto";
 import { marca } from "@/data/marca";
 import BotonWhatsApp from "./BotonWhatsApp";
 import Catalogo from "./Catalogo";
-import { EncabezadoCapitulo } from "./Capitulo";
+import { Enhebrado, EncabezadoCapitulo } from "./Capitulo";
 import GuiaPiedras from "./GuiaPiedras";
 import { Logo } from "./Medios";
 import { textos } from "@/data/textos";
@@ -56,15 +56,46 @@ export default function Piedras() {
         </div>
       </div>
 
-      <div aria-hidden className="pointer-events-none absolute -left-24 top-10 h-80 w-80 rounded-full bg-dorado/25 blur-3xl" />
+      {/* Hilo místico: en vez de un salto vacío en arena, el mismo cordón de
+          cobre que ensarta los capítulos conecta el video de entrada con el
+          del catálogo — la costura queda a la vista, no escondida. */}
+      <Enhebrado desde="#EFE3CB" hacia="#EFE3CB" cuenta="#B8823D" />
 
-      {/* Catálogo + colección de Diego + cierre: un segundo video (la esfera de
-          musgo) a todo el ancho, sin tarjeta ni bordes redondeados — se disuelve
-          directo en el arena de arriba y en el tinta de abajo, igual que el
-          banner de entrada del capítulo, y todo lo que sigue queda en ese
-          mismo tinta plano, sin cortes. */}
-      <div className="relative mt-14 md:mt-20">
-        <div className="relative h-[340px] w-full overflow-hidden md:h-[440px]">
+      {/* Catálogo, envuelto entre dos videos — el musgo/flor al empezar, la
+          esfera de mariposas al terminar la grilla — así el capítulo no "corta
+          de la nada": entra y sale de la misma atmósfera. Todo a todo el ancho,
+          sin tarjeta ni bordes redondeados, fundido en tinta de punta a punta. */}
+      <div className="relative bg-tinta">
+        <div className="relative h-[300px] w-full overflow-hidden md:h-[400px]">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/videos/catalogo-musgo-flor-poster.jpg"
+            className="absolute inset-0 h-full w-full object-cover"
+          >
+            <source src="/videos/catalogo-musgo-flor.mp4" type="video/mp4" />
+          </video>
+          <div aria-hidden className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-arena to-transparent md:h-28" />
+          <div aria-hidden className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-tinta md:h-32" />
+        </div>
+
+        <div className="pt-10 md:pt-14">
+          <div className="relative mx-auto max-w-6xl px-4 md:px-6">
+            {/* Catálogo */}
+            <div className="mb-6 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
+              <h3 className="font-display text-3xl text-crema md:text-4xl">Catálogo</h3>
+              <p className="text-sm text-crema/65">Sin precios online: consultá cada pieza por WhatsApp.</p>
+            </div>
+            <Catalogo />
+          </div>
+        </div>
+
+        {/* La esfera cierra el catálogo — mismo tratamiento, fundida en tinta
+            de los dos lados, sin corte hacia la colección de Diego. */}
+        <div className="relative mt-16 h-[280px] w-full overflow-hidden md:mt-20 md:h-[380px]">
           <video
             autoPlay
             muted
@@ -76,21 +107,14 @@ export default function Piedras() {
           >
             <source src="/videos/coleccion-esfera.mp4" type="video/mp4" />
           </video>
-          <div aria-hidden className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-arena to-transparent md:h-28" />
-          <div aria-hidden className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-tinta md:h-40" />
+          <div aria-hidden className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-tinta to-transparent md:h-28" />
+          <div aria-hidden className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-tinta md:h-28" />
         </div>
 
-        <div className="bg-tinta pb-20 pt-10 md:pb-28 md:pt-14">
+        <div className="pb-20 pt-4 md:pb-28 md:pt-6">
           <div className="relative mx-auto max-w-6xl px-4 md:px-6">
-            {/* Catálogo */}
-            <div className="mb-6 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
-              <h3 className="font-display text-3xl text-crema md:text-4xl">Catálogo</h3>
-              <p className="text-sm text-crema/65">Sin precios online: consultá cada pieza por WhatsApp.</p>
-            </div>
-            <Catalogo />
-
             {/* Guía educativa: la colección real de Diego, piedra por piedra */}
-            <div className="mt-20 md:mt-28">
+            <div>
               <div className="max-w-2xl">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-dorado-claro">Para aprender</p>
                 <h3 className="mt-3 font-display text-3xl text-crema md:text-5xl">La colección de Diego</h3>
