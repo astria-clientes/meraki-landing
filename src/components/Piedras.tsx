@@ -64,6 +64,30 @@ export default function Piedras() {
             <h3 className="font-display text-3xl md:text-4xl">Catálogo</h3>
             <p className="text-sm text-tinta/60">Sin precios online: consultá cada pieza por WhatsApp.</p>
           </div>
+
+          {/* Cápsula: musgo, cuarzo y flor floreciendo sobre la misma piedra —
+              el origen natural detrás de cada pieza de bijou. Contenida en su
+              propia tarjeta, no de fondo: el fondo del video ya es negro,
+              así que se funde solo con el marco oscuro. */}
+          <div className="mb-8 overflow-hidden rounded-[28px] bg-tinta md:mb-10">
+            <div className="relative mx-auto aspect-[4/3] max-h-[420px] w-full max-w-xl">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster="/videos/catalogo-musgo-flor-poster.jpg"
+                className="absolute inset-0 h-full w-full object-contain"
+              >
+                <source src="/videos/catalogo-musgo-flor.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <p className="border-t border-crema/10 px-5 py-4 text-center font-display text-lg italic text-crema/85 md:text-xl">
+              Antes de ser un dije, fue esto: musgo, cuarzo y flor abriéndose sobre la misma piedra.
+            </p>
+          </div>
+
           <Catalogo />
         </div>
 
