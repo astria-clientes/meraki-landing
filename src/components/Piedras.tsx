@@ -1,11 +1,33 @@
+import Image from "next/image";
 import { contacto } from "@/config/contacto";
 import { marca } from "@/data/marca";
 import BotonWhatsApp from "./BotonWhatsApp";
 import Catalogo from "./Catalogo";
-import { Enhebrado, EncabezadoCapitulo } from "./Capitulo";
+import { EncabezadoCapitulo } from "./Capitulo";
 import GuiaPiedras from "./GuiaPiedras";
 import { Logo } from "./Medios";
 import { textos } from "@/data/textos";
+
+/** Puente entre los dos videos: el ojo de Meraki, abriéndose sobre el hilo de cobre. */
+function OjoTransicion() {
+  return (
+    <div aria-hidden className="relative h-36 overflow-hidden bg-arena md:h-44">
+      <div className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-cobre/0 via-cobre to-cobre/0" />
+      <div className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 md:h-28 md:w-28">
+        {[0, 1.4].map((d) => (
+          <span
+            key={d}
+            className="absolute inset-0 animate-ondas rounded-full border border-cobre/50"
+            style={{ animationDelay: `${d}s` }}
+          />
+        ))}
+        <span className="absolute inset-[20%] flex items-center justify-center overflow-hidden rounded-full bg-tinta-suave shadow-[0_0_30px_-4px_rgba(184,130,61,.7)]">
+          <Image src="/logos/ojo.png" alt="" fill sizes="80px" className="object-contain p-2.5" />
+        </span>
+      </div>
+    </div>
+  );
+}
 
 export default function Piedras() {
   return (
@@ -29,7 +51,7 @@ export default function Piedras() {
             se disuelve en el color que viene antes (tinta, el hilo entre capítulos) y en el
             que sigue (arena, el resto de esta sección). */}
         <div aria-hidden className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-tinta to-transparent md:h-28" />
-        <div aria-hidden className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-arena md:h-40" />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-b from-transparent to-arena md:h-28" />
 
         <div className="relative mx-auto max-w-6xl px-4 py-14 text-crema md:px-6 md:py-24">
           <div className="flex flex-col-reverse gap-8 md:flex-row md:items-end md:justify-between">
@@ -56,10 +78,10 @@ export default function Piedras() {
         </div>
       </div>
 
-      {/* Hilo místico: en vez de un salto vacío en arena, el mismo cordón de
-          cobre que ensarta los capítulos conecta el video de entrada con el
-          del catálogo — la costura queda a la vista, no escondida. */}
-      <Enhebrado desde="#EFE3CB" hacia="#EFE3CB" cuenta="#B8823D" />
+      {/* Puente místico: el ojo de Meraki sobre el hilo de cobre, con ondas
+          expandiéndose — conecta el video de entrada con el del catálogo en
+          vez de dejar un salto vacío en arena. */}
+      <OjoTransicion />
 
       {/* Catálogo, envuelto entre dos videos — el musgo/flor al empezar, la
           esfera de mariposas al terminar la grilla — así el capítulo no "corta
