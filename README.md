@@ -16,35 +16,44 @@ npm run dev     # http://localhost:3000
 
 ## Panel de edición propio — `/admin`
 
-Después de probar Decap CMS (un panel de terceros) y no convencer, el panel de `/admin` es **código nuestro**, hecho a medida para las 5 secciones editables de Meraki: Contacto, Logos, Peluquería & barbería, Terapias alternativas, Bijou & piedras.
+Después de probar Decap CMS (un panel de terceros) y no convencer, el panel de `/admin` es **código nuestro**, hecho a medida para las 6 secciones editables de Meraki: Catálogo (bijou & piedras), Textos (títulos y bajadas de cada capítulo), Peluquería & barbería, Terapias alternativas, Contacto, Logos.
 
-No hay base de datos: el repo de GitHub ES la base de datos. El panel corre entero en el navegador — al entrar, lee `content/*.json` directo de la API de GitHub, y al guardar hace un **commit real** al repo. Vercel lo publica solo, en 1-2 minutos, igual que cualquier otro cambio.
+No hay base de datos propia: el repo de GitHub ES la base de datos. El panel corre en el navegador, pero **ya no habla directo con GitHub** — habla con rutas propias (`/api/admin/*`) que corren en el servidor de Vercel, y esas sí hacen el commit real al repo con un token que el navegador nunca ve. Vercel publica el cambio solo, en 1-2 minutos.
+
+El login **es email + contraseña simples** (nada de cuentas de GitHub, para que lo pueda usar el cliente sin entender nada de git). La sesión es una cookie firmada, sin base de datos de usuarios.
 
 **Subida de fotos, resuelta:** cada campo de foto (`foto`, `imagen`, `poster`, logos) tiene un botón real de **"Subir foto"** — elegís el archivo de tu compu, el panel lo sube a `/public/uploads/` (con un commit propio) y completa la ruta solo. Nada de escribir rutas a mano.
+
+**Catálogo como tabla:** la sección "Catálogo" lista las piezas en una tabla (miniatura, nombre, categoría, piedra) con "Editar" / "Borrar" y un botón "+ Nueva pieza" — al estilo de un admin de e-commerce, sin precios ni stock (acá no aplican).
 
 ### Piezas del panel (por si hay que tocarlo)
 
 | Qué | Dónde |
 |---|---|
-| Login (arma la URL de GitHub) | `src/app/auth/route.ts` |
-| Login (cambia el código por un token y lo guarda en una cookie) | `src/app/callback/route.ts` |
-| Cliente de GitHub (leer/guardar JSON, subir fotos) | `src/lib/github.ts` |
+| Rutas del servidor: login, logout, sesión, leer/guardar JSON, subir imagen | `src/app/api/admin/*/route.ts` |
+| Lógica de servidor: firma/verifica la sesión, habla con la API de GitHub | `src/lib/adminServer.ts` |
+| Cliente del panel (llama a `/api/admin/*` desde el navegador) | `src/lib/github.ts` |
 | Pantalla principal (login + navegación entre secciones) | `src/app/admin/page.tsx` |
-| Los 5 formularios | `src/components/admin/*Form.tsx` |
+| Los formularios | `src/components/admin/*Form.tsx` |
 | Piezas reutilizables (campos, listas editables, subida de imagen) | `src/components/admin/Campos.tsx` |
+| Tabla + vista de edición (usada por Catálogo) | `src/components/admin/Tabla.tsx` |
 
-### Login: qué hace falta tener activado
+### Login: qué hace falta tener cargado en Vercel
 
-Usa GitHub para el login, vía una GitHub App propia (`meraki-cms`, en `astria-clientes`) y dos rutas del mismo Next.js (nada de servicios de terceros). Para que funcione, tienen que estar cargadas estas 2 variables de entorno en Vercel (Project → Settings → Environment Variables, marcadas para **Production**):
+Cuatro variables de entorno en Vercel (Project → Settings → Environment Variables, marcadas para **Production**):
 
-- `GITHUB_OAUTH_CLIENT_ID` = `Iv23liUBpWFbtX4TqQOj`
-- `GITHUB_OAUTH_CLIENT_SECRET` = el que se generó en la página de la GitHub App (`github.com/organizations/astria-clientes/settings/apps/meraki-cms` → "Client secrets")
+| Variable | Qué es |
+|---|---|
+| `ADMIN_EMAIL` | el email con el que se entra al panel |
+| `ADMIN_PASSWORD` | la contraseña |
+| `ADMIN_SESSION_SECRET` | un texto largo y random (ej. `openssl rand -hex 32`), solo para firmar la cookie de sesión — no lo ve ni lo usa nadie más |
+| `GITHUB_TOKEN` | un **fine-grained personal access token** de GitHub, generado en Settings → Developer settings → Fine-grained tokens, con acceso *Only select repositories* → `astria-clientes/meraki-landing` y permiso *Contents: Read and write*. Es el que usa el servidor para hacer los commits — el navegador del cliente nunca lo ve. |
 
-Y el **Callback URL** de esa misma App tiene que ser `https://meraki-landing-six.vercel.app/callback`.
+Después de cargarlas (o de cambiar cualquiera), hay que hacer un redeploy para que tomen efecto.
 
-(Si esto ya lo hicieron para probar Decap, no hay que tocar nada más — el panel nuevo reutiliza el mismo login.)
+(Versión vieja, ya no aplica: el panel usaba login por GitHub OAuth con una GitHub App propia y las variables `GITHUB_OAUTH_CLIENT_ID` / `GITHUB_OAUTH_CLIENT_SECRET`. Se reemplazó por lo de arriba porque el cliente no tiene por qué manejar una cuenta de GitHub.)
 
-### Qué queda afuera del panel (por ahora)
+### Qué queda afuera del panel (a propósito)
 
 **Guía de piedras** (`src/data/piedras.ts`, las 71 piedras): es contenido rico y estructurado que conviene seguir editando como código — pasarlo a formularios sería más trabajo que beneficio para lo seguido que se toca.
 
