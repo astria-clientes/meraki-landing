@@ -1,0 +1,23 @@
+{
+  "hero": {
+    "eslogan": "— poner el alma en lo que hacés.",
+    "bajada": "Un mismo espacio donde conviven la tijera, la calma y la piedra. Vení a cortarte el pelo, a bajar un cambio o a elegir la piedra que te acompañe."
+  },
+  "capitulos": {
+    "peluqueria": {
+      "tituloLinea1": "Tijera, navaja",
+      "tituloLinea2": "y buen pulso.",
+      "bajada": "Barbería y peluquería unisex con tiempo para escucharte. Cortes pensados para vos, no en serie."
+    },
+    "terapias": {
+      "tituloLinea1": "Bajar un cambio,",
+      "tituloLinea2": "en el mismo lugar.",
+      "bajada": "Las terapias las da Diego Campos —el mismo de la barbería— dentro del espacio de Meraki, en un rincón pensado para el silencio. Llegás por un corte y te quedás por la calma, o al revés."
+    },
+    "piedras": {
+      "tituloLinea1": "Piezas hechas a mano,",
+      "tituloLinea2": "piedras con historia.",
+      "bajada": "Dijes, collares y accesorios con piedras semipreciosas. Cada pieza es única: vení a verlas, tocarlas y elegir la tuya."
+    }
+  }
+}

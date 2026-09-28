@@ -1,4 +1,5 @@
 import { contacto } from "@/config/contacto";
+import { textos } from "@/data/textos";
 import BotonWhatsApp from "./BotonWhatsApp";
 import { IconoFlecha } from "./Iconos";
 
@@ -27,12 +28,9 @@ export default function Hero() {
             Meraki
           </h1>
           <p className="mt-4 font-display text-lg italic text-tinta/70 md:text-xl">
-            <span lang="el">μεράκι</span> — poner el alma en lo que hacés.
+            <span lang="el">μεράκι</span> {textos.hero.eslogan}
           </p>
-          <p className="mt-8 max-w-md text-[17px] leading-relaxed text-tinta/80 md:text-lg">
-            Un mismo espacio donde conviven la tijera, la calma y la piedra. Vení a cortarte el pelo,
-            a bajar un cambio o a elegir la piedra que te acompañe.
-          </p>
+          <p className="mt-8 max-w-md text-[17px] leading-relaxed text-tinta/80 md:text-lg">{textos.hero.bajada}</p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <BotonWhatsApp tamano="lg" />
             <a

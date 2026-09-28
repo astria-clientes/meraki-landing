@@ -12,17 +12,17 @@ const PASO = 12;
 function Tarjeta({ p }: { p: Piedra }) {
   const [abierta, setAbierta] = useState(false);
   return (
-    <li className="flex flex-col rounded-3xl bg-white p-5 shadow-[0_20px_50px_-32px_rgba(34,25,18,.5)] ring-1 ring-tinta/5 md:p-6">
+    <li className="flex flex-col rounded-3xl bg-crema/10 p-5 ring-1 ring-crema/15 backdrop-blur-md md:p-6">
       <div className="flex items-start gap-4">
         <Gema id={p.id} color={p.color} className="h-14 w-14 shrink-0" />
         <div className="min-w-0 flex-1">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-tinta/45">{p.tipo}</p>
-          <h4 className="mt-0.5 font-display text-2xl leading-tight text-tinta">{p.nombre}</h4>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-crema/45">{p.tipo}</p>
+          <h4 className="mt-0.5 font-display text-2xl leading-tight text-crema">{p.nombre}</h4>
           <div className="mt-2 flex flex-wrap gap-1.5">
             {p.chakras.map((c) => (
               <span
                 key={c}
-                className="inline-flex items-center gap-1 rounded-full border border-tinta/10 px-2 py-0.5 text-[11px] font-medium text-tinta/70"
+                className="inline-flex items-center gap-1 rounded-full border border-crema/15 px-2 py-0.5 text-[11px] font-medium text-crema/70"
               >
                 <span className="h-1.5 w-1.5 rounded-full" style={{ background: coloresChakra[c] ?? p.color }} />
                 {c}
@@ -32,23 +32,23 @@ function Tarjeta({ p }: { p: Piedra }) {
         </div>
       </div>
 
-      <p className="mt-4 text-[15px] leading-relaxed text-tinta/80">{p.energetica}</p>
+      <p className="mt-4 text-[15px] leading-relaxed text-crema/80">{p.energetica}</p>
 
       {abierta && (
-        <div className="mt-4 space-y-3 border-t border-tinta/10 pt-4 text-[15px] leading-relaxed text-tinta/75">
+        <div className="mt-4 space-y-3 border-t border-crema/10 pt-4 text-[15px] leading-relaxed text-crema/75">
           <p>
-            <span className="font-semibold text-tinta">Emocional. </span>
+            <span className="font-semibold text-crema">Emocional. </span>
             {p.emocional}
           </p>
           <p>
-            <span className="font-semibold text-tinta">Espiritual. </span>
+            <span className="font-semibold text-crema">Espiritual. </span>
             {p.espiritual}
           </p>
           <p>
-            <span className="font-semibold text-tinta">En una sesión con Diego. </span>
+            <span className="font-semibold text-crema">En una sesión con Diego. </span>
             {p.armonizacion}
           </p>
-          <p className="text-tinta/70">{p.descripcion}</p>
+          <p className="text-crema/70">{p.descripcion}</p>
         </div>
       )}
 
@@ -56,7 +56,7 @@ function Tarjeta({ p }: { p: Piedra }) {
         <button
           type="button"
           onClick={() => setAbierta((v) => !v)}
-          className="text-sm font-semibold text-cobre-oscuro hover:underline"
+          className="text-sm font-semibold text-dorado-claro hover:underline"
         >
           {abierta ? "Leer menos" : "Leer más"}
         </button>
@@ -64,7 +64,7 @@ function Tarjeta({ p }: { p: Piedra }) {
           href={waLink(conNombre(contacto.mensajesWhatsApp.piedra, p.nombre))}
           target="_blank"
           rel="noopener noreferrer"
-          className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-tinta px-3.5 py-2 text-[13px] font-semibold text-crema transition-colors hover:bg-cobre-oscuro"
+          className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-crema px-3.5 py-2 text-[13px] font-semibold text-tinta transition-colors hover:bg-cobre hover:text-crema"
         >
           <IconoWhatsApp className="h-4 w-4" /> Consultar
         </a>
@@ -100,8 +100,8 @@ export default function GuiaPiedras() {
                 setVisibles(PASO);
               }}
               aria-pressed={chakra === c}
-              className={`shrink-0 rounded-full px-3.5 py-2 text-sm font-semibold transition-colors ${
-                chakra === c ? "bg-tinta text-crema" : "bg-white/70 text-tinta/70 hover:bg-white"
+              className={`shrink-0 rounded-full px-3.5 py-2 text-sm font-semibold backdrop-blur-sm transition-colors ${
+                chakra === c ? "bg-crema text-tinta" : "bg-crema/10 text-crema/75 ring-1 ring-crema/15 hover:bg-crema/20"
               }`}
             >
               {c}
@@ -117,11 +117,11 @@ export default function GuiaPiedras() {
           }}
           placeholder="Buscar piedra o mineral…"
           aria-label="Buscar piedra"
-          className="rounded-full bg-white/70 px-4 py-2 text-sm text-tinta placeholder:text-tinta/40 outline-none ring-1 ring-tinta/10 focus:ring-cobre md:w-64"
+          className="rounded-full bg-crema/10 px-4 py-2 text-sm text-crema placeholder:text-crema/40 outline-none ring-1 ring-crema/15 backdrop-blur-sm focus:ring-dorado-claro md:w-64"
         />
       </div>
 
-      <p className="mt-4 text-sm text-tinta/50">
+      <p className="mt-4 text-sm text-crema/50">
         {filtradas.length} piedra{filtradas.length === 1 ? "" : "s"}
         {chakra !== "Todos" ? ` · chakra ${chakra}` : ""}
       </p>
@@ -133,7 +133,7 @@ export default function GuiaPiedras() {
       </ul>
 
       {filtradas.length === 0 && (
-        <p className="mt-8 rounded-2xl border border-dashed border-tinta/20 p-6 text-center text-tinta/60">
+        <p className="mt-8 rounded-2xl border border-dashed border-crema/25 p-6 text-center text-crema/60">
           No encontramos ninguna piedra con ese filtro. Probá con otra palabra o chakra.
         </p>
       )}
@@ -142,7 +142,7 @@ export default function GuiaPiedras() {
         <button
           type="button"
           onClick={() => setVisibles((v) => v + PASO)}
-          className="mx-auto mt-8 block rounded-full border border-tinta/20 px-6 py-2.5 text-sm font-semibold text-tinta transition-colors hover:border-cobre hover:text-cobre-oscuro"
+          className="mx-auto mt-8 block rounded-full border border-crema/25 px-6 py-2.5 text-sm font-semibold text-crema transition-colors hover:border-dorado-claro hover:text-dorado-claro"
         >
           Mostrar más piedras ({filtradas.length - visibles})
         </button>

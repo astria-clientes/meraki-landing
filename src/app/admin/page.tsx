@@ -6,9 +6,11 @@ import MarcaForm from "@/components/admin/MarcaForm";
 import PeluqueriaForm from "@/components/admin/PeluqueriaForm";
 import ProductosForm from "@/components/admin/ProductosForm";
 import TerapiasForm from "@/components/admin/TerapiasForm";
+import TextosForm from "@/components/admin/TextosForm";
 import { cerrarSesion, getToken } from "@/lib/github";
 
 const SECCIONES = [
+  { id: "textos", label: "Títulos & bajadas", Componente: TextosForm },
   { id: "contacto", label: "Contacto", Componente: ContactoForm },
   { id: "logos", label: "Logos", Componente: MarcaForm },
   { id: "peluqueria", label: "Peluquería & barbería", Componente: PeluqueriaForm },

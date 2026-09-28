@@ -2,6 +2,7 @@ import Image from "next/image";
 import { contacto } from "@/config/contacto";
 import { marca } from "@/data/marca";
 import { fotosTerapias, terapias } from "@/data/terapias";
+import { textos } from "@/data/textos";
 import Aparecer from "./Aparecer";
 import BotonWhatsApp from "./BotonWhatsApp";
 import { EncabezadoCapitulo } from "./Capitulo";
@@ -40,18 +41,12 @@ export default function Terapias() {
             tonoTitulo="italic font-light"
             titulo={
               <>
-                Bajar un cambio,
+                {textos.capitulos.terapias.tituloLinea1}
                 <br />
-                <span className="text-dorado-claro">en el mismo lugar.</span>
+                <span className="text-dorado-claro">{textos.capitulos.terapias.tituloLinea2}</span>
               </>
             }
-            bajada={
-              <>
-                Las terapias las da Diego Campos —el mismo de la barbería— dentro del espacio de
-                Meraki, en un rincón pensado para el silencio. Llegás por un corte y te quedás por
-                la calma, o al revés.
-              </>
-            }
+            bajada={textos.capitulos.terapias.bajada}
           >
             <div className="mt-8 flex items-center gap-4">
               <Logo

@@ -1,6 +1,7 @@
 import { contacto } from "@/config/contacto";
 import { marca } from "@/data/marca";
 import { profesionales, videos } from "@/data/peluqueria";
+import { textos } from "@/data/textos";
 import Aparecer from "./Aparecer";
 import BotonWhatsApp from "./BotonWhatsApp";
 import { EncabezadoCapitulo } from "./Capitulo";
@@ -27,11 +28,12 @@ export default function Peluqueria() {
             cuenta="#221912"
             titulo={
               <>
-                Tijera, navaja
-                <br />y buen <em className="text-cobre-claro">pulso.</em>
+                {textos.capitulos.peluqueria.tituloLinea1}
+                <br />
+                <em className="text-cobre-claro">{textos.capitulos.peluqueria.tituloLinea2}</em>
               </>
             }
-            bajada="Barbería y peluquería unisex con tiempo para escucharte. Cortes pensados para vos, no en serie."
+            bajada={textos.capitulos.peluqueria.bajada}
           />
           {/* Logo de MERAKI — se usa específicamente en este capítulo */}
           <Logo

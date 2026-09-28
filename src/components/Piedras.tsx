@@ -5,6 +5,7 @@ import Catalogo from "./Catalogo";
 import { EncabezadoCapitulo } from "./Capitulo";
 import GuiaPiedras from "./GuiaPiedras";
 import { Logo } from "./Medios";
+import { textos } from "@/data/textos";
 
 export default function Piedras() {
   return (
@@ -38,12 +39,12 @@ export default function Piedras() {
               cuenta="#E0A77C"
               titulo={
                 <>
-                  Piezas hechas a mano,
+                  {textos.capitulos.piedras.tituloLinea1}
                   <br />
-                  <em className="text-dorado-claro">piedras con historia.</em>
+                  <em className="text-dorado-claro">{textos.capitulos.piedras.tituloLinea2}</em>
                 </>
               }
-              bajada="Dijes, collares y accesorios con piedras semipreciosas. Cada pieza es única: vení a verlas, tocarlas y elegir la tuya."
+              bajada={textos.capitulos.piedras.bajada}
             />
             <Logo
               src={marca.logoPiedras}
@@ -58,11 +59,12 @@ export default function Piedras() {
       <div aria-hidden className="pointer-events-none absolute -left-24 top-10 h-80 w-80 rounded-full bg-dorado/25 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-4 md:px-6 md:pb-28">
-        {/* Catálogo: el musgo, cuarzo y flor de Diego como fondo continuo de
-            toda la sección, no una tarjeta aparte — el catálogo "flota"
-            sobre ese fondo con tarjetas de vidrio en vez de blancas. */}
-        <div className="mt-14 md:mt-20">
-          <div className="relative overflow-hidden rounded-[32px] bg-tinta">
+        {/* Un solo bloque oscuro fundido: catálogo, colección de Diego y el cierre
+            de WhatsApp viven adentro de la misma tarjeta continua. El video de
+            musgo/cuarzo solo ocupa la franja de arriba y se disuelve en tinta;
+            todo lo que sigue ya es ese mismo tinta plano, sin cortes. */}
+        <div className="relative mt-14 overflow-hidden rounded-[32px] bg-tinta md:mt-20">
+          <div className="relative h-[340px] w-full overflow-hidden md:h-[440px]">
             <video
               autoPlay
               muted
@@ -74,54 +76,55 @@ export default function Piedras() {
             >
               <source src="/videos/catalogo-musgo-flor.mp4" type="video/mp4" />
             </video>
-            <div aria-hidden className="absolute inset-0 bg-tinta/55" />
-            <div aria-hidden className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-tinta/70 to-transparent" />
+            <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-transparent via-tinta/40 to-tinta" />
+          </div>
 
-            <div className="relative px-4 py-10 md:px-8 md:py-14">
-              <div className="mb-6 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
-                <h3 className="font-display text-3xl text-crema md:text-4xl">Catálogo</h3>
-                <p className="text-sm text-crema/65">Sin precios online: consultá cada pieza por WhatsApp.</p>
+          <div className="relative px-4 pb-14 pt-2 md:px-8 md:pb-20 md:pt-4">
+            {/* Catálogo */}
+            <div className="mb-6 flex flex-col gap-1 md:flex-row md:items-end md:justify-between">
+              <h3 className="font-display text-3xl text-crema md:text-4xl">Catálogo</h3>
+              <p className="text-sm text-crema/65">Sin precios online: consultá cada pieza por WhatsApp.</p>
+            </div>
+            <Catalogo />
+
+            {/* Guía educativa: la colección real de Diego, piedra por piedra */}
+            <div className="mt-20 md:mt-28">
+              <div className="max-w-2xl">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-dorado-claro">Para aprender</p>
+                <h3 className="mt-3 font-display text-3xl text-crema md:text-5xl">La colección de Diego</h3>
+                <p className="mt-4 text-[17px] leading-relaxed text-crema/75">
+                  Más de 70 piedras y minerales que Diego usa en las sesiones de armonización sonora, todas
+                  a la vista en el local. Filtrá por chakra o buscá una en particular para conocer su
+                  historia, sus propiedades y cómo se usa en una sesión.
+                </p>
+                <a
+                  href="/piedras/coleccion-completa.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-dorado-claro hover:underline"
+                >
+                  Ver el póster de la colección completa →
+                </a>
               </div>
-              <Catalogo />
+              <div className="mt-10">
+                <GuiaPiedras />
+              </div>
+              <p className="mt-8 max-w-3xl text-xs leading-relaxed text-crema/50">
+                Las propiedades energéticas y espirituales provienen de tradiciones y creencias populares; no
+                son afirmaciones científicas ni reemplazan ningún tratamiento médico.
+              </p>
+            </div>
+
+            {/* Cierre */}
+            <div className="mt-16 flex flex-col items-start gap-6 border-t border-crema/10 pt-10 md:mt-20 md:flex-row md:items-center md:justify-between">
+              <p className="max-w-lg font-display text-2xl leading-snug text-crema md:text-3xl">
+                ¿Buscás una piedra en particular o querés reservar una pieza?
+              </p>
+              <BotonWhatsApp mensaje={contacto.mensajesWhatsApp.piedras} tamano="lg" className="w-full md:w-auto">
+                Consultar por WhatsApp
+              </BotonWhatsApp>
             </div>
           </div>
-        </div>
-
-        {/* Guía educativa: la colección real de Diego, piedra por piedra */}
-        <div className="mt-20 md:mt-28">
-          <div className="max-w-2xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.26em] text-cobre-oscuro">Para aprender</p>
-            <h3 className="mt-3 font-display text-3xl md:text-5xl">La colección de Diego</h3>
-            <p className="mt-4 text-[17px] leading-relaxed text-tinta/75">
-              Más de 70 piedras y minerales que Diego usa en las sesiones de armonización sonora, todas
-              a la vista en el local. Filtrá por chakra o buscá una en particular para conocer su
-              historia, sus propiedades y cómo se usa en una sesión.
-            </p>
-            <a
-              href="/piedras/coleccion-completa.jpg"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-cobre-oscuro hover:underline"
-            >
-              Ver el póster de la colección completa →
-            </a>
-          </div>
-          <div className="mt-10">
-            <GuiaPiedras />
-          </div>
-          <p className="mt-8 max-w-3xl text-xs leading-relaxed text-tinta/50">
-            Las propiedades energéticas y espirituales provienen de tradiciones y creencias populares; no
-            son afirmaciones científicas ni reemplazan ningún tratamiento médico.
-          </p>
-        </div>
-
-        <div className="mt-16 flex flex-col items-start gap-6 rounded-[32px] bg-tinta p-7 text-crema md:mt-20 md:flex-row md:items-center md:justify-between md:p-10">
-          <p className="max-w-lg font-display text-2xl leading-snug md:text-3xl">
-            ¿Buscás una piedra en particular o querés reservar una pieza?
-          </p>
-          <BotonWhatsApp mensaje={contacto.mensajesWhatsApp.piedras} tamano="lg" className="w-full md:w-auto">
-            Consultar por WhatsApp
-          </BotonWhatsApp>
         </div>
       </div>
     </section>
