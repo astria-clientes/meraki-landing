@@ -42,11 +42,37 @@ const config: Config = {
           "0%, 100%": { transform: "scale(1)" },
           "50%": { transform: "scale(1.06)" },
         },
+        // La estrella del Hero, brillando: un pulso de luz + un giro sutil.
+        brillo: {
+          "0%, 100%": {
+            transform: "scale(1) rotate(0deg)",
+            filter:
+              "drop-shadow(0 0 6px rgba(201,162,39,.55)) drop-shadow(0 0 16px rgba(184,130,61,.3))",
+          },
+          "50%": {
+            transform: "scale(1.14) rotate(10deg)",
+            filter:
+              "drop-shadow(0 0 16px rgba(201,162,39,.9)) drop-shadow(0 0 32px rgba(184,130,61,.55))",
+          },
+        },
+        // Un destello que recorre el texto, como un reflejo de luz sobre la letra.
+        destello: {
+          "0%": { backgroundPosition: "-150% 0" },
+          "55%, 100%": { backgroundPosition: "150% 0" },
+        },
+        // Entrada de cada página al navegar entre capítulos.
+        entrada: {
+          from: { opacity: "0", transform: "translateY(14px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         respirar: "respirar 7s ease-in-out infinite",
         ondas: "ondas 4.5s ease-out infinite",
         kenburns: "kenburns 24s ease-in-out infinite",
+        brillo: "brillo 3.6s ease-in-out infinite",
+        destello: "destello 5s ease-in-out infinite",
+        entrada: "entrada .5s cubic-bezier(.2,.7,.2,1) both",
       },
     },
   },
