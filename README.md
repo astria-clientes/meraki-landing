@@ -81,17 +81,26 @@ Esto sí necesita generación/edición con IA de imagen — no lo tengo disponib
 
 Cuando tengas los resultados, mandámelos y los integro (recorte, posición, mismo tratamiento de color que el resto) para que no se note el salto de una foto a otra.
 
-Las tres partes del negocio son **tres cuentas de un mismo collar**. Un hilo de cobre atraviesa toda la página y enhebra cada capítulo:
+Las tres partes del negocio son **tres cuentas de un mismo collar**. Cada una es su propia página (ver "Estructura de rutas" abajo), pero comparten la misma paleta e hilo conductor:
 
-| Capítulo | Sección | Fondo | Tono tipográfico |
-|---|---|---|---|
-| — | Inicio | Crema `#F7F3EC` | Fraunces grande + Public Sans |
-| 01 · El oficio | Peluquería & barbería | Tinta `#221912` | Etiquetas en mayúsculas, títulos firmes |
-| 02 · La pausa | Terapias | Tinta suave `#2E2117` + dorado | Fraunces en *itálica* y liviana, formas de arco |
-| 03 · La piedra | Bijou & piedras | Arena `#EFE3CB` | Serif cálida, gemas ilustradas |
-| Cierre | Visitanos | Tinta | Las tres cuentas juntas: el collar se cierra |
+| Capítulo | Ruta | Sección | Fondo | Tono tipográfico |
+|---|---|---|---|---|
+| — | `/` | Inicio | Crema `#F7F3EC` | Fraunces grande + Public Sans |
+| 01 · El oficio | `/peluqueria` | Peluquería & barbería | Tinta `#221912` | Etiquetas en mayúsculas, títulos firmes |
+| 02 · La pausa | `/terapias` | Terapias | Tinta suave `#2E2117` + dorado | Fraunces en *itálica* y liviana, formas de arco |
+| 03 · La piedra | `/piedras` | Bijou & piedras | Arena `#EFE3CB` | Serif cálida, gemas ilustradas |
+| Cierre | `/visitanos` | Visitanos | Tinta | Las tres cuentas juntas: el collar se cierra |
 
-El **cobre** `#B8823D` (el mismo color de la madera miel de los muebles del salón) aparece en los cinco bloques y es el que los une. Entre capítulos, `<Enhebrado>` hace un fundido de color con el hilo y una cuenta.
+El **cobre** `#B8823D` (el mismo color de la madera miel de los muebles del salón) aparece en las cinco páginas y es el que las une. Dentro de cada capítulo, `<Enhebrado>` sigue usándose para fundidos de color entre sus propias secciones internas (ej. los dos videos + el catálogo en Piedras).
+
+### Estructura de rutas
+
+Hasta hace poco todo el sitio era un único scroll largo con los 3 capítulos + cierre apilados en `/`. Ahora cada capítulo es su propia ruta de Next.js App Router, para que el cliente pueda compartir un link directo a "Piedras" o "Terapias" sin que la visita tenga que scrollear desde el inicio:
+
+- `src/app/page.tsx` — Home: solo el Hero, con los 3 capítulos como links reales a sus rutas (antes eran anclas `#peluqueria` de scroll).
+- `src/app/peluqueria/page.tsx`, `src/app/terapias/page.tsx`, `src/app/piedras/page.tsx`, `src/app/visitanos/page.tsx` — una página por capítulo, cada una renderizando el componente de esa sección (`src/components/Peluqueria.tsx`, etc.) sin cambios de contenido.
+- `src/app/layout.tsx` — el navbar (`Encabezado`), el botón flotante de WhatsApp y el footer ahora viven acá, así aparecen en las 5 páginas. El navbar resalta con color de acento la sección en la que estás parado.
+- `src/components/NavegacionCapitulos.tsx` — la franja "Capítulo anterior / Capítulo siguiente" al final de cada página, para invitar a seguir el recorrido en orden sin tener que volver al inicio.
 
 ### Por qué esta paleta y esta tipografía
 
