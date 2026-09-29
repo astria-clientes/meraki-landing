@@ -4,15 +4,16 @@ import { useEffect, useState } from "react";
 import { waLink } from "@/lib/whatsapp";
 import { IconoWhatsApp } from "./Iconos";
 
-/** Botón fijo de WhatsApp: aparece después del inicio y acompaña todo el recorrido. */
+/** Botón fijo de WhatsApp: presente en todas las páginas del sitio. */
 export default function WhatsAppFlotante() {
   const [visible, setVisible] = useState(false);
 
+  // Un pequeño fade al montar, en vez de atado al scroll — ahora vive en el
+  // layout general y cada capítulo es su propia página, algunas más cortas
+  // que un viewport entero.
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.6);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const t = setTimeout(() => setVisible(true), 400);
+    return () => clearTimeout(t);
   }, []);
 
   return (

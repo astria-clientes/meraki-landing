@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Public_Sans } from "next/font/google";
+import Encabezado from "@/components/Encabezado";
+import Footer from "@/components/Footer";
+import WhatsAppFlotante from "@/components/WhatsAppFlotante";
 import "./globals.css";
 
 // Fraunces: serif cálida con eje "soft" — encaja con la madera del local.
@@ -37,7 +40,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es-AR" className={`${fraunces.variable} ${publicSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Encabezado />
+        {children}
+        <Footer />
+        <WhatsAppFlotante />
+      </body>
     </html>
   );
 }

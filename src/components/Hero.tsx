@@ -1,12 +1,13 @@
+import Link from "next/link";
 import { contacto } from "@/config/contacto";
 import { textos } from "@/data/textos";
 import BotonWhatsApp from "./BotonWhatsApp";
 import { IconoFlecha } from "./Iconos";
 
 const cuentas = [
-  { href: "#peluqueria", n: "01", titulo: "El oficio", texto: "Peluquería & barbería", color: "#221912" },
-  { href: "#terapias", n: "02", titulo: "La pausa", texto: "Reiki & armonización sonora", color: "#C9A227" },
-  { href: "#piedras", n: "03", titulo: "La piedra", texto: "Bijou & piedras semipreciosas", color: "#B8823D" },
+  { href: "/peluqueria", n: "01", titulo: "El oficio", texto: "Peluquería & barbería", color: "#221912" },
+  { href: "/terapias", n: "02", titulo: "La pausa", texto: "Reiki & armonización sonora", color: "#C9A227" },
+  { href: "/piedras", n: "03", titulo: "La piedra", texto: "Bijou & piedras semipreciosas", color: "#B8823D" },
 ];
 
 export default function Hero() {
@@ -33,12 +34,12 @@ export default function Hero() {
           <p className="mt-8 max-w-md text-[17px] leading-relaxed text-tinta/80 md:text-lg">{textos.hero.bajada}</p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <BotonWhatsApp tamano="lg" />
-            <a
-              href="#peluqueria"
+            <Link
+              href="/peluqueria"
               className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-4 text-[15px] font-semibold text-tinta/80 transition-colors hover:text-cobre"
             >
               Recorré el espacio <IconoFlecha className="h-4 w-4 rotate-90" />
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -48,7 +49,7 @@ export default function Hero() {
           <ol className="space-y-3">
             {cuentas.map((c) => (
               <li key={c.n}>
-                <a
+                <Link
                   href={c.href}
                   className="group relative flex items-center gap-5 rounded-2xl py-3 pr-4 transition-colors hover:bg-white/50"
                 >
@@ -63,7 +64,7 @@ export default function Hero() {
                     <span className="mt-0.5 block font-display text-xl text-tinta md:text-2xl">{c.texto}</span>
                   </span>
                   <IconoFlecha className="h-4 w-4 text-tinta/40 transition-transform group-hover:translate-x-1 group-hover:text-cobre" />
-                </a>
+                </Link>
               </li>
             ))}
           </ol>

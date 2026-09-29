@@ -90,16 +90,6 @@ export default function Visitanos() {
           </div>
         )}
       </div>
-
-      <footer className="relative border-t border-crema/10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-6 pb-24 text-xs text-crema/40 md:flex-row md:px-6 md:pb-6">
-          <p>
-            <span className="font-display text-base text-crema/70">Meraki</span> · Peluquería, terapias y piedras ·{" "}
-            {direccion.ciudad}
-          </p>
-          <p>© {new Date().getFullYear()} Meraki</p>
-        </div>
-      </footer>
     </section>
   );
 }
