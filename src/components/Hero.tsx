@@ -116,7 +116,7 @@ export default function Hero() {
       <div
         ref={scrollerRef}
         onScroll={alScrollear}
-        className="sin-scrollbar relative flex snap-x snap-mandatory overflow-x-auto md:mx-auto md:grid md:max-w-6xl md:snap-none md:grid-cols-[1.25fr_1fr] md:items-end md:gap-10 md:overflow-visible md:px-6"
+        className="sin-scrollbar relative flex snap-x snap-mandatory overflow-x-auto md:mx-auto md:grid md:max-w-6xl md:snap-none md:grid-cols-[1.25fr_1fr] md:items-center md:gap-10 md:overflow-visible md:px-6"
       >
         {/* Slide 1: presentación */}
         <div className="w-full shrink-0 snap-center px-4 pb-14 pt-10 md:w-auto md:shrink md:px-0 md:pb-24 md:pt-24">
