@@ -5,20 +5,32 @@ import { textos } from "@/data/textos";
 import Aparecer from "./Aparecer";
 import BotonWhatsApp from "./BotonWhatsApp";
 import { EncabezadoCapitulo } from "./Capitulo";
-import { IconoTijera } from "./Iconos";
+import { IconoFlecha, IconoTijera } from "./Iconos";
 import { Foto, Logo, Video } from "./Medios";
 
 export default function Peluqueria() {
   return (
     <section id="peluqueria" className="grano scroll-mt-14 bg-tinta text-crema md:scroll-mt-16">
       {/* Foto real del salón, a todo el ancho: la primera vista al entrar al capítulo. */}
-      <Foto
-        src="/fotos/local/salon-general.jpg"
-        alt="Vista general del salón de Meraki: madera, plantas y geometría sagrada"
-        className="aspect-[16/9] md:aspect-[21/9]"
-        sizes="100vw"
-        posicion="center 30%"
-      />
+      <div className="relative">
+        <Foto
+          src="/fotos/local/salon-general.jpg"
+          alt="Vista general del salón de Meraki: madera, plantas y geometría sagrada"
+          className="aspect-[16/9] md:aspect-[21/9]"
+          sizes="100vw"
+          posicion="center 30%"
+        />
+        {/* Funde el final de la foto con el fondo del capítulo en vez de cortar en seco —
+            más marcado en celular, donde la foto ocupa casi toda la pantalla. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-tinta to-transparent md:h-16"
+        />
+        <p className="pointer-events-none absolute inset-x-0 bottom-5 flex items-center justify-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-crema/85 md:hidden">
+          Deslizá para conocer la peluquería
+          <IconoFlecha className="h-3.5 w-3.5 animate-deslizar-abajo" />
+        </p>
+      </div>
 
       <div className="mx-auto max-w-6xl px-4 pb-20 pt-10 md:px-6 md:pb-28 md:pt-14">
         <div className="flex flex-col-reverse gap-8 md:flex-row md:items-end md:justify-between">

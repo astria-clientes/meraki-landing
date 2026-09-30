@@ -85,6 +85,11 @@ const config: Config = {
           "0%, 100%": { transform: "translateX(0)", opacity: "0.55" },
           "50%": { transform: "translateX(6px)", opacity: "1" },
         },
+        // La misma flecha, pero avisando que hay que bajar (no deslizar al costado).
+        deslizarAbajo: {
+          "0%, 100%": { transform: "rotate(90deg) translateX(0)", opacity: "0.55" },
+          "50%": { transform: "rotate(90deg) translateX(6px)", opacity: "1" },
+        },
       },
       animation: {
         respirar: "respirar 7s ease-in-out infinite",
@@ -96,6 +101,7 @@ const config: Config = {
         campanada: "campanada 6s ease-in-out infinite",
         "onda-lateral": "ondaLateral 6s ease-out infinite",
         deslizar: "deslizar 1.6s ease-in-out infinite",
+        "deslizar-abajo": "deslizarAbajo 1.6s ease-in-out infinite",
       },
     },
   },
