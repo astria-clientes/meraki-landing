@@ -9,7 +9,6 @@
   }
   body {
     @apply bg-crema text-tinta font-sans antialiased;
-    perspective: 1800px;
   }
   ::selection {
     @apply bg-cobre text-crema;
@@ -64,12 +63,21 @@
     transform: none;
   }
 
-  /* La hoja que "pasa página" al ir de un capítulo a otro — ver TransicionHoja.tsx. */
-  .hoja {
+  /* La hoja que "pasa página" al ir de un capítulo a otro — ver
+     TransicionHoja.tsx. El "perspective" vive en este contenedor propio, no
+     en <body>: ponerlo en <body> convierte a CUALQUIER elemento fixed del
+     sitio (el botón de WhatsApp, esta misma hoja) en fixed-relativo-a-body
+     en vez de fixed-relativo-a-la-ventana, y todo se desarma al scrollear. */
+  .hoja-contenedor {
     position: fixed;
     inset: 0;
     z-index: 100;
     pointer-events: none;
+    perspective: 1800px;
+  }
+  .hoja {
+    position: absolute;
+    inset: 0;
     background: linear-gradient(135deg, #f7f3ec, #efe3cb 55%, #dcc48f);
     box-shadow: 12px 0 60px -10px rgba(34, 25, 18, 0.35);
     transform-origin: left center;

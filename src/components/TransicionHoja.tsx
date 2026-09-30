@@ -46,7 +46,9 @@ export function TransicionHojaProvider({ children }: { children: React.ReactNode
   return (
     <HojaContexto.Provider value={navegar}>
       {children}
-      <div aria-hidden className="hoja" style={{ transform: `rotateY(${grados}deg)` }} />
+      <div aria-hidden className="hoja-contenedor">
+        <div className="hoja" style={{ transform: `rotateY(${grados}deg)` }} />
+      </div>
     </HojaContexto.Provider>
   );
 }
