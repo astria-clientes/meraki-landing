@@ -63,26 +63,36 @@
     transform: none;
   }
 
-  /* La hoja que "pasa página" al ir de un capítulo a otro — ver
-     TransicionHoja.tsx. El "perspective" vive en este contenedor propio, no
-     en <body>: ponerlo en <body> convierte a CUALQUIER elemento fixed del
-     sitio (el botón de WhatsApp, esta misma hoja) en fixed-relativo-a-body
-     en vez de fixed-relativo-a-la-ventana, y todo se desarma al scrollear. */
-  .hoja-contenedor {
+  /* El velo de luz que cubre y revela al ir de un capítulo a otro — ver
+     TransicionHoja.tsx. Nada gira ni cruza la pantalla como un objeto:
+     es un brillo que crece y se disuelve, en el mismo lenguaje que la
+     estrella del Hero (animate-brillo) y las luces de fondo (respirar). */
+  .velo-contenedor {
     position: fixed;
     inset: 0;
     z-index: 100;
     pointer-events: none;
-    perspective: 1800px;
   }
-  .hoja {
+  .velo {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #f7f3ec, #efe3cb 55%, #dcc48f);
-    box-shadow: 12px 0 60px -10px rgba(34, 25, 18, 0.35);
-    transform-origin: left center;
-    transition: transform 520ms cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
+    inset: -10%;
+    opacity: 0;
+    transform: scale(1.06);
+    background:
+      radial-gradient(ellipse at 50% 45%, rgba(230, 197, 92, 0.35), transparent 60%),
+      linear-gradient(135deg, #f7f3ec, #efe3cb 55%, #dcc48f);
+    transition:
+      opacity 480ms cubic-bezier(0.4, 0, 0.2, 1),
+      transform 480ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+  }
+  .velo-contenedor[data-fase="cubriendo"] .velo {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .velo-contenedor[data-fase="revelando"] .velo {
+    opacity: 0;
+    transform: scale(1.06);
   }
 }
 
@@ -95,7 +105,7 @@
     transform: none;
     transition: none;
   }
-  .hoja {
+  .velo {
     transition: none;
   }
   *,
