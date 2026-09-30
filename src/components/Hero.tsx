@@ -170,7 +170,7 @@ export default function Hero() {
             que cuelga en las fotos reales) — en el celular, franjas
             completas con separadores finos; en PC, integrados al fondo
             crema, sin caja ni borde. Tocar un capítulo dispara la hoja. */}
-        <div className="w-full shrink-0 snap-center px-4 pb-14 md:w-auto md:shrink md:px-0 md:pb-0">
+        <div className="flex w-full shrink-0 snap-center flex-col justify-center px-4 pb-14 md:w-auto md:shrink md:block md:px-0 md:pb-0">
           <nav aria-label="Los tres capítulos de Meraki" className="border-t border-tinta/10 md:border-t-0">
             {capitulos.map((c, i) => (
               <Aparecer key={c.n} demora={i * 140}>
