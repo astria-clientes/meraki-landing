@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { contacto } from "@/config/contacto";
 import { textos } from "@/data/textos";
 import Aparecer from "./Aparecer";
 import BotonWhatsApp from "./BotonWhatsApp";
@@ -85,17 +84,13 @@ export default function Hero() {
         <div className="absolute bottom-0 left-1/3 h-56 w-56 rounded-full bg-salvia-clara/50 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-4 pb-12 pt-10 md:px-6 md:pb-24 md:pt-24">
-        <div className="md:max-w-2xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-cobre-oscuro">
-            {contacto.direccion.ciudad}
-          </p>
-
-          <div className="mt-4 flex items-center gap-2 sm:gap-3 md:gap-4">
+      <div className="relative mx-auto max-w-6xl px-4 pb-12 pt-10 md:grid md:grid-cols-[1.25fr_1fr] md:items-end md:gap-10 md:px-6 md:pb-24 md:pt-24">
+        <div>
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
             <h1 className="font-display text-[3.6rem] leading-[0.85] tracking-[-0.03em] text-tinta sm:text-[5.5rem] md:text-[8.5rem]">
               Meraki
             </h1>
-            {/* La estrella de la marca, brillando al lado del nombre */}
+            {/* La estrella de la marca, quieta, brillando a la derecha del nombre */}
             <span aria-hidden className="relative h-9 w-9 shrink-0 animate-brillo sm:h-14 sm:w-14 md:h-[5.5rem] md:w-[5.5rem]">
               <Image src="/logos/estrella.png" alt="" fill sizes="88px" className="object-contain" />
             </span>
@@ -106,7 +101,9 @@ export default function Hero() {
           </p>
           <p className="mt-8 max-w-md text-[17px] leading-relaxed text-tinta/80 md:text-lg">{textos.hero.bajada}</p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <BotonWhatsApp tamano="lg" />
+            <BotonWhatsApp tamano="lg" variante="calmo">
+              Contactanos
+            </BotonWhatsApp>
             <Link
               href="/peluqueria"
               className="group inline-flex items-center justify-center gap-2 rounded-full px-5 py-4 text-[15px] font-semibold text-tinta/80 transition-colors hover:text-cobre"
@@ -118,20 +115,23 @@ export default function Hero() {
         </div>
 
         {/* Los tres capítulos, editorial: número grande, geometría sagrada
-            de fondo (la misma que cuelga en las fotos reales), separadores
-            finos en vez de tarjetas — y una respiración lenta al pasar
-            el mouse, no un efecto rápido de interfaz. */}
-        <nav aria-label="Los tres capítulos de Meraki" className="mt-16 border-t border-tinta/10 md:mt-24">
+            de fondo (la misma que cuelga en las fotos reales) — en el
+            celular, franjas completas con separadores finos; en PC, vuelven
+            a la derecha, integrados al fondo crema, sin caja ni borde. */}
+        <nav
+          aria-label="Los tres capítulos de Meraki"
+          className="mt-16 border-t border-tinta/10 md:mt-0 md:border-t-0"
+        >
           {capitulos.map((c, i) => (
             <Aparecer key={c.n} demora={i * 140}>
               <Link
                 href={c.href}
-                className={`grano group relative flex items-center gap-4 overflow-hidden border-b border-tinta/10 py-6 transition-colors duration-500 sm:gap-8 sm:py-8 md:gap-10 md:py-9 ${c.tinte}`}
+                className={`group relative flex items-center gap-4 overflow-hidden border-b border-tinta/10 py-6 transition-colors duration-500 sm:gap-8 sm:py-8 md:gap-5 md:border-b-0 md:bg-transparent md:py-4 ${c.tinte}`}
               >
-                <c.Geometria className="pointer-events-none absolute -left-6 top-1/2 h-32 w-32 -translate-y-1/2 opacity-[0.07] transition-all duration-500 ease-out group-hover:opacity-[0.14] sm:h-48 sm:w-48 md:h-56 md:w-56" />
+                <c.Geometria className="pointer-events-none absolute -left-6 top-1/2 h-32 w-32 -translate-y-1/2 opacity-[0.07] transition-all duration-500 ease-out group-hover:opacity-[0.14] sm:h-48 sm:w-48 md:-left-3 md:h-28 md:w-28" />
 
                 <span
-                  className={`relative shrink-0 select-none font-display text-4xl italic leading-none transition-transform duration-500 ease-out group-hover:-translate-y-1 sm:text-7xl md:text-8xl ${c.numeral}`}
+                  className={`relative shrink-0 select-none font-display text-4xl italic leading-none transition-transform duration-500 ease-out group-hover:-translate-y-1 sm:text-7xl md:text-6xl ${c.numeral}`}
                 >
                   {c.n}
                 </span>
@@ -140,7 +140,7 @@ export default function Hero() {
                   <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-cobre-oscuro sm:text-[11px] sm:tracking-[0.28em]">
                     {c.titulo}
                   </span>
-                  <span className="mt-1 block font-display text-lg leading-snug text-tinta transition-colors duration-500 sm:mt-1.5 sm:text-3xl md:text-4xl">
+                  <span className="mt-1 block font-display text-lg leading-snug text-tinta transition-colors duration-500 sm:mt-1.5 sm:text-3xl md:text-xl">
                     {c.texto}
                   </span>
                 </span>

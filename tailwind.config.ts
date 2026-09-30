@@ -42,17 +42,16 @@ const config: Config = {
           "0%, 100%": { transform: "scale(1)" },
           "50%": { transform: "scale(1.06)" },
         },
-        // La estrella del Hero, brillando: un pulso de luz + un giro sutil.
+        // La estrella del Hero: quieta, solo brilla — un pulso de luz, sin
+        // moverse ni girar.
         brillo: {
           "0%, 100%": {
-            transform: "scale(1) rotate(0deg)",
             filter:
               "drop-shadow(0 0 6px rgba(201,162,39,.55)) drop-shadow(0 0 16px rgba(184,130,61,.3))",
           },
           "50%": {
-            transform: "scale(1.14) rotate(10deg)",
             filter:
-              "drop-shadow(0 0 16px rgba(201,162,39,.9)) drop-shadow(0 0 32px rgba(184,130,61,.55))",
+              "drop-shadow(0 0 18px rgba(201,162,39,.95)) drop-shadow(0 0 36px rgba(184,130,61,.6))",
           },
         },
         // Un destello que recorre el texto, como un reflejo de luz sobre la letra.
