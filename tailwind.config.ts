@@ -64,6 +64,22 @@ const config: Config = {
           from: { opacity: "0", transform: "translateY(14px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        // El botón de WhatsApp "repica" cada tanto: un par de segundos de
+        // oscilación amortiguada y después queda quieto hasta la próxima.
+        campanada: {
+          "0%, 18%, 100%": { transform: "rotate(0deg)" },
+          "3%": { transform: "rotate(16deg)" },
+          "6%": { transform: "rotate(-12deg)" },
+          "9%": { transform: "rotate(8deg)" },
+          "12%": { transform: "rotate(-5deg)" },
+          "15%": { transform: "rotate(2deg)" },
+        },
+        // Ondas de sonido cortas que salen a los costados, solo mientras repica.
+        ondaLateral: {
+          "0%, 12%, 100%": { opacity: "0", transform: "scale(.55)" },
+          "4%": { opacity: ".9", transform: "scale(.95)" },
+          "10%": { opacity: "0", transform: "scale(1.3)" },
+        },
       },
       animation: {
         respirar: "respirar 7s ease-in-out infinite",
@@ -72,6 +88,8 @@ const config: Config = {
         brillo: "brillo 3.6s ease-in-out infinite",
         destello: "destello 5s ease-in-out infinite",
         entrada: "entrada .5s cubic-bezier(.2,.7,.2,1) both",
+        campanada: "campanada 6s ease-in-out infinite",
+        "onda-lateral": "ondaLateral 6s ease-out infinite",
       },
     },
   },

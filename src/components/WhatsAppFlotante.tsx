@@ -31,12 +31,23 @@ export default function WhatsAppFlotante() {
       }`}
     >
       {/* Anillo de cobre, el hilo de la marca, respirando por debajo del verde */}
-      <span
-        aria-hidden
-        className="absolute -inset-1.5 animate-respirar rounded-full ring-2 ring-cobre-claro/70"
-      />
+      <span aria-hidden className="absolute -inset-1.5 animate-respirar rounded-full ring-2 ring-cobre-claro/70" />
       <span className="absolute inset-0 animate-ondas rounded-full bg-whatsapp" aria-hidden />
-      <IconoWhatsApp className="relative h-7 w-7 transition-transform duration-300 group-hover:scale-110 md:h-8 md:w-8" />
+
+      {/* Ondas de sonido, cortas, a los costados del ícono — solo aparecen
+          durante el repique, como el resto del tiempo. */}
+      <svg aria-hidden className="absolute left-1.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 animate-onda-lateral text-white/80 md:h-4 md:w-4" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" style={{ transformOrigin: "100% 50%" }}>
+        <path d="M14 4A10 10 0 0 0 4 14" />
+        <path d="M14 8a6 6 0 0 0-6 6" />
+      </svg>
+      <svg aria-hidden className="absolute right-1.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 animate-onda-lateral text-white/80 [animation-delay:120ms] md:h-4 md:w-4" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" style={{ transformOrigin: "0% 50%" }}>
+        <path d="M0 4a10 10 0 0 1 10 10" />
+        <path d="M0 8a6 6 0 0 1 6 6" />
+      </svg>
+
+      <span className="relative inline-block animate-campanada transition-transform duration-300 group-hover:scale-110" style={{ transformOrigin: "50% 12%" }}>
+        <IconoWhatsApp className="h-7 w-7 md:h-8 md:w-8" />
+      </span>
     </a>
   );
 }
