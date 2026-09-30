@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Fraunces, Public_Sans } from "next/font/google";
 import Encabezado from "@/components/Encabezado";
 import Footer from "@/components/Footer";
+import { TransicionHojaProvider } from "@/components/TransicionHoja";
 import WhatsAppFlotante from "@/components/WhatsAppFlotante";
 import "./globals.css";
 
@@ -41,10 +42,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es-AR" className={`${fraunces.variable} ${publicSans.variable}`}>
       <body>
-        <Encabezado />
-        {children}
-        <Footer />
-        <WhatsAppFlotante />
+        <TransicionHojaProvider>
+          <Encabezado />
+          {children}
+          <Footer />
+          <WhatsAppFlotante />
+        </TransicionHojaProvider>
       </body>
     </html>
   );

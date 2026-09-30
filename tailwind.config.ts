@@ -80,6 +80,11 @@ const config: Config = {
           "4%": { opacity: ".9", transform: "scale(.95)" },
           "10%": { opacity: "0", transform: "scale(1.3)" },
         },
+        // El aviso de "deslizá para ver los capítulos", en el Hero mobile.
+        deslizar: {
+          "0%, 100%": { transform: "translateX(0)", opacity: "0.55" },
+          "50%": { transform: "translateX(6px)", opacity: "1" },
+        },
       },
       animation: {
         respirar: "respirar 7s ease-in-out infinite",
@@ -90,6 +95,7 @@ const config: Config = {
         entrada: "entrada .5s cubic-bezier(.2,.7,.2,1) both",
         campanada: "campanada 6s ease-in-out infinite",
         "onda-lateral": "ondaLateral 6s ease-out infinite",
+        deslizar: "deslizar 1.6s ease-in-out infinite",
       },
     },
   },
