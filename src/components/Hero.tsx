@@ -52,8 +52,7 @@ const capitulos = [
   {
     href: "/peluqueria",
     n: "01",
-    titulo: "El oficio",
-    texto: "Peluquería & barbería",
+    texto: "Peluquería unisex - barbería",
     numeral: "text-tinta",
     tinte: "bg-tinta/[0.035] group-hover:bg-tinta/[0.06]",
     Geometria: FlorDeVida,
@@ -61,8 +60,7 @@ const capitulos = [
   {
     href: "/terapias",
     n: "02",
-    titulo: "La pausa",
-    texto: "Reiki & armonización sonora",
+    texto: "Terapias holísticas - acompañamiento terapéutico",
     numeral: "text-dorado-oscuro",
     tinte: "bg-dorado/5 group-hover:bg-dorado/[0.09]",
     Geometria: SriYantra,
@@ -70,7 +68,6 @@ const capitulos = [
   {
     href: "/piedras",
     n: "03",
-    titulo: "La piedra",
     texto: "Bijou & piedras semipreciosas",
     numeral: "text-cobre-oscuro",
     tinte: "bg-cobre/5 group-hover:bg-cobre/[0.09]",
@@ -188,10 +185,7 @@ export default function Hero() {
                   </span>
 
                   <span className="relative min-w-0 flex-1">
-                    <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-cobre-oscuro sm:text-[11px] sm:tracking-[0.28em]">
-                      {c.titulo}
-                    </span>
-                    <span className="mt-1 block font-display text-lg leading-snug text-tinta transition-colors duration-500 sm:mt-1.5 sm:text-3xl md:text-xl">
+                    <span className="block font-display text-lg leading-snug text-tinta transition-colors duration-500 sm:text-3xl md:text-xl">
                       {c.texto}
                     </span>
                   </span>
