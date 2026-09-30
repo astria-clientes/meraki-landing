@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import BotonWhatsApp from "./BotonWhatsApp";
 
 const enlaces = [
   { href: "/peluqueria", texto: "Peluquería" },
@@ -43,9 +42,6 @@ export default function Encabezado() {
             );
           })}
         </nav>
-        <BotonWhatsApp tamano="sm" variante="oscuro">
-          WhatsApp
-        </BotonWhatsApp>
       </div>
     </header>
   );
