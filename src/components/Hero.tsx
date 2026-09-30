@@ -4,33 +4,75 @@ import { contacto } from "@/config/contacto";
 import { textos } from "@/data/textos";
 import Aparecer from "./Aparecer";
 import BotonWhatsApp from "./BotonWhatsApp";
-import { IconoFlecha, IconoTijera } from "./Iconos";
+import { IconoFlecha } from "./Iconos";
 
-/* Íconos chicos y propios para el índice de capítulos — mismo trazo fino
- * que el resto de Iconos.tsx, para que no compitan en estilo. */
-function IconoOnda({ className = "h-4 w-4" }: { className?: string }) {
+/* Geometría sagrada, la misma que cuelga en las fotos reales del local
+ * (la flor de la vida y el Sri Yantra enmarcados en la peluquería) —
+ * acá como trazo fino de fondo, no como ícono grande. La tercera, el
+ * merkaba, es la propia estrella de la marca. */
+function FlorDeVida({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden className={className}>
-      <circle cx="12" cy="12" r="2.2" fill="currentColor" stroke="none" />
-      <circle cx="12" cy="12" r="6.5" />
-      <circle cx="12" cy="12" r="10.2" opacity=".5" />
+    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.6" aria-hidden className={className}>
+      <circle cx="50" cy="50" r="15" />
+      <circle cx="65" cy="50" r="15" />
+      <circle cx="57.5" cy="37" r="15" />
+      <circle cx="42.5" cy="37" r="15" />
+      <circle cx="35" cy="50" r="15" />
+      <circle cx="42.5" cy="63" r="15" />
+      <circle cx="57.5" cy="63" r="15" />
     </svg>
   );
 }
 
-function IconoGema({ className = "h-4 w-4" }: { className?: string }) {
+function SriYantra({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" aria-hidden className={className}>
-      <path d="M6 3h12l4 6-10 12L2 9Z" />
-      <path d="M2 9h20M9 3l3 6-3 12M15 3l-3 6 3 12" />
+    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.6" aria-hidden className={className}>
+      <circle cx="50" cy="50" r="42" />
+      <polygon points="50,10 90,80 10,80" />
+      <polygon points="50,90 10,20 90,20" />
+      <polygon points="50,28 74,68 26,68" />
+      <polygon points="50,72 26,32 74,32" />
     </svg>
   );
 }
 
-const cuentas = [
-  { href: "/peluqueria", n: "01", titulo: "El oficio", texto: "Peluquería & barbería", color: "#221912", Icono: IconoTijera },
-  { href: "/terapias", n: "02", titulo: "La pausa", texto: "Reiki & armonización sonora", color: "#C9A227", Icono: IconoOnda },
-  { href: "/piedras", n: "03", titulo: "La piedra", texto: "Bijou & piedras semipreciosas", color: "#B8823D", Icono: IconoGema },
+function Merkaba({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="0.6" aria-hidden className={className}>
+      <polygon points="50,12 88,80 12,80" />
+      <polygon points="50,88 12,20 88,20" />
+    </svg>
+  );
+}
+
+const capitulos = [
+  {
+    href: "/peluqueria",
+    n: "01",
+    titulo: "El oficio",
+    texto: "Peluquería & barbería",
+    numeral: "text-tinta",
+    tinte: "bg-tinta/[0.035] group-hover:bg-tinta/[0.06]",
+    Geometria: FlorDeVida,
+  },
+  {
+    href: "/terapias",
+    n: "02",
+    titulo: "La pausa",
+    texto: "Reiki & armonización sonora",
+    numeral: "text-dorado-oscuro",
+    tinte: "bg-dorado/5 group-hover:bg-dorado/[0.09]",
+    Geometria: SriYantra,
+  },
+  {
+    href: "/piedras",
+    n: "03",
+    titulo: "La piedra",
+    texto: "Bijou & piedras semipreciosas",
+    numeral: "text-cobre-oscuro",
+    tinte: "bg-cobre/5 group-hover:bg-cobre/[0.09]",
+    Geometria: Merkaba,
+  },
 ];
 
 export default function Hero() {
@@ -43,22 +85,19 @@ export default function Hero() {
         <div className="absolute bottom-0 left-1/3 h-56 w-56 rounded-full bg-salvia-clara/50 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto grid max-w-6xl gap-12 px-4 pb-12 pt-10 md:grid-cols-[1.25fr_1fr] md:items-end md:gap-10 md:px-6 md:pb-24 md:pt-24">
-        <div>
+      <div className="relative mx-auto max-w-6xl px-4 pb-12 pt-10 md:px-6 md:pb-24 md:pt-24">
+        <div className="md:max-w-2xl">
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-cobre-oscuro">
             {contacto.direccion.ciudad}
           </p>
 
-          <div className="relative w-fit">
-            <h1 className="mt-4 bg-gradient-to-r from-tinta via-cobre-claro to-tinta bg-[length:220%_auto] bg-clip-text font-display text-[3.6rem] leading-[0.85] tracking-[-0.03em] text-transparent animate-destello sm:text-[5.5rem] md:text-[9.5rem]">
+          <div className="mt-4 flex items-center gap-2 sm:gap-3 md:gap-4">
+            <h1 className="font-display text-[3.6rem] leading-[0.85] tracking-[-0.03em] text-tinta sm:text-[5.5rem] md:text-[8.5rem]">
               Meraki
             </h1>
-            {/* La estrella de la marca, brillando junto al nombre */}
-            <span
-              aria-hidden
-              className="absolute -right-1 -top-1 h-7 w-7 animate-brillo sm:-right-2 sm:-top-2 sm:h-10 sm:w-10 md:-right-3 md:-top-4 md:h-16 md:w-16"
-            >
-              <Image src="/logos/estrella.png" alt="" fill sizes="64px" className="object-contain" />
+            {/* La estrella de la marca, brillando al lado del nombre */}
+            <span aria-hidden className="relative h-9 w-9 shrink-0 animate-brillo sm:h-14 sm:w-14 md:h-[5.5rem] md:w-[5.5rem]">
+              <Image src="/logos/estrella.png" alt="" fill sizes="88px" className="object-contain" />
             </span>
           </div>
 
@@ -78,38 +117,38 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Índice en forma de collar: tres cuentas en un mismo hilo */}
-        <nav aria-label="Los tres capítulos de Meraki" className="relative">
-          <div aria-hidden className="absolute bottom-6 left-[19px] top-6 w-px bg-gradient-to-b from-cobre/0 via-cobre to-cobre/0" />
-          <ol className="space-y-2">
-            {cuentas.map((c, i) => (
-              <Aparecer key={c.n} as="li" demora={i * 130}>
-                <Link
-                  href={c.href}
-                  className="group relative flex items-center gap-5 overflow-hidden rounded-2xl py-3.5 pl-1 pr-4 transition-colors"
+        {/* Los tres capítulos, editorial: número grande, geometría sagrada
+            de fondo (la misma que cuelga en las fotos reales), separadores
+            finos en vez de tarjetas — y una respiración lenta al pasar
+            el mouse, no un efecto rápido de interfaz. */}
+        <nav aria-label="Los tres capítulos de Meraki" className="mt-16 border-t border-tinta/10 md:mt-24">
+          {capitulos.map((c, i) => (
+            <Aparecer key={c.n} demora={i * 140}>
+              <Link
+                href={c.href}
+                className={`grano group relative flex items-center gap-4 overflow-hidden border-b border-tinta/10 py-6 transition-colors duration-500 sm:gap-8 sm:py-8 md:gap-10 md:py-9 ${c.tinte}`}
+              >
+                <c.Geometria className="pointer-events-none absolute -left-6 top-1/2 h-32 w-32 -translate-y-1/2 opacity-[0.07] transition-all duration-500 ease-out group-hover:opacity-[0.14] sm:h-48 sm:w-48 md:h-56 md:w-56" />
+
+                <span
+                  className={`relative shrink-0 select-none font-display text-4xl italic leading-none transition-transform duration-500 ease-out group-hover:-translate-y-1 sm:text-7xl md:text-8xl ${c.numeral}`}
                 >
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 -z-10 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    style={{ background: `linear-gradient(110deg, ${c.color}22, transparent 70%)` }}
-                  />
-                  <span
-                    className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-crema ring-1 ring-cobre ring-offset-[5px] ring-offset-crema transition-transform duration-300 group-hover:scale-110"
-                    style={{ background: c.color }}
-                  >
-                    <c.Icono className="h-4 w-4" />
+                  {c.n}
+                </span>
+
+                <span className="relative min-w-0 flex-1">
+                  <span className="block text-[10px] font-semibold uppercase tracking-[0.22em] text-cobre-oscuro sm:text-[11px] sm:tracking-[0.28em]">
+                    {c.titulo}
                   </span>
-                  <span className="flex-1">
-                    <span className="block text-[11px] font-semibold uppercase tracking-[0.24em] text-cobre-oscuro">
-                      {c.n} · {c.titulo}
-                    </span>
-                    <span className="mt-0.5 block font-display text-xl text-tinta md:text-2xl">{c.texto}</span>
+                  <span className="mt-1 block font-display text-lg leading-snug text-tinta transition-colors duration-500 sm:mt-1.5 sm:text-3xl md:text-4xl">
+                    {c.texto}
                   </span>
-                  <IconoFlecha className="h-4 w-4 shrink-0 text-tinta/40 transition-transform group-hover:translate-x-1 group-hover:text-cobre" />
-                </Link>
-              </Aparecer>
-            ))}
-          </ol>
+                </span>
+
+                <IconoFlecha className="relative h-4 w-4 shrink-0 text-tinta/30 transition-all duration-500 ease-out group-hover:translate-x-2 group-hover:text-cobre sm:h-5 sm:w-5" />
+              </Link>
+            </Aparecer>
+          ))}
         </nav>
       </div>
     </section>
