@@ -18,6 +18,8 @@ export type Profesional = {
   descripcion: string;
   /** Frase corta, en su propia voz — para darle identidad propia a cada perfil. */
   frase?: string;
+  /** Historia más larga, en párrafos — se muestra plegada bajo "Conocé la historia completa". */
+  relato?: string[];
   servicios: string[];
   foto: string | null;
   /** Qué mensaje de /config/contacto.ts usa su botón de WhatsApp. */

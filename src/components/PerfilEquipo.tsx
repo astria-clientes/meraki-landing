@@ -15,7 +15,7 @@ import { createPortal } from "react-dom";
 import { contacto } from "@/config/contacto";
 import type { Profesional } from "@/data/peluqueria";
 import BotonWhatsApp from "./BotonWhatsApp";
-import { IconoCerrar, IconoMas, IconoTijera } from "./Iconos";
+import { IconoCerrar, IconoFlecha, IconoMas, IconoTijera } from "./Iconos";
 import { Foto } from "./Medios";
 
 function Frente({ p, onClick }: { p: Profesional; onClick: () => void }) {
@@ -55,6 +55,7 @@ function Frente({ p, onClick }: { p: Profesional; onClick: () => void }) {
 }
 
 function Info({ p }: { p: Profesional }) {
+  const [relatoAbierto, setRelatoAbierto] = useState(false);
   return (
     <>
       <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-cobre-claro">
@@ -77,6 +78,28 @@ function Info({ p }: { p: Profesional }) {
           </li>
         ))}
       </ul>
+
+      {p.relato && p.relato.length > 0 && (
+        <div className="mt-5 md:mt-6">
+          <button
+            type="button"
+            onClick={() => setRelatoAbierto((v) => !v)}
+            aria-expanded={relatoAbierto}
+            className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-cobre-claro"
+          >
+            {relatoAbierto ? "Mostrar menos" : "Conocé la historia completa"}
+            <IconoFlecha className={`h-3 w-3 transition-transform ${relatoAbierto ? "-rotate-90" : "rotate-90"}`} />
+          </button>
+          {relatoAbierto && (
+            <div className="mt-3 space-y-3 text-sm leading-relaxed text-crema/75 md:text-base">
+              {p.relato.map((parrafo, i) => (
+                <p key={i}>{parrafo}</p>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       <BotonWhatsApp mensaje={contacto.mensajesWhatsApp[p.mensaje]} variante="claro" className="mt-5 w-full md:mt-7 md:w-auto">
         Consultar con {p.nombre.split(" ")[0]}
       </BotonWhatsApp>

@@ -5,6 +5,11 @@
       "especialidad": "Barbería masculina y diseños",
       "descripcion": "Especialista en cortes masculinos, degradados, barbería, arreglo de barba y diseños personalizados hechos a mano. Precisión y estilo con identidad propia.",
       "frase": "Un lugar para cortarse el pelo y, si se quiere, para darse un momento de pausa e introspección.",
+      "relato": [
+        "Hay 15 años de oficio, de tijera y navaja.",
+        "Con el tiempo, al corte se sumó el acompañamiento terapéutico y la posibilidad de conectar con piedras semipreciosas y bijouterie consciente — no como adorno, sino como herramientas de protección personal.",
+        "Por fuera del espacio, y como parte de ese mismo camino de 15 años, está el aprendizaje de la sabiduría ancestral con plantas medicinales vinculadas al chamanismo."
+      ],
       "servicios": ["Corte masculino", "Degradé / fade", "Perfilado y arreglo de barba"],
       "foto": "/fotos/equipo/estacion-diego.jpg",
       "mensaje": "barberia"
@@ -14,6 +19,11 @@
       "especialidad": "Peluquería unisex y tratamientos capilares",
       "descripcion": "Especialista en peluquería unisex y en el cuidado integral del cabello. En mujeres, me dedico exclusivamente a tratamientos capilares: nutrición, hidratación, brillo y recuperación para un pelo más sano y fuerte.",
       "frase": "Desde 2011, tu cabello, mi pasión.",
+      "relato": [
+        "Desde 2011, brindando servicios de peluquería con dedicación, experiencia y atención personalizada.",
+        "Cada cabello tiene sus propias características y necesidades: cortes, keratina alisadora, alisado permanente, botox capilar e hidrataciones se adaptan a cada persona para un resultado natural, saludable y armonioso — para cabellos lacios, ondulados y con rulos.",
+        "Brillo, suavidad y cuidado, en un ambiente cómodo y agradable."
+      ],
       "servicios": ["Corte unisex", "Keratina alisadora", "Alisado permanente", "Botox capilar", "Hidrataciones y tratamientos capilares"],
       "foto": "/fotos/equipo/estacion-ayelen.jpg",
       "mensaje": "peluqueria"
