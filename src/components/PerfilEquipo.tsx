@@ -80,27 +80,31 @@ export default function PerfilEquipo({ p }: { p: Profesional }) {
               className="absolute inset-0 animate-entrada bg-tinta/80 backdrop-blur-sm"
               onClick={() => setAbierto(false)}
             />
-            <div className="animate-entrada relative flex max-h-full w-full max-w-lg flex-col overflow-hidden rounded-[28px] bg-tinta-suave text-crema shadow-2xl">
-              <div className="relative aspect-[16/10] w-full shrink-0 sm:aspect-[16/9]">
+            <div className="animate-entrada relative flex max-h-full w-full max-w-lg flex-col overflow-hidden rounded-[28px] bg-tinta-suave text-crema shadow-2xl md:max-w-4xl md:flex-row">
+              <button
+                type="button"
+                onClick={() => setAbierto(false)}
+                aria-label="Cerrar"
+                className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-crema/40 bg-tinta/60 text-crema backdrop-blur-sm transition-colors hover:bg-tinta"
+              >
+                <IconoCerrar className="h-4 w-4" />
+              </button>
+
+              {/* En PC, foto y texto van lado a lado (como un cuadro) en vez de
+                  apilados: la descripción tiene más ancho para leerse entera
+                  sin tener que scrollear. En celular siguen apilados. */}
+              <div className="relative aspect-[16/10] w-full shrink-0 sm:aspect-[16/9] md:aspect-auto md:w-[38%]">
                 <Foto
                   src={p.foto}
                   alt={`Puesto de trabajo de ${p.nombre}`}
                   className="h-full w-full"
-                  sizes="(min-width: 768px) 512px, 100vw"
+                  sizes="(min-width: 768px) 360px, 100vw"
                   posicion="center 15%"
                   viva={false}
                 />
-                <button
-                  type="button"
-                  onClick={() => setAbierto(false)}
-                  aria-label="Cerrar"
-                  className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-crema/40 bg-tinta/60 text-crema backdrop-blur-sm transition-colors hover:bg-tinta"
-                >
-                  <IconoCerrar className="h-4 w-4" />
-                </button>
               </div>
 
-              <div className="sin-scrollbar overflow-y-auto p-6 md:p-8">
+              <div className="sin-scrollbar overflow-y-auto p-6 md:w-[62%] md:p-8">
                 <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-cobre-claro">
                   <IconoTijera className="h-3.5 w-3.5" /> {p.especialidad}
                 </p>
