@@ -88,7 +88,6 @@ export default function Peluqueria() {
               textColor="#F7F3EC"
             />
           </div>
-          <p className="mt-3 text-center text-sm text-crema/50">Tocá cada foto para agrandarla</p>
         </div>
       </div>
     </section>

@@ -2,9 +2,13 @@
 
 /* ==========================================================================
  *  Perfil de cada profesional, como una ficha chica: foto, nombre y
- *  especialidad. Tocar el "+" abre un panel grande por encima de toda la
- *  pantalla con todo lo que esa persona hace — descripción completa, frase
- *  y servicios — en vez de obligar a leer todo apretujado en la tarjeta.
+ *  especialidad.
+ *  - En celular: tocar la ficha la da vuelta en el mismo lugar — del otro
+ *    lado no hay foto, solo el texto completo (descripción, frase,
+ *    servicios), para que entre bien sin apretujarse. Se vuelve a tocar
+ *    para volver a la foto.
+ *  - En PC: tocar el "+" abre un panel grande por encima de toda la
+ *    pantalla, con la foto y el texto lado a lado.
  * ========================================================================== */
 
 import { useEffect, useState } from "react";
@@ -15,10 +19,77 @@ import BotonWhatsApp from "./BotonWhatsApp";
 import { IconoCerrar, IconoMas, IconoTijera } from "./Iconos";
 import { Foto } from "./Medios";
 
+function Frente({ p, onClick }: { p: Profesional; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-haspopup="dialog"
+      aria-label={`Ver todo lo que hace ${p.nombre}`}
+      className="group relative block aspect-[0.72] w-full overflow-hidden rounded-[22px] text-left"
+    >
+      <Foto
+        src={p.foto}
+        alt={`Puesto de trabajo de ${p.nombre}`}
+        ayuda="Foto pendiente · /public/fotos/equipo"
+        className="h-full w-full"
+        sizes="(min-width: 768px) 25vw, 45vw"
+        posicion="center 15%"
+        viva={false}
+        degradado={false}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-tinta/90 via-tinta/10 to-transparent"
+      />
+      <div className="absolute inset-x-0 bottom-0 p-4 md:p-5">
+        <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-cobre-claro">
+          <IconoTijera className="h-3.5 w-3.5" /> {p.especialidad}
+        </p>
+        <h3 className="mt-1.5 font-display text-xl leading-tight text-crema md:text-2xl">{p.nombre}</h3>
+      </div>
+      <span className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-crema/40 bg-tinta/50 text-crema backdrop-blur-sm transition-transform duration-300 group-hover:scale-105 md:right-5 md:top-5">
+        <IconoMas className="h-4 w-4" />
+      </span>
+    </button>
+  );
+}
+
+function Info({ p }: { p: Profesional }) {
+  return (
+    <>
+      <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-cobre-claro">
+        <IconoTijera className="h-3.5 w-3.5" /> {p.especialidad}
+      </p>
+      <h3 className="mt-2 font-display text-2xl md:text-4xl">{p.nombre}</h3>
+      <p className="mt-3 text-sm leading-relaxed text-crema/80 md:mt-4 md:text-base">{p.descripcion}</p>
+      {p.frase && (
+        <p className="mt-3 font-display text-base italic text-cobre-claro md:mt-4 md:text-lg">
+          &ldquo;{p.frase}&rdquo;
+        </p>
+      )}
+      <ul className="mt-4 flex flex-wrap gap-2 md:mt-5">
+        {p.servicios.map((s) => (
+          <li
+            key={s}
+            className="rounded-full border border-crema/15 px-2.5 py-1 text-xs text-crema/85 md:px-3 md:py-1.5 md:text-sm"
+          >
+            {s}
+          </li>
+        ))}
+      </ul>
+      <BotonWhatsApp mensaje={contacto.mensajesWhatsApp[p.mensaje]} variante="claro" className="mt-5 w-full md:mt-7 md:w-auto">
+        Consultar con {p.nombre.split(" ")[0]}
+      </BotonWhatsApp>
+    </>
+  );
+}
+
 export default function PerfilEquipo({ p }: { p: Profesional }) {
   const [abierto, setAbierto] = useState(false);
+  const [volteada, setVolteada] = useState(false);
 
-  // Mientras el panel está abierto: Escape lo cierra y la página de atrás no scrollea.
+  // Mientras el panel de PC está abierto: Escape lo cierra y la página de atrás no scrollea.
   useEffect(() => {
     if (!abierto) return;
     const alTeclear = (e: KeyboardEvent) => {
@@ -35,37 +106,29 @@ export default function PerfilEquipo({ p }: { p: Profesional }) {
 
   return (
     <>
-      <button
-        type="button"
-        onClick={() => setAbierto(true)}
-        aria-haspopup="dialog"
-        aria-label={`Ver todo lo que hace ${p.nombre}`}
-        className="group relative block aspect-[0.72] w-full overflow-hidden rounded-[22px] text-left"
-      >
-        <Foto
-          src={p.foto}
-          alt={`Puesto de trabajo de ${p.nombre}`}
-          ayuda="Foto pendiente · /public/fotos/equipo"
-          className="h-full w-full"
-          sizes="(min-width: 768px) 25vw, 45vw"
-          posicion="center 15%"
-          viva={false}
-          degradado={false}
-        />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-gradient-to-t from-tinta/90 via-tinta/10 to-transparent"
-        />
-        <div className="absolute inset-x-0 bottom-0 p-4 md:p-5">
-          <p className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.2em] text-cobre-claro">
-            <IconoTijera className="h-3.5 w-3.5" /> {p.especialidad}
-          </p>
-          <h3 className="mt-1.5 font-display text-xl leading-tight text-crema md:text-2xl">{p.nombre}</h3>
-        </div>
-        <span className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-crema/40 bg-tinta/50 text-crema backdrop-blur-sm transition-transform duration-300 group-hover:scale-105 md:right-5 md:top-5">
-          <IconoMas className="h-4 w-4" />
-        </span>
-      </button>
+      {/* Celular: la ficha se da vuelta en el lugar — sin modal. */}
+      <div className="md:hidden">
+        {volteada ? (
+          <div className="relative flex w-full flex-col overflow-hidden rounded-[22px] bg-tinta-suave p-5">
+            <button
+              type="button"
+              onClick={() => setVolteada(false)}
+              aria-label={`Volver a la foto de ${p.nombre}`}
+              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-crema/30 text-crema/80"
+            >
+              <IconoCerrar className="h-3.5 w-3.5" />
+            </button>
+            <Info p={p} />
+          </div>
+        ) : (
+          <Frente p={p} onClick={() => setVolteada(true)} />
+        )}
+      </div>
+
+      {/* PC: el "+" abre un panel grande con la foto y el texto lado a lado. */}
+      <div className="hidden md:block">
+        <Frente p={p} onClick={() => setAbierto(true)} />
+      </div>
 
       {abierto &&
         createPortal(
@@ -92,7 +155,7 @@ export default function PerfilEquipo({ p }: { p: Profesional }) {
 
               {/* En PC, foto y texto van lado a lado (como un cuadro) en vez de
                   apilados: la descripción tiene más ancho para leerse entera
-                  sin tener que scrollear. En celular siguen apilados. */}
+                  sin tener que scrollear. */}
               <div className="relative aspect-[16/10] w-full shrink-0 sm:aspect-[16/9] md:aspect-auto md:w-[38%]">
                 <Foto
                   src={p.foto}
@@ -105,28 +168,7 @@ export default function PerfilEquipo({ p }: { p: Profesional }) {
               </div>
 
               <div className="sin-scrollbar overflow-y-auto p-6 md:w-[62%] md:p-8">
-                <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-cobre-claro">
-                  <IconoTijera className="h-3.5 w-3.5" /> {p.especialidad}
-                </p>
-                <h3 className="mt-2 font-display text-3xl md:text-4xl">{p.nombre}</h3>
-                <p className="mt-4 leading-relaxed text-crema/80">{p.descripcion}</p>
-                {p.frase && (
-                  <p className="mt-4 font-display text-lg italic text-cobre-claro">&ldquo;{p.frase}&rdquo;</p>
-                )}
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  {p.servicios.map((s) => (
-                    <li key={s} className="rounded-full border border-crema/15 px-3 py-1.5 text-sm text-crema/85">
-                      {s}
-                    </li>
-                  ))}
-                </ul>
-                <BotonWhatsApp
-                  mensaje={contacto.mensajesWhatsApp[p.mensaje]}
-                  variante="claro"
-                  className="mt-7 w-full sm:w-auto"
-                >
-                  Consultar con {p.nombre.split(" ")[0]}
-                </BotonWhatsApp>
+                <Info p={p} />
               </div>
             </div>
           </div>,
