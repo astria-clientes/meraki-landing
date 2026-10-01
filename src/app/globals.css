@@ -6,6 +6,10 @@
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    /* Red de seguridad: si algún componente se desborda un poco (una foto,
+       un carrusel), que no arrastre a toda la página a scrollear de costado
+       y "deformarse" — solo se recorta ese excedente puntual. */
+    overflow-x: hidden;
   }
   body {
     @apply bg-crema text-tinta font-sans antialiased;

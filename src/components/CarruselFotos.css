@@ -1,7 +1,14 @@
+.carrusel-fotos {
+  overflow: hidden;
+}
+
 .carrusel-fotos .swiper {
   width: 100%;
   padding-bottom: 36px;
-  overflow: visible;
+  /* "visible" dejaba asomar la foto siguiente más allá del borde del
+     carrusel — en pantallas angostas eso se salía del viewport y generaba
+     scroll horizontal en toda la página. */
+  overflow: hidden;
 }
 
 .carrusel-fotos .swiper-slide {
