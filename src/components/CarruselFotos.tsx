@@ -35,10 +35,9 @@ export default function CarruselFotos({
         effect="coverflow"
         grabCursor
         centeredSlides
-        loop={items.length > 2}
         slidesPerView={1.25}
         spaceBetween={16}
-        autoplay={{ delay: autoplayDelay, disableOnInteraction: false }}
+        autoplay={{ delay: autoplayDelay, disableOnInteraction: true }}
         coverflowEffect={{ rotate: 0, stretch: 0, depth: 90, modifier: 2, slideShadows: false }}
         pagination={{ clickable: true }}
       >
