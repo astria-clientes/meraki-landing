@@ -5,6 +5,7 @@ import Aparecer from "./Aparecer";
 import { EncabezadoCapitulo } from "./Capitulo";
 import { IconoFlecha } from "./Iconos";
 import AccordionGallery from "./AccordionGallery";
+import CarruselFotos from "./CarruselFotos";
 import { Foto, Logo } from "./Medios";
 import PerfilEquipo from "./PerfilEquipo";
 
@@ -66,15 +67,16 @@ export default function Peluqueria() {
           ))}
         </div>
 
-        {/* Fotos del local, en un acordeón: la franja activa se agranda y se
-            ve a color — pasá el mouse (o tocá en celular) para cambiar cuál.
-            Reemplaza al carrusel de "video pendiente" mientras llegan los
-            videos reales. */}
+        {/* Fotos del local — reemplazan al carrusel de "video pendiente"
+            mientras llegan los videos reales. En PC, un acordeón: la franja
+            activa se agranda y se ve a color al pasar el mouse. En celular,
+            un carrusel deslizable (Swiper): se siente mejor con el dedo que
+            el acordeón, pensado para el mouse. */}
         <div className="mt-20 md:mt-28">
           <h3 className="font-display text-3xl md:text-4xl">
             El local, <em className="text-cobre-claro">en movimiento</em>
           </h3>
-          <div className="mt-8">
+          <div className="mt-8 hidden md:block">
             <AccordionGallery
               items={videos
                 .filter((v) => v.poster)
@@ -86,6 +88,13 @@ export default function Peluqueria() {
               accentColor="#D9A855"
               overlayColor="#221912"
               textColor="#F7F3EC"
+            />
+          </div>
+          <div className="-mx-4 mt-8 px-4 md:hidden">
+            <CarruselFotos
+              items={videos
+                .filter((v) => v.poster)
+                .map((v) => ({ image: v.poster as string, label: v.titulo }))}
             />
           </div>
         </div>

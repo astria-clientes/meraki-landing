@@ -1,0 +1,25 @@
+.carrusel-fotos .swiper {
+  width: 100%;
+  padding-bottom: 36px;
+  overflow: visible;
+}
+
+.carrusel-fotos .swiper-slide {
+  width: 78%;
+  opacity: 0.55;
+  transition: opacity 300ms ease;
+}
+
+.carrusel-fotos .swiper-slide-active {
+  opacity: 1;
+}
+
+.carrusel-fotos .swiper-pagination-bullet {
+  background: #f7f3ec;
+  opacity: 0.4;
+}
+
+.carrusel-fotos .swiper-pagination-bullet-active {
+  background: #d9a855;
+  opacity: 1;
+}
