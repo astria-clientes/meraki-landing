@@ -11,8 +11,8 @@
     },
     {
       "nombre": "Ayelen Villa",
-      "especialidad": "Peluquería unisex",
-      "descripcion": "Desde 2011, dedicación, experiencia y atención personalizada para el cuidado del cabello. Cada cabello tiene sus propias características y necesidades: cortes, keratina alisadora, alisado permanente, botox capilar e hidrataciones se adaptan a cada persona para un resultado natural, saludable y armonioso — para cabellos lacios, ondulados y con rulos, en un ambiente cómodo y agradable.",
+      "especialidad": "Peluquería unisex y tratamientos capilares",
+      "descripcion": "Especialista en peluquería unisex y en el cuidado integral del cabello. En mujeres, me dedico exclusivamente a tratamientos capilares: nutrición, hidratación, brillo y recuperación para un pelo más sano y fuerte.",
       "frase": "Desde 2011, tu cabello, mi pasión.",
       "servicios": ["Corte unisex", "Keratina alisadora", "Alisado permanente", "Botox capilar", "Hidrataciones y tratamientos capilares"],
       "foto": "/fotos/equipo/estacion-ayelen.jpg",
