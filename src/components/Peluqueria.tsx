@@ -26,7 +26,7 @@ export default function Peluqueria() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-tinta to-transparent md:h-16"
         />
-        <p className="pointer-events-none absolute inset-x-0 bottom-5 flex items-center justify-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-crema/85 md:hidden">
+        <p className="pointer-events-none absolute inset-x-0 bottom-5 hidden items-center justify-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-crema/85 md:flex">
           Deslizá para conocer la peluquería
           <IconoFlecha className="h-3.5 w-3.5 animate-deslizar-abajo" />
         </p>
