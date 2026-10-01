@@ -34,10 +34,13 @@ export default function Peluqueria() {
       </div>
 
       <div className="mx-auto max-w-6xl px-4 pb-20 pt-10 md:px-6 md:pb-28 md:pt-14">
-        <div className="flex flex-col-reverse gap-8 md:flex-row md:items-end md:justify-between">
+        {/* En celular, la presentación (geometría, título, bajada) ocupa casi
+            toda la primera pantalla, como una mini-portada propia del
+            capítulo — recién al deslizar aparecen las fichas y las fotos.
+            En PC se mantiene como antes, sin ese alto forzado. */}
+        <div className="flex min-h-[calc(100svh-4.5rem)] flex-col-reverse justify-center gap-8 md:min-h-0 md:flex-row md:items-end md:justify-between">
           <EncabezadoCapitulo
             numero="01"
-            capitulo="El oficio"
             cuenta="#221912"
             titulo={
               <>

@@ -39,7 +39,7 @@ export function EncabezadoCapitulo({
   children,
 }: {
   numero: string;
-  capitulo: string;
+  capitulo?: string;
   titulo: React.ReactNode;
   bajada?: React.ReactNode;
   cuenta: string;
@@ -51,8 +51,12 @@ export function EncabezadoCapitulo({
       <div className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em]">
         <span className="h-2.5 w-2.5 rounded-full ring-1 ring-cobre ring-offset-2 ring-offset-transparent" style={{ background: cuenta }} />
         <span className="text-cobre-claro">Capítulo {numero}</span>
-        <span className="h-px w-8 bg-cobre/60" />
-        <span className="opacity-70">{capitulo}</span>
+        {capitulo && (
+          <>
+            <span className="h-px w-8 bg-cobre/60" />
+            <span className="opacity-70">{capitulo}</span>
+          </>
+        )}
       </div>
       <h2 className={`mt-5 font-display text-[2.6rem] leading-[1.02] tracking-tight sm:text-6xl md:text-7xl ${tonoTitulo}`}>
         {titulo}
