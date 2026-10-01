@@ -1,12 +1,11 @@
-import { contacto } from "@/config/contacto";
 import { marca } from "@/data/marca";
 import { profesionales, videos } from "@/data/peluqueria";
 import { textos } from "@/data/textos";
 import Aparecer from "./Aparecer";
-import BotonWhatsApp from "./BotonWhatsApp";
 import { EncabezadoCapitulo } from "./Capitulo";
-import { IconoFlecha, IconoTijera } from "./Iconos";
+import { IconoFlecha } from "./Iconos";
 import { Foto, Logo, Video } from "./Medios";
+import PerfilEquipo from "./PerfilEquipo";
 
 export default function Peluqueria() {
   return (
@@ -56,43 +55,12 @@ export default function Peluqueria() {
           />
         </div>
 
-        <div className="mt-14 grid gap-6 md:mt-20 md:grid-cols-2 md:gap-8">
+        {/* Fichas de perfil, chicas: adelante la foto y el nombre, con un "+"
+            que da vuelta la tarjeta y muestra todo lo que esa persona hace. */}
+        <div className="mx-auto mt-14 grid max-w-md grid-cols-2 gap-4 sm:gap-6 md:mx-0 md:mt-20 md:max-w-lg md:gap-8">
           {profesionales.map((p, i) => (
-            <Aparecer key={p.nombre} as="article" demora={i * 120}
-              className="overflow-hidden rounded-[28px] border border-tinta-borde bg-tinta-suave"
-            >
-              <Foto
-                src={p.foto}
-                alt={`Puesto de trabajo de ${p.nombre}`}
-                ayuda="Foto pendiente · /public/fotos/equipo"
-                className="aspect-[4/5] rounded-t-[28px] text-crema/70 sm:aspect-[3/4]"
-                sizes="(min-width: 768px) 50vw, 100vw"
-                posicion="center 15%"
-              />
-              <div className="p-6 md:p-8">
-                <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-cobre-claro">
-                  <IconoTijera className="h-4 w-4" /> {p.especialidad}
-                </p>
-                <h3 className="mt-3 font-display text-3xl md:text-4xl">{p.nombre}</h3>
-                <p className="mt-3 leading-relaxed text-crema/75">{p.descripcion}</p>
-                {p.frase && (
-                  <p className="mt-3 font-display text-lg italic text-cobre-claro">&ldquo;{p.frase}&rdquo;</p>
-                )}
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  {p.servicios.map((s) => (
-                    <li key={s} className="rounded-full border border-crema/15 px-3 py-1.5 text-sm text-crema/85">
-                      {s}
-                    </li>
-                  ))}
-                </ul>
-                <BotonWhatsApp
-                  mensaje={contacto.mensajesWhatsApp[p.mensaje]}
-                  variante="claro"
-                  className="mt-7 w-full sm:w-auto"
-                >
-                  Consultar con {p.nombre.split(" ")[0]}
-                </BotonWhatsApp>
-              </div>
+            <Aparecer key={p.nombre} demora={i * 120}>
+              <PerfilEquipo p={p} />
             </Aparecer>
           ))}
         </div>
