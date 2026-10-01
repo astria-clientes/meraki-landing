@@ -4,7 +4,8 @@ import { textos } from "@/data/textos";
 import Aparecer from "./Aparecer";
 import { EncabezadoCapitulo } from "./Capitulo";
 import { IconoFlecha } from "./Iconos";
-import { Foto, Logo, Video } from "./Medios";
+import AccordionGallery from "./AccordionGallery";
+import { Foto, Logo } from "./Medios";
 import PerfilEquipo from "./PerfilEquipo";
 
 export default function Peluqueria() {
@@ -65,24 +66,29 @@ export default function Peluqueria() {
           ))}
         </div>
 
-        {/* Videos del local y de los trabajos */}
+        {/* Fotos del local, en un acordeón: la franja activa se agranda y se
+            ve a color — pasá el mouse (o tocá en celular) para cambiar cuál.
+            Reemplaza al carrusel de "video pendiente" mientras llegan los
+            videos reales. */}
         <div className="mt-20 md:mt-28">
-          <div className="flex items-end justify-between gap-4">
-            <h3 className="font-display text-3xl md:text-4xl">
-              El local, <em className="text-cobre-claro">en movimiento</em>
-            </h3>
-            <p className="hidden text-sm text-crema/50 md:block">Deslizá para ver más</p>
+          <h3 className="font-display text-3xl md:text-4xl">
+            El local, <em className="text-cobre-claro">en movimiento</em>
+          </h3>
+          <div className="mt-8">
+            <AccordionGallery
+              items={videos
+                .filter((v) => v.poster)
+                .map((v) => ({ image: v.poster as string, label: v.titulo }))}
+              defaultIndex={0}
+              height={420}
+              gap={10}
+              radius={24}
+              accentColor="#D9A855"
+              overlayColor="#221912"
+              textColor="#F7F3EC"
+            />
           </div>
-          <div className="sin-scrollbar -mx-4 mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 md:mx-0 md:grid md:grid-cols-4 md:overflow-visible md:px-0">
-            {videos.map((v, i) => (
-              <Video
-                key={i}
-                {...v}
-                className="w-[62%] shrink-0 snap-start rounded-3xl border border-tinta-borde bg-tinta-suave text-crema/70 sm:w-[40%] md:w-auto"
-              />
-            ))}
-          </div>
-          <p className="mt-3 text-sm text-crema/50 md:hidden">← Deslizá para ver más →</p>
+          <p className="mt-3 text-center text-sm text-crema/50">Tocá cada foto para agrandarla</p>
         </div>
       </div>
     </section>
