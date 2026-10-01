@@ -2,8 +2,8 @@
   "profesionales": [
     {
       "nombre": "Diego Campos",
-      "especialidad": "Barbería, corte masculino & terapias",
-      "descripcion": "15 años de oficio, de tijera y navaja. Diego creó y sostiene Meraki como peluquería unisex, barbería y espacio terapéutico: con el tiempo, al corte se sumó el acompañamiento terapéutico y las piedras semipreciosas — no como adorno, sino como herramientas de protección personal. Por fuera del espacio, un camino personal de aprendizaje en sabiduría ancestral. Es quien da las sesiones de Reiki y armonización sonora — ver capítulo 02.",
+      "especialidad": "Barbería masculina y diseños",
+      "descripcion": "Especialista en cortes masculinos, degradados, barbería, arreglo de barba y diseños personalizados hechos a mano. Precisión y estilo con identidad propia.",
       "frase": "Un lugar para cortarse el pelo y, si se quiere, para darse un momento de pausa e introspección.",
       "servicios": ["Corte masculino", "Degradé / fade", "Perfilado y arreglo de barba"],
       "foto": "/fotos/equipo/estacion-diego.jpg",
