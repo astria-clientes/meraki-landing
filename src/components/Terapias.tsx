@@ -7,6 +7,7 @@ import Aparecer from "./Aparecer";
 import BotonWhatsApp from "./BotonWhatsApp";
 import { EncabezadoCapitulo } from "./Capitulo";
 import { Foto, Logo } from "./Medios";
+import { ShaderBackground } from "./ShaderBackground";
 
 /** El ojo del logo, con las ondas de la armonización sonora expandiéndose a su alrededor. */
 function Ondas() {
@@ -29,11 +30,24 @@ function Ondas() {
 export default function Terapias() {
   return (
     <section id="terapias" className="grano relative scroll-mt-14 overflow-hidden bg-tinta-suave text-crema/90 md:scroll-mt-16">
-      <div aria-hidden className="pointer-events-none absolute -right-32 top-24 h-96 w-96 rounded-full bg-dorado/10 blur-3xl" />
-      <div aria-hidden className="pointer-events-none absolute -left-40 bottom-40 h-96 w-96 rounded-full bg-cobre/10 blur-3xl" />
+      {/* Fondo animado (shader), de la paleta del sitio — ver
+          ShaderBackground.tsx. Va "pegado" (sticky) a la pantalla mientras
+          se scrollea el capítulo entero, y recién se despega al llegar al
+          final — el -mt-[100vh] del wrapper de abajo cancela el espacio
+          que reserva el sticky, para que el contenido arranque pegado
+          arriba en vez de dejar un hueco. Así el shader se ve en la escala
+          de una pantalla (como fue diseñado) en vez de estirado a lo largo
+          de todo el capítulo. */}
+      <div aria-hidden className="pointer-events-none sticky top-0 -z-10 h-screen w-full">
+        <ShaderBackground className="absolute inset-0 h-full w-full" />
+      </div>
 
-      <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-6 md:px-6 md:pb-28">
-        <div className="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-center">
+      <div className="relative z-10 -mt-[100vh]">
+        <div aria-hidden className="pointer-events-none absolute -right-32 top-24 h-96 w-96 rounded-full bg-dorado/10 blur-3xl" />
+        <div aria-hidden className="pointer-events-none absolute -left-40 bottom-40 h-96 w-96 rounded-full bg-cobre/10 blur-3xl" />
+
+        <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-6 md:px-6 md:pb-28">
+          <div className="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-center">
           <EncabezadoCapitulo
             numero="02"
             cuenta="#C9A227"
@@ -136,10 +150,11 @@ export default function Terapias() {
           </BotonWhatsApp>
         </div>
 
-        <p className="mt-10 max-w-3xl text-xs leading-relaxed text-crema/45">
-          Las terapias alternativas son un acompañamiento complementario para el bienestar. No reemplazan
-          diagnósticos ni tratamientos médicos o psicológicos.
-        </p>
+          <p className="mt-10 max-w-3xl text-xs leading-relaxed text-crema/45">
+            Las terapias alternativas son un acompañamiento complementario para el bienestar. No reemplazan
+            diagnósticos ni tratamientos médicos o psicológicos.
+          </p>
+        </div>
       </div>
     </section>
   );
