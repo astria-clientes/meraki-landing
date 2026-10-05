@@ -60,7 +60,15 @@ export default function Terapias() {
             tonoTitulo="italic font-light"
             titulo={
               <>
-                {textos.capitulos.terapias.tituloLinea1}
+                <span className="inline-flex items-center gap-4 align-middle">
+                  {textos.capitulos.terapias.tituloLinea1}
+                  <Logo
+                    src={marca.logoPiedras}
+                    alt={marca.nombreMarcaPiedras ?? "Logo de Meraki Alma"}
+                    pendiente="Logo"
+                    className="h-10 w-10 shrink-0 text-dorado/60 md:h-14 md:w-14"
+                  />
+                </span>
                 <br />
                 <span className="text-dorado-claro">{textos.capitulos.terapias.tituloLinea2}</span>
               </>
@@ -73,19 +81,7 @@ export default function Terapias() {
               </div>
             }
             anchoBajada="max-w-2xl"
-          >
-            <div className="mt-8 flex items-center gap-4">
-              <Logo
-                src={marca.logoPiedras}
-                alt={marca.nombreMarcaPiedras ?? "Logo de piedras y terapias"}
-                pendiente="Logo terapias & piedras · próximamente"
-                className="h-16 w-44 shrink-0 text-dorado/60"
-              />
-              {marca.nombreMarcaPiedras && (
-                <p className="font-display text-xl italic">{marca.nombreMarcaPiedras}</p>
-              )}
-            </div>
-          </EncabezadoCapitulo>
+          />
           <Ondas />
         </div>
 
