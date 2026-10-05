@@ -91,6 +91,7 @@ export default function Peluqueria() {
               accentColor="#D9A855"
               overlayColor="#221912"
               textColor="#F7F3EC"
+              showLabels={false}
             />
           </div>
           <div className="-mx-4 mt-8 px-4 md:hidden">
