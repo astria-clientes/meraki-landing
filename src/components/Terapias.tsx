@@ -65,7 +65,14 @@ export default function Terapias() {
                 <span className="text-dorado-claro">{textos.capitulos.terapias.tituloLinea2}</span>
               </>
             }
-            bajada={textos.capitulos.terapias.bajada}
+            bajada={
+              <div className="space-y-4">
+                {textos.capitulos.terapias.bajada.split("\n\n").map((parrafo, i) => (
+                  <p key={i}>{parrafo}</p>
+                ))}
+              </div>
+            }
+            anchoBajada="max-w-2xl"
           >
             <div className="mt-8 flex items-center gap-4">
               <Logo
@@ -129,7 +136,19 @@ export default function Terapias() {
               </div>
 
               {t.relato && t.relato.length > 0 && (
-                <RelatoTerapia nombre={t.nombre} relato={t.relato} principios={t.principios} />
+                <RelatoTerapia
+                  nombre={t.nombre}
+                  relato={t.relato}
+                  columnaTitulo={
+                    t.principios
+                      ? "Los cinco principios del Reiki (Gokai)"
+                      : t.puntos
+                        ? "Qué pasa en el cuerpo"
+                        : undefined
+                  }
+                  principios={t.principios}
+                  puntos={t.puntos}
+                />
               )}
             </Aparecer>
           ))}

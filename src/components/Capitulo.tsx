@@ -34,6 +34,7 @@ export function EncabezadoCapitulo({
   capitulo,
   titulo,
   bajada,
+  anchoBajada = "max-w-xl",
   cuenta,
   tonoTitulo = "",
   children,
@@ -42,6 +43,8 @@ export function EncabezadoCapitulo({
   capitulo?: string;
   titulo: React.ReactNode;
   bajada?: React.ReactNode;
+  /** Ancho máximo de la bajada — más angosto para una frase corta, más ancho para varios párrafos. */
+  anchoBajada?: string;
   cuenta: string;
   tonoTitulo?: string;
   children?: React.ReactNode;
@@ -61,7 +64,7 @@ export function EncabezadoCapitulo({
       <h2 className={`mt-5 font-display text-[2.6rem] leading-[1.02] tracking-tight sm:text-6xl md:text-7xl ${tonoTitulo}`}>
         {titulo}
       </h2>
-      {bajada && <p className="mt-5 max-w-xl text-[17px] leading-relaxed opacity-80">{bajada}</p>}
+      {bajada && <div className={`mt-5 ${anchoBajada} text-[17px] leading-relaxed opacity-80`}>{bajada}</div>}
       {children}
     </header>
   );

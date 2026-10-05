@@ -66,7 +66,7 @@
       "id": "sonora",
       "nombre": "Armonización sonora",
       "bajada": "Terapia vibracional con sonido",
-      "queEs": "Todo lo que suena, vibra. En una armonización sonora se usan cuencos, gongs y otros instrumentos de sonidos largos y envolventes. Esas vibraciones no solo se escuchan: también se sienten en el cuerpo, como cuando un tambor te retumba en el pecho.",
+      "queEs": "La terapia vibracional y la armonización sonora son disciplinas holísticas que usan las frecuencias y ondas acústicas de instrumentos armónicos —cuencos, gongs y diapasones— para restaurar el equilibrio físico, mental y energético del cuerpo. No solo se escuchan: también se sienten, como cuando un tambor te retumba en el pecho.",
       "comoFunciona": [
         {
           "titulo": "El sonido se siente",
@@ -87,6 +87,23 @@
         "Respiración más lenta y profunda",
         "Ayuda a conciliar un mejor sueño",
         "Mayor conexión con el propio cuerpo"
+      ],
+      "relato": [
+        "El cuerpo humano está compuesto en un 60 a 70% por agua, lo que convierte a los tejidos y las células en conductores ideales para las ondas mecánicas del sonido."
+      ],
+      "puntos": [
+        {
+          "titulo": "Resonancia simpática",
+          "texto": "Las células y los órganos del cuerpo vibran a frecuencias naturales. Cuando entran en contacto con tonos armónicos y sostenidos, tienden a sincronizarse con esa frecuencia más ordenada y estable."
+        },
+        {
+          "titulo": "Entrenamiento de ondas cerebrales",
+          "texto": "Las frecuencias binaurales y armónicas ayudan a inducir estados de relajación profunda, trasladando la actividad cerebral desde el estado Beta (alerta, estrés) hacia estados Alfa (relajación) y Theta (meditación profunda, sueño)."
+        },
+        {
+          "titulo": "Estimulación del nervio vago",
+          "texto": "Las frecuencias graves y sostenidas activan el sistema nervioso parasimpático: reducen el ritmo cardíaco, desaceleran la respiración y bajan los niveles de cortisol."
+        }
       ]
     }
   ]

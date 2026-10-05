@@ -14,13 +14,21 @@ import { IconoFlecha } from "./Iconos";
 export default function RelatoTerapia({
   nombre,
   relato,
+  columnaTitulo,
   principios,
+  puntos,
 }: {
   nombre: string;
   relato: string[];
+  /** Encabezado de la columna derecha (principios o puntos). */
+  columnaTitulo?: string;
+  /** Lista corta, en primera persona — ej. los cinco principios del Reiki. */
   principios?: string[];
+  /** Lista con título + explicación cada una — ej. cómo actúa el sonido en el cuerpo. */
+  puntos?: { titulo: string; texto: string }[];
 }) {
   const [abierto, setAbierto] = useState(false);
+  const hayColumnaDerecha = (principios && principios.length > 0) || (puntos && puntos.length > 0);
 
   return (
     <div className="mt-8 border-t border-dorado/15 pt-6 md:mt-10 md:pt-8">
@@ -35,7 +43,7 @@ export default function RelatoTerapia({
       </button>
 
       {abierto && (
-        <div className="mt-5 grid gap-10 md:grid-cols-2 md:gap-14">
+        <div className={`mt-5 ${hayColumnaDerecha ? "grid gap-10 md:grid-cols-2 md:gap-14" : "max-w-2xl"}`}>
           <div className="space-y-4 text-[17px] leading-relaxed text-crema/80">
             {relato.map((parrafo, i) => (
               <p key={i}>{parrafo}</p>
@@ -44,9 +52,11 @@ export default function RelatoTerapia({
 
           {principios && principios.length > 0 && (
             <div>
-              <h4 className="text-[11px] font-semibold uppercase tracking-[0.26em] text-dorado-claro">
-                Los cinco principios del Reiki (Gokai)
-              </h4>
+              {columnaTitulo && (
+                <h4 className="text-[11px] font-semibold uppercase tracking-[0.26em] text-dorado-claro">
+                  {columnaTitulo}
+                </h4>
+              )}
               <ol className="mt-5 space-y-3">
                 {principios.map((p, i) => (
                   <li key={p} className="flex items-start gap-3 font-display text-lg italic leading-snug">
@@ -55,6 +65,24 @@ export default function RelatoTerapia({
                   </li>
                 ))}
               </ol>
+            </div>
+          )}
+
+          {puntos && puntos.length > 0 && (
+            <div>
+              {columnaTitulo && (
+                <h4 className="text-[11px] font-semibold uppercase tracking-[0.26em] text-dorado-claro">
+                  {columnaTitulo}
+                </h4>
+              )}
+              <ul className="mt-5 space-y-5">
+                {puntos.map((p) => (
+                  <li key={p.titulo}>
+                    <p className="font-display text-lg italic text-crema">{p.titulo}</p>
+                    <p className="mt-1 leading-relaxed text-crema/70">{p.texto}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </div>
