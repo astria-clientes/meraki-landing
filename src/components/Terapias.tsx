@@ -7,6 +7,7 @@ import Aparecer from "./Aparecer";
 import BotonWhatsApp from "./BotonWhatsApp";
 import { EncabezadoCapitulo } from "./Capitulo";
 import { Foto, Logo } from "./Medios";
+import RelatoTerapia from "./RelatoTerapia";
 import { ShaderBackground } from "./ShaderBackground";
 
 /** El ojo del logo, con las ondas de la armonización sonora expandiéndose a su alrededor. */
@@ -126,6 +127,10 @@ export default function Terapias() {
                   </ol>
                 </div>
               </div>
+
+              {t.relato && t.relato.length > 0 && (
+                <RelatoTerapia nombre={t.nombre} relato={t.relato} principios={t.principios} />
+              )}
             </Aparecer>
           ))}
         </div>

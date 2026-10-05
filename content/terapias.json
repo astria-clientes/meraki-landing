@@ -22,7 +22,7 @@
       "id": "reiki",
       "nombre": "Reiki",
       "bajada": "Energía a través de las manos",
-      "queEs": "Reiki es una práctica de origen japonés, creada por Mikao Usui a comienzos del siglo XX. La palabra une rei (universal) y ki (energía vital). Diego apoya suavemente las manos —o las deja apenas por encima del cuerpo— en distintas zonas, para acompañarte a entrar en un estado de relajación profunda.",
+      "queEs": "El Reiki Usui es un sistema de sanación holística de origen japonés, desarrollado a principios del siglo XX por el maestro Mikao Usui. Une rei (energía universal) y ki (energía vital individual): cuando ese flujo se bloquea por el estrés, las emociones reprimidas o el cansancio, aparecen malestares físicos y emocionales. Diego apoya suavemente las manos —o las deja apenas por encima del cuerpo— para acompañarte a entrar en un estado de relajación profunda.",
       "comoFunciona": [
         {
           "titulo": "Una charla breve",
@@ -42,11 +42,24 @@
         }
       ],
       "beneficios": [
-        "Relajación profunda del cuerpo y la mente",
-        "Alivio del estrés y la ansiedad del día a día",
-        "Mejor calidad de descanso",
-        "Sensación de equilibrio, calma y claridad",
-        "Acompañamiento en momentos de cambio"
+        "Reducción profunda del estrés y la ansiedad",
+        "Equilibrio emocional y mayor claridad",
+        "Alivio de la tensión física y los dolores de tensión",
+        "Mejor calidad de sueño",
+        "Apoyo al sistema inmunológico",
+        "Mayor enfoque en momentos de incertidumbre"
+      ],
+      "relato": [
+        "Durante una sesión, el terapeuta actúa como canalizador de la energía universal hacia la persona receptora, mediante la imposición suave de las manos —o sosteniéndolas a pocos centímetros de distancia— en distintos puntos clave del cuerpo, conocidos como centros energéticos o chakras: cabeza, pecho, abdomen, espalda, entre otros.",
+        "El practicante no transmite su propia energía física ni diagnostica enfermedades: únicamente facilita el flujo para que el cuerpo active sus propios mecanismos naturales de autorregulación y relajación.",
+        "Aunque el Reiki no sustituye los tratamientos médicos ni psicológicos profesionales, se usa ampliamente como una práctica complementaria para mejorar el bienestar integral."
+      ],
+      "principios": [
+        "Solo por hoy, no te enojes.",
+        "Solo por hoy, no te preocupes.",
+        "Solo por hoy, sé agradecido.",
+        "Solo por hoy, trabaja diligentemente.",
+        "Solo por hoy, sé amable con las personas."
       ]
     },
     {

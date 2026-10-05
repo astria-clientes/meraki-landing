@@ -15,6 +15,10 @@ export type Terapia = {
   queEs: string;
   comoFunciona: { titulo: string; texto: string }[];
   beneficios: string[];
+  /** Historia más larga, en párrafos — se muestra plegada bajo "Conocé más". */
+  relato?: string[];
+  /** Los cinco principios del Reiki (Gokai), si aplica. */
+  principios?: string[];
 };
 
 const data = terapiasJson as { fotosTerapias: Foto[]; terapias: Terapia[] };
