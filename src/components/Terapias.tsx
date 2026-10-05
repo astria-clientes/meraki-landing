@@ -36,7 +36,6 @@ export default function Terapias() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-center">
           <EncabezadoCapitulo
             numero="02"
-            capitulo="La pausa"
             cuenta="#C9A227"
             tonoTitulo="italic font-light"
             titulo={
