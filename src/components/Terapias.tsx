@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { contacto } from "@/config/contacto";
 import { marca } from "@/data/marca";
 import { fotosTerapias, terapias } from "@/data/terapias";
@@ -10,7 +9,8 @@ import { Foto, Logo } from "./Medios";
 import RelatoTerapia from "./RelatoTerapia";
 import { ShaderBackground } from "./ShaderBackground";
 
-/** El ojo del logo, con las ondas de la armonización sonora expandiéndose a su alrededor. */
+/** El ojo, animado (parpadea y se le ilumina la pupila), con las ondas de la
+ *  armonización sonora expandiéndose a su alrededor. */
 function Ondas() {
   return (
     <div aria-hidden className="relative mx-auto h-40 w-40 md:h-52 md:w-52">
@@ -21,8 +21,15 @@ function Ondas() {
           style={{ animationDelay: `${d}s` }}
         />
       ))}
-      <span className="absolute inset-[26%] animate-respirar rounded-full bg-tinta-suave shadow-[0_0_30px_-4px_rgba(201,162,39,.6)]">
-        <Image src="/logos/ojo.png" alt="" fill sizes="140px" className="object-contain p-3" />
+      <span className="absolute inset-[26%] overflow-hidden rounded-full bg-tinta-suave shadow-[0_0_30px_-4px_rgba(201,162,39,.6)]">
+        <video
+          src="/videos/ojo-animado.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="h-full w-full object-contain p-3"
+        />
       </span>
     </div>
   );
