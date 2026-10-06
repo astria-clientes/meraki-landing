@@ -21,14 +21,14 @@ function Ondas() {
           style={{ animationDelay: `${d}s` }}
         />
       ))}
-      <span className="absolute inset-[26%] overflow-hidden rounded-full bg-tinta-suave shadow-[0_0_30px_-4px_rgba(201,162,39,.6)]">
+      <span className="absolute inset-[18%] overflow-hidden rounded-full bg-tinta-suave shadow-[0_0_30px_-4px_rgba(201,162,39,.6)]">
         <video
           src="/videos/ojo-animado.mp4"
           autoPlay
           loop
           muted
           playsInline
-          className="h-full w-full object-contain p-3"
+          className="h-full w-full object-cover"
         />
       </span>
     </div>
